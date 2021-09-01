@@ -13,13 +13,13 @@
                         <a class="nav-link active" aria-current="page" href="./">{{ $t("header.menu.topPage") }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("header.menu.resume") }}📝</a>
+                        <a class="nav-link" href="#">{{ $t("header.menu.resume") }} 📝</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("header.menu.hamsterCare") }}🐹</a>
+                        <a class="nav-link" href="#">{{ $t("header.menu.hamsterCare") }} 🐹</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("header.menu.ukulele") }}🎶</a>
+                        <a class="nav-link" href="#">{{ $t("header.menu.ukulele") }} 🎶</a>
                     </li>
                 </ul>
                 <hr class="d-md-none text-dark">
@@ -27,11 +27,11 @@
                     <li class="nav-item col-6 col-md-auto">
                         <div class="btn-group dropstart">
                             <a  class="nav-link p-2" target="_blank" @click="translateDropdown" data-bs-toggle="dropdown">
-                            <i class="bi bi-translate"></i>
+                            <i class="bi bi-translate"></i><span id="language-name" class="pl-1">{{ $t("header.languageName") }}</span>
                                 <i class="bi bi-caret-down-fill"></i>
                             </a>
                             <ul :class="['dropdown-menu',{show:showTranslateDropdown}]" id="translate-dropdown-menu" @mouseleave="translateDropdown" >
-                                <li><a class="dropdown-item" @click="changeLanguage('zh')">中文</a></li>
+                                <li><a class="dropdown-item" @click="changeLanguage('zh')">简体中文</a></li>
                                 <li><a class="dropdown-item" @click="changeLanguage('ja')">日本語</a></li>
                                 <li><a class="dropdown-item" @click="changeLanguage('en')">English</a></li>
                             </ul>
@@ -55,8 +55,7 @@ export default {
     data(){
         return {
             showMenu:false,
-            showTranslateDropdown:false,
-            language:['zh-CN','简体中文']
+            showTranslateDropdown:false
         }
     },
     methods:{
@@ -76,7 +75,7 @@ export default {
 <style>
 #translate-dropdown-menu{
     top: 50px;
-    left: -120px;
+    left: -90px;
 }
 .right-header{
     margin-right: 50px;
@@ -86,5 +85,8 @@ export default {
 }
 .right-header .dropdown-menu .dropdown-item{
     font-size: 1rem;
+}
+#language-name {
+    font-size: 1.2rem;
 }
 </style>

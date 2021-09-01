@@ -5,8 +5,8 @@
                 <div class="card d-flex flex-column justify-content-end" 
                     :style="'background-position:1rem 10px;background-image:url('+require('@/assets/imgs/resume.png')+');background-color: #ece092;'">
                     <div class="card-title-board" style="background: linear-gradient(0deg,#c5b12e,#ece09200);">
-                        <div class="card-title">简历 📝</div>
-                        <div class="card-title2">点击它、了解更丰富多彩的我</div>
+                        <div class="card-title">{{ $t("homepage.resume.title") }} 📝</div>
+                        <div class="card-title2">{{ $t("homepage.resume.detail") }}</div>
                     </div>
                 </div>
             </div>
@@ -14,8 +14,8 @@
                 <div class="card d-flex flex-column justify-content-end" 
                     :style="'background-position:2px 5px;background-image:url('+require('@/assets/imgs/arduino-UNO.png')+');background-color: #7fcbcd;'">
                     <div class="card-title-board" style="background: linear-gradient(0deg,#028085,#7fcacd1f)">
-                        <div class="card-title">HamsterCare🐹</div>
-                        <div class="card-title2">基于esp32(arduino)制作的物联网智能仓鼠箱。 拥有获取仓鼠每日运动信息、监控环境温湿度等功能，还可通过Siri自动喂食。</div>
+                        <div class="card-title">{{ $t("homepage.hamsterCare.title") }}🐹</div>
+                        <div class="card-title2">{{ $t("homepage.hamsterCare.detail") }}</div>
                     </div>
                 </div>
             </div>
@@ -23,8 +23,8 @@
                 <div class="card d-flex flex-column justify-content-end" 
                     :style="'background-position:-20px 20px;background-image:url('+require('@/assets/imgs/guitar.png')+');background-color: #c59387;'">
                     <div class="card-title-board" style="background: linear-gradient(0deg,#8a665d,#c4928605)">
-                        <div class="card-title">尤克里里🎶</div>
-                        <div class="card-title2">收集的一些尤克里里谱子、艰难练习中(⊙o⊙)………</div>
+                        <div class="card-title">{{ $t("homepage.ukulele.title") }}🎶</div>
+                        <div class="card-title2">{{ $t("homepage.ukulele.detail") }}</div>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,6 @@ export default {
     white-space: pre-wrap;
     color: white;
     padding-bottom: 10px;
-    
 }
 .card-title-board{
     min-height: 9rem;

@@ -23,7 +23,8 @@ const i18n = createI18n({
     globalInjection:true,
     messages: {
         'zh': require('./i18n/zh'),
-        'ja': require('./i18n/ja')
+        'ja': require('./i18n/ja'),
+        'en': require('./i18n/en')
     }
 })
 
