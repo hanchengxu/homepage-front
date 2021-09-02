@@ -1,5 +1,5 @@
 <template>
-    <div class="container-lg main-container">
+    <div class="container-lg">
         <div class="row" style="margin-top:200px">
             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col" >
                 <div class="card d-flex flex-column justify-content-end" 
@@ -78,9 +78,6 @@ export default {
 }
 </script>
 <style>
-.main-container{
-  min-height: 1000px;
-}
 .card{
     width: 15rem;
     height: 20rem;

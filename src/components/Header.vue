@@ -10,16 +10,16 @@
             <div :class="['header-menu','collapse','navbar-collapse',{show: showMenu}]" >
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./">{{ $t("header.menu.topPage") }}</a>
+                        <router-link class="nav-link" to="/">{{ $t("header.menu.topPage") }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("header.menu.resume") }} 📝</a>
+                        <router-link class="nav-link" to="/resume">{{ $t("header.menu.resume") }} 📝</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("header.menu.hamsterCare") }} 🐹</a>
+                        <router-link class="nav-link" to="/hamsterCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("header.menu.ukulele") }} 🎶</a>
+                        <router-link  class="nav-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
                     </li>
                 </ul>
                 <hr class="d-md-none text-dark">

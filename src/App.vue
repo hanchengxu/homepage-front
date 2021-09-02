@@ -1,6 +1,8 @@
 <template>
   <Header />
-  <Container />
+    <div class="main-container">
+      <router-view></router-view>
+    </div>
   <Footer />
 </template>
 
@@ -19,3 +21,8 @@ export default {
   }
 }
 </script>
+<style>
+.main-container{
+  min-height: 1000px;
+}
+</style>

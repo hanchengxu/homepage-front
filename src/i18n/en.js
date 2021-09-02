@@ -11,7 +11,7 @@ module.exports = {
     homepage:{
         resume:{
             title:'Resume',
-            detail:'click it, find the colorful me'
+            detail:'Click it, find the colorful me'
         },
         hamsterCare:{
             title:'HamsterCare',
