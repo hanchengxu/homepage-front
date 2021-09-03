@@ -29,3 +29,22 @@ body {
     fill: currentColor;
     overflow: hidden;
 }
+/* animations */
+.sideslip-enter-active,
+.sideslip-leave-active {
+  transition: all 0.7s cubic-bezier(.43,.15,.59,1.19);
+}
+.sideslip-enter-from,
+.sideslip-leave-to {
+  transform: translateX(500px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

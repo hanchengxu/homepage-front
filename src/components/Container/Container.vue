@@ -1,41 +1,18 @@
 <template>
     <div class="container-lg">
         <div class="row" style="margin-top:200px">
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col" >
-                <div class="card d-flex flex-column justify-content-end" 
-                    :style="'background-position:1rem 10px;background-image:url('+require('@/assets/imgs/resume.png')+');background-color: #ece092;'">
-                    <div class="card-title-board" style="background: linear-gradient(0deg,#c5b12e,#ece09200);">
-                        <div class="card-title">{{ $t("homepage.resume.title") }} 📝</div>
-                        <div class="card-title2">{{ $t("homepage.resume.detail") }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col">
-                <div class="card d-flex flex-column justify-content-end" 
-                    :style="'background-position:2px 5px;background-image:url('+require('@/assets/imgs/arduino-UNO.png')+');background-color: #7fcbcd;'">
-                    <div class="card-title-board" style="background: linear-gradient(0deg,#028085,#7fcacd1f)">
-                        <div class="card-title">{{ $t("homepage.hamsterCare.title") }}🐹</div>
-                        <div class="card-title2">{{ $t("homepage.hamsterCare.detail") }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col">
-                <div class="card d-flex flex-column justify-content-end" 
-                    :style="'background-position:-20px 20px;background-image:url('+require('@/assets/imgs/guitar.png')+');background-color: #c59387;'">
-                    <div class="card-title-board" style="background: linear-gradient(0deg,#8a665d,#c4928605)">
-                        <div class="card-title">{{ $t("homepage.ukulele.title") }}🎶</div>
-                        <div class="card-title2">{{ $t("homepage.ukulele.detail") }}</div>
-                    </div>
-                </div>
-            </div>
+                <ProtalCard v-for="card in cards" :key="card.key" v-bind="card" :lazy="card.key*50"/>
         </div>
     </div>
 </template>
 <script>
 import { onMounted } from 'vue';
+import ProtalCard from './PortalCard.vue';
 export default {
     name: 'Container',
-    components: {},
+    components:{
+        ProtalCard
+    },
     props: {
     },
     setup() {
@@ -45,12 +22,14 @@ export default {
     },
     data(){
         return {
-            name:"",
-            drawer:false,
-            direction: 'ltr',
-            dateTimeRange:[],
-            value1:"",
-            value2:""
+            cards:[
+                {key:1,bgImage:"resume.png", bgColor:"#ece092", cardTitleColorFrom:"#c5b12e", cardTitleColorTo:"#ece09200", 
+                cardTitle:"homepage.resume.title", cardTitleIcon:"📝", cardDetail:"homepage.resume.detail"},
+                {key:2,bgImage:"arduino-UNO.png", bgColor:"#7fcbcd", cardTitleColorFrom:"#028085", cardTitleColorTo:"#7fcacd1f", 
+                cardTitle:"homepage.hamsterCare.title", cardTitleIcon:"🐹", cardDetail:"homepage.hamsterCare.detail"},
+                {key:3,bgImage:"guitar.png", bgColor:"#c59387", cardTitleColorFrom:"#8a665d", cardTitleColorTo:"#c4928605", 
+                cardTitle:"homepage.ukulele.title", cardTitleIcon:"🎶", cardDetail:"homepage.ukulele.detail"},
+            ]
         }
     },
     methods:{
@@ -78,44 +57,4 @@ export default {
 }
 </script>
 <style>
-.card{
-    width: 15rem;
-    height: 20rem;
-    padding-top: 20px;
-    transform: skewX(-10deg);
-    background-repeat:no-repeat;
-    box-shadow: 5px 5px 10px #c5c3c3;
-    border-radius: 10px;
-    cursor:pointer;
-    transition: 0.3s ease-in-out;
-    background-color: #c4928605;
-}
-.card-col{
-    padding-bottom: 20px;
-}
-.card-col:last-child{
-    padding-bottom: 60px;
-}
-.card:hover{
-    transform: skewX(-10deg) scale(1.1);
-    background-position:50px 10px !important;
-}
-
-.card-title{
-    padding-left: 15px;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: white;
-}
-.card-title2{
-    padding-left: 15px;
-    font-size: 0.85rem;
-    white-space: pre-wrap;
-    color: white;
-    padding-bottom: 10px;
-}
-.card-title-board{
-    min-height: 9rem;
-    border-radius: 5px;
-}
 </style>

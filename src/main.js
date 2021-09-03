@@ -18,6 +18,7 @@ import '@/css/main.css'//项目css
 import { createI18n } from 'vue-i18n'//国际化
 import { createRouter,createWebHistory  } from 'vue-router'
 import {routes} from '@/routes';//←←路由在此配置
+import LazyShow from '@/components/Common/LazyShow.vue'//延迟加载组件，放到全局
 
 
 //国际化配置
@@ -52,6 +53,8 @@ const app = createApp(App);
 // app.use(ElementPlus, { locale });
 app.use(i18n);
 app.use(router);
+
+app.component('LazyShow', LazyShow);
 
 app.component('svg-icon', SvgIcon).mount("#app");
 
