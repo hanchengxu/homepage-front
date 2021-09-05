@@ -21,5 +21,11 @@ module.exports = {
             title:'尤克里里',
             detail:'收集的一些尤克里里谱子、艰难练习中(⊙o⊙)………'
         }
+    },
+    hamsterCare:{
+        pageOne:{
+            tilteOne:'基于esp32的物联网系统',
+            titleTwo:'使用传感器记录仓鼠运动信息，环境温湿度等。通过mqtt协议传输至后台。经过分析处理的数据最终显示在网页终端。配置快捷指令，也可实现利用Siri语音进行自动喂食。'
+        }
     }
 }

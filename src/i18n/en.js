@@ -21,5 +21,11 @@ module.exports = {
             title:'ウクレレ',
             detail:"Sheet music being practiced,It's difficult for me I think(⊙o⊙)………"
         }
+    },
+    hamsterCare:{
+        pageOne:{
+            tilteOne:'IoT hamster box based on esp32 platform',
+            titleTwo:"Easily get the hamster's movement environmental temperature and humidity information,also can fed hamster automatically via Siri"
+        }
     }
 }

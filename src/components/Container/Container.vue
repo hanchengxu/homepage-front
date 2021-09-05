@@ -1,7 +1,5 @@
 <template>
-    <div class="container-fluid portal-container" 
-    
-    >
+    <div class="container-fluid portal-container">
     <!-- :style="'background-image: url('+require('@/assets/imgs/238.jpg')+')'" -->
         <div class="row portal-row">
                 <ProtalCard v-for="card in cards" :key="card.key" v-bind="card" :lazy="card.key*50"/>
@@ -82,7 +80,6 @@ export default {
 }
 @media screen and (max-width: 900px) {
     .portal-container {
-        background-color:lightblue;
         padding-left: 20px !important;
         padding-right: 20px !important;
     }

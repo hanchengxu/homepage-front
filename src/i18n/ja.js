@@ -21,5 +21,11 @@ module.exports = {
             title:'ウクレレ',
             detail:'練習してるのウクレレ楽譜で、難しいな(⊙o⊙)………'
         }
+    },
+    hamsterCare:{
+        pageOne:{
+            tilteOne:'基于esp32的物联网系统',
+            titleTwo:'利用传感设备记录仓鼠运动信息，环境温湿度等。通过mqtt协议传输至后台处理并在终端显示。使用快捷指令，也可通过Siri进行自动喂食。'
+        }
     }
 }
