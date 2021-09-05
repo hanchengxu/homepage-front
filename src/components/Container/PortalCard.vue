@@ -1,6 +1,6 @@
 <template>
     <LazyShow :time="lazy" transName="sideslip">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col" >
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col" @click="routerChange(destination)">
                 <div class="card d-flex flex-column justify-content-end" 
                     :style="'background-position:1rem 10px;background-image:url('+require('@/assets/imgs/'+bgImage)+');background-color: '+bgColor+';'">
                     <div class="card-title-board" :style="'background: linear-gradient(0deg,'+cardTitleColorFrom+','+cardTitleColorTo+');'">
@@ -23,8 +23,14 @@ export default {
         cardTitle: {type:String, required: true},
         cardTitleIcon: String,
         cardDetail: {type:String, required: true},
-        lazy:{type:Number}
-    }
+        lazy:{type:Number},
+        destination:{type:String, required: true}
+    },
+    methods: {
+        routerChange(destination){
+            this.$router.push({ path: destination});
+        }
+    },
 }
 </script>
 <style>
@@ -34,7 +40,7 @@ export default {
     padding-top: 20px;
     transform: skewX(-10deg);
     background-repeat:no-repeat;
-    box-shadow: 5px 5px 10px #c5c3c3;
+    box-shadow: 5px 5px 10px #afafaf81;
     border-radius: 10px;
     cursor:pointer;
     transition: 0.3s ease-in-out;

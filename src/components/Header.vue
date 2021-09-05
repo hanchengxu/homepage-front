@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-top border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-top border-bottom portal-header">
         <div class="container-fluid">
             <a class="navbar-brand" href="./">
                 <img src="@/assets/imgs/mylogo.png" alt="" width="100" height="48" class="d-inline-block align-text-top">
@@ -8,7 +8,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div :class="['header-menu','collapse','navbar-collapse',{show: showMenu}]" >
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="left-header navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <router-link class="nav-link" to="/">{{ $t("header.menu.topPage") }}</router-link>
                     </li>
@@ -74,10 +74,19 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
+
+@media screen and (min-width: 900px) {
+    .portal-header{
+        opacity: 0.75;
+    }
+}
 #translate-dropdown-menu{
     top: 50px;
     left: -90px;
+}
+.left-header a[class~="nav-link"]:hover{
+    font-weight: 500;
 }
 .right-header{
     margin-right: 50px;
