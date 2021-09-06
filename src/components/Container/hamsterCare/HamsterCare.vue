@@ -12,9 +12,8 @@
         </div>
         <div class="row d-flex justify-content-center mt-4">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4 anima-chart">
-                <div id="lapCountByDay" style="width: 100%;height:400px;" class="shadow rounded"></div>
+                <div :id="dayChartId" style="width: 100%;" class="shadow rounded dayChart"></div>
             </div>
-            
             <LazyShow time="100" transName="topslip">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mt-4">
                     <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
@@ -34,13 +33,18 @@ import LazyShow from '../../Common/LazyShow.vue';
 export default {
   components: { LazyShow },
     name: 'HamsterCare',
-    setup() {
+    props:{
+        //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
+        dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false}
+    },
+    setup(props) {
         onMounted(() => {
             String.prototype.endWith=function(str){
                 var reg=new RegExp(str+"$");
                 return reg.test(this);
             }
-            let lapCountByDay = echarts.init(document.getElementById('lapCountByDay'));
+            // console.log(props.dayChartId);
+            let lapCountByDay = echarts.init(document.getElementById(props.dayChartId));
             let lapCountByDayOption1 = {
                 color: ["#2ec7c9"],
                 grid:{ left:'15%',right:'5%'},
@@ -48,15 +52,15 @@ export default {
                     {
                         show: true,
                         realtime: true,
-                        start: 95,
+                        start: 96,
                         end: 100,
-                        brushSelect:true,
+                        brushSelect:false,
                         zoomLock:true
                     },
                     {
                         type: 'inside',
                         realtime: true,
-                        start: 95,
+                        start: 96,
                         end: 100
                     }
                 ],
@@ -72,7 +76,7 @@ export default {
                 },
                 xAxis: {
                     type: 'category',
-                    data: [],
+                    data: ["2021-03-28","2021-03-29","2021-03-30"],
                     axisLabel: {
                         textStyle : {
                             fontSize:12
@@ -91,7 +95,7 @@ export default {
                     splitLine: {show: true,lineStyle:{type :'dashed'}}
                 },
                 series: [{
-                    data: [],
+                    data: [100,200,300],
                     type: 'line',
                     itemStyle : { normal: {label : {show: true,fontSize:15}}},
                     lineStyle: {
@@ -109,7 +113,6 @@ export default {
                 }]
             };
             lapCountByDay.setOption(lapCountByDayOption1);
-
             lapCountByDay.showLoading();
             axios.get('https://hanchengxu.com/hamster/getLapCountByDay')
                 .then(function (response) {
@@ -122,7 +125,6 @@ export default {
                     console.log(error);
                     lapCountByDay.hideLoading();
                 });
-
             window.onresize = function () {
                 lapCountByDay.resize();
             };
@@ -152,6 +154,19 @@ export default {
     to{
         transform: translateY(0);
         opacity: 1;
+    }
+}
+.dayChart{
+    height: 400px;
+}
+@media screen and (max-width: 900px) {
+    .dayChart{
+        height: 300px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .dayChart{
+        height: 250px;
     }
 }
 </style>
