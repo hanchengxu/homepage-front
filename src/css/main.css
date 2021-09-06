@@ -1,5 +1,6 @@
+
 body {
-    /* background-color: #fdfdfd; */
+    font-family:"Microsoft YaHei",sans-serif;
     margin-right: 0px;
     margin-left: 0px;
 }
@@ -37,6 +38,16 @@ body {
 .sideslip-enter-from,
 .sideslip-leave-to {
   transform: translateX(500px);
+  opacity: 0;
+}
+
+.topslip-enter-active,
+.topslip-leave-active {
+  transition: all 0.7s cubic-bezier(.43,.15,.59,1.19);
+}
+.topslip-enter-from,
+.topslip-leave-to {
+  transform: translateY(-150px);
   opacity: 0;
 }
 

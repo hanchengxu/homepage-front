@@ -5,7 +5,7 @@ import Ukulele from '@/components/Container/ukulele/Ukulele.vue';
 
 
 const routes=[
-    { path: '/hamsterCare', component: HamsterCare , meta:{transition:'fade'}},
+    { path: '/hCare', component: HamsterCare , meta:{transition:'fade'}},
     { path: '/resume', component: Resume , meta:{transition:'fade'}},
     { path: '/ukulele', component: Ukulele , meta:{transition:'fade'}},
     { path: '/', component: Container , meta:{transition:'fade'}},

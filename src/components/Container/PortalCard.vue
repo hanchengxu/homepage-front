@@ -1,13 +1,13 @@
 <template>
     <LazyShow :time="lazy" transName="sideslip">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col" @click="routerChange(destination)">
-                <div class="card d-flex flex-column justify-content-end" 
-                    :style="'background-position:1rem 10px;background-image:url('+require('@/assets/imgs/'+bgImage)+');background-color: '+bgColor+';'">
-                    <div class="card-title-board" :style="'background: linear-gradient(0deg,'+cardTitleColorFrom+','+cardTitleColorTo+');'">
-                        <div class="card-title">{{ $t(cardTitle) }} {{cardTitleIcon}}</div>
-                        <div class="card-title2">{{ $t(cardDetail) }}</div>
-                    </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col">
+            <div class="card d-flex flex-column justify-content-end"  @click="routerChange(destination)"
+                :style="'background-position:1rem 10px;background-image:url('+require('@/assets/imgs/'+bgImage)+');background-color: '+bgColor+';'">
+                <div class="card-title-board" :style="'background: linear-gradient(0deg,'+cardTitleColorFrom+','+cardTitleColorTo+');'">
+                    <div class="card-title">{{ $t(cardTitle) }} {{cardTitleIcon}}</div>
+                    <div class="card-title2">{{ $t(cardDetail) }}</div>
                 </div>
+            </div>
         </div>
     </LazyShow>
 </template>

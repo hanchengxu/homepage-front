@@ -27,7 +27,7 @@ export default {
                 {key:1,bgImage:"resume.png", bgColor:"#ece092", cardTitleColorFrom:"#c5b12e", cardTitleColorTo:"#ece09200", 
                 cardTitle:"homepage.resume.title", cardTitleIcon:"📝", cardDetail:"homepage.resume.detail",destination:"/resume"},
                 {key:2,bgImage:"arduino-UNO.png", bgColor:"#7fcbcd", cardTitleColorFrom:"#028085", cardTitleColorTo:"#7fcacd1f", 
-                cardTitle:"homepage.hamsterCare.title", cardTitleIcon:"🐹", cardDetail:"homepage.hamsterCare.detail",destination:"/hamsterCare"},
+                cardTitle:"homepage.hamsterCare.title", cardTitleIcon:"🐹", cardDetail:"homepage.hamsterCare.detail",destination:"/hCare"},
                 {key:3,bgImage:"guitar.png", bgColor:"#c59387", cardTitleColorFrom:"#8a665d", cardTitleColorTo:"#c4928605", 
                 cardTitle:"homepage.ukulele.title", cardTitleIcon:"🎶", cardDetail:"homepage.ukulele.detail",destination:"/ukulele"}
             ]
@@ -36,17 +36,6 @@ export default {
     methods:{
         handleDrawer(){
             this.drawer=true;
-        },
-        elDatePickerOnFocus:function(){
-            document.activeElement.blur();
-            this.$nextTick(() => {
-            let inputTime = document.querySelectorAll('.el-input__inner')
-            inputTime.forEach(item => {
-            item.addEventListener('focus', () => {
-                    document.activeElement.blur()
-                })
-                })
-            })
         }
     },
     computed:{

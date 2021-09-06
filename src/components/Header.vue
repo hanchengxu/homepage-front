@@ -16,7 +16,7 @@
                         <router-link class="nav-link" to="/resume">{{ $t("header.menu.resume") }} 📝</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/hamsterCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
+                        <router-link class="nav-link" to="/hCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link  class="nav-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >

@@ -11,17 +11,18 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center mt-4">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4 anima-chart">
                 <div id="lapCountByDay" style="width: 100%;height:400px;" class="shadow rounded"></div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mt-4">
-                <h3>如您所见</h3>
-                <p>折线图所展示的是我所饲养的一只年龄为15个月的罗布罗夫斯基雄性仓鼠的每日运动信息。</p>
-                <p>作为一种夜行性动物🌒，仓鼠通常在深夜😴开启一天的生活。我们往往难以了解他们的夜间活动情况。</p>
-                <p>通过<strong>HamsterCare</strong>🐹，可以轻松获取仓鼠夜间的运动信息，并通过这些信息来辅助判断仓鼠的健康状况。</p>
-                
-                
-            </div>
+            
+            <LazyShow time="100" transName="topslip">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mt-4">
+                    <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
+                    <p>{{ $t("hamsterCare.pageTwo.p1") }}</p>
+                    <p>{{ $t("hamsterCare.pageTwo.p2") }}</p>
+                    <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
+                </div>
+            </LazyShow>
         </div>
     </div>
 </template>
@@ -29,7 +30,9 @@
 import * as echarts from 'echarts';
 import axios from 'axios';
 import {onMounted} from 'vue';
+import LazyShow from '../../Common/LazyShow.vue';
 export default {
+  components: { LazyShow },
     name: 'HamsterCare',
     setup() {
         onMounted(() => {
@@ -40,12 +43,15 @@ export default {
             let lapCountByDay = echarts.init(document.getElementById('lapCountByDay'));
             let lapCountByDayOption1 = {
                 color: ["#2ec7c9"],
+                grid:{ left:'15%',right:'5%'},
                 dataZoom: [
                     {
                         show: true,
                         realtime: true,
                         start: 95,
-                        end: 100
+                        end: 100,
+                        brushSelect:true,
+                        zoomLock:true
                     },
                     {
                         type: 'inside',
@@ -56,7 +62,6 @@ export default {
                 ],
                 tooltip: {
                     trigger: 'axis',
-                    // formatter:'{b}&nbsp&nbsp<br><b>{c0}圈</b>',
                     formatter:function(params){
                         var result = '';
                         params.forEach(function (item) {
@@ -135,5 +140,18 @@ export default {
     -webkit-clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
     clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
     color: white
+}
+.anima-chart{
+    animation: disp 1s ease-in-out;
+}
+@keyframes disp {
+    from{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 </style>
