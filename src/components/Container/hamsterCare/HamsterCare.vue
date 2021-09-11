@@ -10,7 +10,7 @@
                 <img src="../../../assets/imgs/hamster-wheel.png" width="300">
             </div>
         </div>
-        <div class="row d-flex justify-content-center mt-4">
+        <div class="row d-flex justify-content-center" style="margin-top:100px">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4 anima-chart">
                 <div :id="dayChartId" style="width: 100%;" class="shadow rounded dayChart"></div>
             </div>
@@ -23,10 +23,24 @@
                 </div>
             </LazyShow>
         </div>
+        <div class="row d-flex justify-content-center " style="margin-top:100px">
+            <LazyShow time="100" transName="topslip">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mt-4">
+                    <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
+                    <p>{{ $t("hamsterCare.pageThree.p1") }}</p>
+                    <p>{{ $t("hamsterCare.pageThree.p2") }}</p>
+                    <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
+                </div>
+            </LazyShow>
+             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4 anima-chart">
+                <div :id="timeChartId" style="width: 100%;" class="shadow rounded dayChart"></div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import * as echarts from 'echarts';
+import lo from 'lodash';
 import axios from 'axios';
 import {onMounted} from 'vue';
 import LazyShow from '../../Common/LazyShow.vue';
@@ -35,7 +49,8 @@ export default {
     name: 'HamsterCare',
     props:{
         //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
-        dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false}
+        dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false},
+        timeChartId:{type:String,default(){return "timeChart"+Math.floor(Math.random()*100)},require:false}
     },
     setup(props) {
         onMounted(() => {
@@ -43,8 +58,8 @@ export default {
                 var reg=new RegExp(str+"$");
                 return reg.test(this);
             }
-            // console.log(props.dayChartId);
             let lapCountByDay = echarts.init(document.getElementById(props.dayChartId));
+            let lapCountByTime = echarts.init(document.getElementById(props.timeChartId));
             let lapCountByDayOption1 = {
                 color: ["#2ec7c9"],
                 grid:{ left:'15%',right:'5%'},
@@ -95,7 +110,7 @@ export default {
                     splitLine: {show: true,lineStyle:{type :'dashed'}}
                 },
                 series: [{
-                    data: [100,200,300],
+                    data: [],
                     type: 'line',
                     itemStyle : { normal: {label : {show: true,fontSize:15}}},
                     lineStyle: {
@@ -114,6 +129,28 @@ export default {
             };
             lapCountByDay.setOption(lapCountByDayOption1);
             lapCountByDay.showLoading();
+
+            let lapCountByTimeOption = lo.cloneDeep(lapCountByDayOption1);
+            delete lapCountByTimeOption.dataZoom;
+            lapCountByTimeOption.series[0].lineStyle.normal.width=2;
+            lapCountByTimeOption.series[0].smooth = true;
+            lapCountByTimeOption.series[0].itemStyle.normal.label.show= false;
+            lapCountByTimeOption.series[0].markPoint = {data:[{type:'max',name :'max'}]};
+            lapCountByTimeOption.series[0].markLine = {data:[{type:'average',name :'average'}]};
+            lapCountByTimeOption.series[0].showSymbol= false;
+            delete lapCountByTimeOption.xAxis.axisLabel.formatter;
+            lapCountByTimeOption.tooltip= {
+                    trigger: 'axis',
+                    formatter:function(params){
+                        var result = '';
+                        params.forEach(function (item) {
+                            result += item.marker + item.axisValue+'時<br><b>&nbsp&nbsp&nbsp'+item.value+'圈</b>';
+                        });
+                        return result;
+                    }
+                }
+            lapCountByTime.setOption(lapCountByTimeOption);
+            lapCountByTime.showLoading();
             axios.get('https://hanchengxu.com/hamster/getLapCountByDay')
                 .then(function (response) {
                     lapCountByDayOption1.xAxis.data = response.data.xAxis;
@@ -125,8 +162,23 @@ export default {
                     console.log(error);
                     lapCountByDay.hideLoading();
                 });
+            
+            axios.get('https://hanchengxu.com/hamster/getScatterByHour')
+                .then(function (response) {
+                    lapCountByTimeOption.xAxis.data = response.data.xAxis;
+                    lapCountByTimeOption.series[0].data = response.data.series;
+                    lapCountByTime.setOption(lapCountByTimeOption);
+                    lapCountByTime.hideLoading();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    lapCountByTime.hideLoading();
+                });
+
+            //画面size变更再刷新图表
             window.onresize = function () {
                 lapCountByDay.resize();
+                lapCountByTime.resize();
             };
         });
     },

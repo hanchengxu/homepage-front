@@ -32,6 +32,12 @@ module.exports = {
             p1:'The line chart shows the daily movement information of a Robrovsky male hamster I raised for 15 months.',
             p2:'As a nocturnal animal🌒，Hamsters usually start a day of life at night😴.We often find it difficult to understand their night activities.',
             p3:"By {sys_name}  ,You can easily get the hamster's night movement information, And you can use this information to help determine the health of the hamster."
+        },
+        pageThree:{
+            title:'小时单位平均运动量',
+            p1:'右图是根据半年左右的运动数据统计得来的，以小时为单位的平均运动量。',
+            p2:'的确作为夜行动物的他，主要得活动时间是从晚上20点到早上6点。',
+            p3:'其中凌晨3点左右的跑圈数最大，达到了3000多圈。中午时间段有时也会有运动，可能是因为白天喂食的原因他也会运动一下。',
         }
     }
 }
