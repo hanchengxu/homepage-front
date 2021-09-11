@@ -5,7 +5,7 @@
             <div class="col d-flex justify-content-center text-secondary">
                 <div>
                     <h1 class="fw-bold">COMING SOON</h1>
-                    <h2>Page is unser construction 🛠️</h2>
+                    <h2>Page is under construction 🛠️</h2>
                 </div>
             </div>
             <div class="col d-flex justify-content-center"><img class="constr-icon" src="../../../assets/imgs/3426525-ai.png"></div>

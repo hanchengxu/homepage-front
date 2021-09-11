@@ -7,9 +7,9 @@
                 <button class="navbar-toggler" @click="toggleMenu" type="button" data-bs-toggle="collapse"  aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div :class="['header-menu','collapse','navbar-collapse',{show: showMenu}]" >
+            <div :class="['header-menu','collapse','navbar-collapse',{show: showMenu}]" @mouseleave="toggleMenu()">
                 <ul class="left-header navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <router-link class="nav-link" to="/">{{ $t("header.menu.topPage") }}</router-link>
                     </li>
                     <li class="nav-item">
@@ -70,6 +70,7 @@ export default {
             localStorage.setItem('locale', type);
             this.$i18n.locale = type;
             this.showTranslateDropdown = false;
+            this.showMenu = false;
         }
     }
 }
