@@ -37,6 +37,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes, 
   })
+
+//路由后置
+router.afterEach((to,from,next) => {
+    //滚动条回归顶部
+    window.scrollTo(0,0);
+});
 //路由前置处理器
 // router.beforeEach((to,from,next)=>{
 //     if(to.matched.length == 0){

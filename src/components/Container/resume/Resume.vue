@@ -1,40 +1,35 @@
 <template>
-    <div class="container-lg" style="margin-top:200px">
-        <LazyShow time="100" transName="sideslip">
-            <p>bbbbbb</p>
+    <div class="container-lg" style="margin-top:200px; min-height: 1300px;">
+        <LazyShow time="100" transName="topslip">
+        <div class="row d-flex align-items-center">
+            <div class="col d-flex justify-content-center text-secondary">
+                <div>
+                    <h1 class="fw-bold">COMING SOON</h1>
+                    <h2>Page is unser construction 🛠️</h2>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center"><img class="constr-icon" src="../../../assets/imgs/3426525-ai.png"></div>
+        </div>
         </LazyShow>
     </div>
 </template>
 <script>
 export default {
     name: 'Resume',
-    data() {
-        return {
-        show: true
-        }
+    setup() {
+        
     },
-    setup() {}
 }
 </script>
-<style>
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
+<style scoped>
+@media screen and (max-width: 1200px) {
+    .constr-icon{
+        height: 450px;
+    }
 }
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
+@media screen and (max-width: 900px) {
+    .constr-icon{
+        height: 300px;
+    }
 }
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.25);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 </style>
