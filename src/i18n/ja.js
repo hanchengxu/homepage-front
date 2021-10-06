@@ -24,7 +24,7 @@ module.exports = {
     },
     hamsterCare:{
         pageOne:{
-            tilteOne:'sp32に基づいてIotハムスターケージ',
+            tilteOne:'Esp32に基づいてIotハムスターケージ',
             titleTwo:'いくつセンター使ってハムスターの夜間運動、環境温湿度情報を取得する。mqttプロトコルでバックエンドに情報を転送して処理します。その後画面で表示します。ショートカットでSiriより自動給食もできます。'
         },
         pageTwo:{

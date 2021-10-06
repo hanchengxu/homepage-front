@@ -39,7 +39,7 @@
                         </div>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="https://github.com/a2181745" target="_blank">
+                        <a class="nav-link p-2" href="https://github.com/hanchengxu" target="_blank">
                             <i class="bi-github" role="img" aria-label="GitHub"></i>
                             <small class="d-md-none ms-2">GitHub</small>
                         </a>
