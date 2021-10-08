@@ -39,5 +39,26 @@ module.exports = {
             p2:'的确作为夜行动物的他，主要得活动时间是从晚上20点到早上6点。',
             p3:'其中凌晨3点左右的跑圈数最大，达到了3000多圈。中午时间段有时也会有运动，可能是因为白天喂食的原因他也会运动一下。',
         }
+    },
+    messageCard:{
+        pageOne:{
+            title2:'simple message card by Esp8266',
+            p1:'两块面包板，一块0.96OLED屏幕(I2C),一片Esp8266,即可组装出这精美小巧的MessageCard。',
+            p2:'将需要显示的文本同程序一起烧写进去，即可滚动循环显示文本内容。',
+            p3:'本体不包含电源模块，使用 {usb} 即可供电。',
+            s1:'Baa, baa,',
+            s2:'black sheep,',
+            s3:'Have you any ',
+            s4:'wool? Yes sir',
+            s5:'yes sir,Three',
+            s6:'bags full. One',
+            s7:'for the master',
+            s8:'One for the dame',
+            s9:'And one for the',
+            s10:'down the lane'
+        },
+        pageTwo:{
+            title:'Learn more'
+        }
     }
 }

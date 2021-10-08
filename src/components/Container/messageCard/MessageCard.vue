@@ -1,51 +1,54 @@
 <template>
-  <div class="container-fluid" style="min-height: 1300px">
-    <div class="row row-top align-items-center justify-content-center " >
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-4" >
-            <div style="position: relative;min-height: 700px">
-                <img src="../../../assets/imgs/messageCard/p3.png" id="p3" />
-                <img src="../../../assets/imgs/messageCard/p1.png" id="p1" />
-                <img src="../../../assets/imgs/messageCard/p2.png" id="p2" />
-                <img src="../../../assets/imgs/messageCard/p4.png" id="p4" />
-                <img src="../../../assets/imgs/messageCard/p5.png" id="p5" />
-                <div class="box3">
-                    <div class="border3">
-                        <div>从前有座山</div>
-                        <div>山上有座庙</div>
-                        <div>庙里有个老和尚</div>
-                        <div>在给小和尚讲故事</div>
-                        <div>讲的什么故事呢？</div>
-                        <div></div>
-                        <div>从前有座山</div>
-                        <div>山上有座庙</div>
-                        <div>庙里有个老和尚</div>
-                        <div>在给小和尚讲故事</div>
-                        <div>讲的什么故事呢？</div>
-                    </div>
-                </div>
+  <div class="container-fluid" style="min-height: 1000px">
+    <div class="row row-top align-items-center justify-content-center">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-5">
+        <div style="position: relative;min-height: 700px">
+          <img src="../../../assets/imgs/messageCard/p3.png" id="p3" />
+          <img src="../../../assets/imgs/messageCard/p1.png" id="p1" />
+          <img src="../../../assets/imgs/messageCard/p2.png" id="p2" />
+          <img src="../../../assets/imgs/messageCard/p4.png" id="p4" />
+          <img src="../../../assets/imgs/messageCard/p5.png" id="p5" />
+          <div class="box3">
+            <div class="border3">
+              <div>{{ $t("messageCard.pageOne.s1") }}</div>
+              <div>{{ $t("messageCard.pageOne.s2") }}</div>
+              <div>{{ $t("messageCard.pageOne.s3") }}</div>
+              <div>{{ $t("messageCard.pageOne.s4") }}</div>
+              <div>{{ $t("messageCard.pageOne.s5") }}</div>
+              <div></div>
+              <div>{{ $t("messageCard.pageOne.s6") }}</div>
+              <div>{{ $t("messageCard.pageOne.s7") }}</div>
+              <div>{{ $t("messageCard.pageOne.s8") }}</div>
+              <div>{{ $t("messageCard.pageOne.s9") }}</div>
+              <div>{{ $t("messageCard.pageOne.s10") }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-5 ms-lg-5 col-xl-4 ms-xl-0 pb-4">
+        <LazyShow time="100" transName="topslip">
+          <div class="intro-div">
+            <h2>MessageCard 📜</h2>
+            <h5>{{ $t("messageCard.pageOne.title2") }}</h5>
+            <p class="mt-4">{{ $t("messageCard.pageOne.p1") }}</p>
+            <p>{{ $t("messageCard.pageOne.p2") }}</p>
+            <p v-html="$tc('messageCard.pageOne.p3',{usb:'<strong> Micro USB</strong>⚡'})"></p>
+          </div>
+        </LazyShow>
+      </div>
+    </div>
+     <LazyShow time="100" transName="topslip">
+        <div class="row justify-content-center" style="margin-top:150px ;margin-bottom:100px">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-2 more-div">
+                <h2>{{ $t("messageCard.pageTwo.title") }}👉</h2>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-2">
+                <a class="nav-link p-2" href="https://github.com/hanchengxu/message-card" target="_blank">
+                    <img src="../../../assets/imgs/messageCard/GitHub-logo.gif" />
+                </a>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 pb-4">
-            <LazyShow time="100" transName="topslip">
-            <div class="intro-div">
-                <h2>MessageCard 📜</h2>
-                <h5>基于Esp8266制作的超简易文本显示卡片</h5>
-                <p class="mt-4">
-                    两块面包板，一块0.96OLED屏幕(I2C),一片Esp8266,即可组装出这精美小巧的MessageCard。
-                </p>
-                <p>
-                    将需要显示的文本同程序一起烧写进去，即可滚动循环显示文本内容。
-                </p>
-                <p>本体不包含电源模块，使用<b>Micro USB</b>即可供电。</p>
-            </div>
-            </LazyShow>
-        </div>
-    </div>
-    <div class="row align-items-center justify-content-center" style="">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 intro-div">
-            <h2>了解更多</h2>
-        </div>
-    </div>
+    </LazyShow>
   </div>
 </template>
 <script>
@@ -55,13 +58,13 @@ export default {
 };
 </script>
 <style scoped>
-
-.row-top{
-    background-color: #1b335f5d;
-    /* min-height: 700px; */
-    -webkit-clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
-    clip-path: polygon(0 0,100% 0,100% 100%,0 calc(100% - 6vw));
-    color: white
+.row-top {
+  /* background-color: #7fac4f60; */
+  background-image: linear-gradient(#7fac4f33, #7fac4f81);
+  /* min-height: 700px; */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6vw), 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw));
+  color: black;
 }
 
 #p1 {
@@ -138,10 +141,8 @@ export default {
 .intro-div {
   margin-top: 150px !important;
 }
-@media screen and (max-width: 900px) {
-  .intro-div {
-    margin-top: 50px !important;
-  }
+.more-div{
+  margin-top: 100px ;
 }
 
 @-webkit-keyframes scrollText1 {
@@ -224,5 +225,59 @@ export default {
 .border3:hover {
   animation-play-state: paused;
   -webkit-animation-play-state: paused;
+}
+
+@media screen and (max-width: 900px) {
+  .intro-div {
+    margin-top: -100px !important;
+  }
+  #p1 {
+    position: absolute;
+    bottom: 108px;
+    left: -20px;
+    animation: p1 1s ease-in-out;
+  }
+  #p2 {
+    position: absolute;
+    bottom: 200px;
+    left:118px;
+    animation: p2 1.2s ease-in-out;
+  }
+  #p3 {
+    position: absolute;
+    bottom: 198px;
+    left: -100px;
+    animation: p3 1s ease-in-out;
+  }
+  #p4 {
+    position: absolute;
+    bottom: 295px;
+    left: -85px;
+    animation: p4 1.7s ease-in-out;
+  }
+  #p5 {
+    position: absolute;
+    bottom: 293px;
+    left: 90px;
+    animation: p4 1.4s ease-in-out;
+  }
+  .box3 {
+    position: absolute;
+    bottom: 265px;
+    left: 185px;
+    width: 104px;
+    height: 35px;
+    overflow: hidden;
+    /* border:1px solid rgb(204, 22, 22); */
+
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+    letter-spacing: 2px;
+    animation: box-a 3s ease-in-out;
+    transform: skew(60deg, -30deg);
+  }
+  .more-div{
+      margin-top: 50px;
+  }
 }
 </style>

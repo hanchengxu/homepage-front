@@ -189,7 +189,8 @@ export default {
     font-weight: 100;
 }
 .row-top{
-    background-color: #3bb7c2;
+    /* background-color: #3bb7c2; */
+    background-image: linear-gradient(#3bb7c275, #3bb7c2d5);
     min-height: 600px;
     -webkit-clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
     clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
