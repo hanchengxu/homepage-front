@@ -196,11 +196,12 @@ export default {
   overflow: hidden;
   /* border:1px solid rgb(204, 22, 22); */
 
-  font-size: 10px;
+  font-size: 2px !important;
   color: rgb(255, 255, 255);
-  letter-spacing: 2px;
   animation: box-a 3s ease-in-out;
   transform: skew(60deg, -30deg);
+  
+  
 }
 @keyframes box-a {
   from {
@@ -270,7 +271,7 @@ export default {
     overflow: hidden;
     /* border:1px solid rgb(204, 22, 22); */
 
-    font-size: 10px;
+    font-size: 5px;
     color: rgb(255, 255, 255);
     letter-spacing: 2px;
     animation: box-a 3s ease-in-out;
