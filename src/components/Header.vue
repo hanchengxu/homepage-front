@@ -13,13 +13,13 @@
                         <router-link class="nav-link" to="/">{{ $t("header.menu.topPage") }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/resume">{{ $t("header.menu.resume") }} 📝</router-link>
+                        <router-link class="nav-link" :to="{name:'resume'}" >{{ $t("header.menu.resume") }} 📝</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/hCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/messageCard">MessageCard 📜</router-link>
+                        <router-link class="nav-link" :to="{name:'messageCard'}" >MessageCard 📜</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link  class="nav-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
@@ -42,7 +42,7 @@
                         </div>
                     </li>
                     <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="https://github.com/hanchengxu" target="_blank">
+                        <a class="nav-link p-2" :href="'https://github.com/hanchengxu/'+ getGithubURL()" target="_blank">
                             <i class="bi-github" role="img" aria-label="GitHub"></i>
                             <small class="d-md-none ms-2">GitHub</small>
                         </a>
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import lo from 'lodash';
 export default {
     name: 'Header',
     data(){
@@ -74,8 +75,14 @@ export default {
             this.$i18n.locale = type;
             this.showTranslateDropdown = false;
             this.showMenu = false;
+        },
+        getGithubURL(){
+            //接受来自路由的 params，动态替换github URL
+            return lo.isUndefined(this.$route.params.githubURL)?'':this.$route.params.githubURL;
         }
+
     }
+    
 }
 </script>
 <style scoped>

@@ -44,13 +44,19 @@ router.afterEach((to,from,next) => {
     window.scrollTo(0,0);
 });
 //路由前置处理器
-// router.beforeEach((to,from,next)=>{
-//     if(to.matched.length == 0){
-//         next({path:'/'})
-//     }else{
-//         next();
-//     }
-// });
+router.beforeEach((to,from,next)=>{
+    //由于vue-router params刷新页面会丢失
+    //所以暂时采用在前置路有里面
+    //固定某个页面传递github地址参数
+    if(to.name === 'messageCard'){
+        to.params.githubURL='message-card';
+    }
+    if(to.matched.length == 0){
+        next({path:'/'})
+    }else{
+        next();
+    }
+});
 
 // 注册到全局
 const app = createApp(App);

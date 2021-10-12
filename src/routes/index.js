@@ -5,13 +5,13 @@ import Resume from '@/components/Container/resume/Resume.vue';
 import Ukulele from '@/components/Container/ukulele/Ukulele.vue';
 
 
-const routes=[
-    { path: '/hCare', component: HamsterCare , meta:{transition:'fade'}},
-    { path: '/resume', component: Resume , meta:{transition:'fade'}},
-    { path: '/ukulele', component: Ukulele , meta:{transition:'fade'}},
-    { path: '/messageCard', component: MessageCard},
-    { path: '/', component: Container , meta:{transition:'fade'}},
-    { path: '/:pathMatch(.*)*', component: Container , meta:{transition:'fade'}}
+const routes = [
+    { path: "/hCare", name: "hCare", component: HamsterCare, meta: { transition: 'fade' } },
+    { path: "/resume", name: "resume", component: Resume, meta: { transition: 'fade' } },
+    { path: "/ukulele", name: "ukulele", component: Ukulele, meta: { transition: 'fade' } },
+    { path: "/messageCard", name: "messageCard", component: MessageCard },
+    { path: '/', component: Container, meta: { transition: 'fade' } },
+    { path: '/:pathMatch(.*)*', component: Container, meta: { transition: 'fade' } }
 ]
 
-export {routes};
+export { routes };

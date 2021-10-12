@@ -31,6 +31,7 @@ module.exports = {
          args[0].title= '云雀之丘的时光与森'
          return args
        })  
+    config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js')
   },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
