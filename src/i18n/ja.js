@@ -15,7 +15,11 @@ module.exports = {
         },
         hamsterCare:{
             title:'HamsterCare',
-            detail:'esp32(arduino)に基づいてIotハムスターケージです。ハムスター運動情報、温度湿度情報を収集する、Siriで給食ももちろん。'
+            detail:'esp32(arduino)に基づいてIoTハムスターケージです。ハムスター運動情報、温度湿度情報を収集する、Siriで給食ももちろん。'
+        },
+        messageCard:{
+            title:'MessageCard',
+            detail:'組み立てやすい\nメッセージカードです。'
         },
         ukulele:{
             title:'ウクレレ',
@@ -24,7 +28,7 @@ module.exports = {
     },
     hamsterCare:{
         pageOne:{
-            tilteOne:'Esp32に基づいてIotハムスターケージ',
+            tilteOne:'Esp32に基づいてIoTハムスターケージ',
             titleTwo:'いくつセンター使ってハムスターの夜間運動、環境温湿度情報を取得する。mqttプロトコルでバックエンドに情報を転送して処理します。その後画面で表示します。ショートカットでSiriより自動給食もできます。'
         },
         pageTwo:{

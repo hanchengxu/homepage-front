@@ -17,6 +17,10 @@ module.exports = {
             title:'HamsterCare',
             detail:"IoT hamster box based on esp32(arduino) platform.Easily get the hamster's movement environmental temperature and humidity information,also can fed hamster automatically via Siri"
         },
+        messageCard:{
+            title:'MessageCard',
+            detail:'Simple message Card by Esp8266'
+        },
         ukulele:{
             title:'ウクレレ',
             detail:"Sheet music being practiced,It's difficult for me I think(⊙o⊙)………"
