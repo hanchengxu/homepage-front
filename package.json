@@ -17,6 +17,7 @@
     "echarts": "^5.2.0",
     "element-plus": "^1.0.2-beta.36",
     "lodash": "^4.17.21",
+    "v-viewer": "^3.0.10",
     "vue": "^3.0.0",
     "vue-i18n": "^9.1.7",
     "vue-router": "^4.0.11"
