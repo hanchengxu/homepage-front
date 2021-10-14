@@ -8,7 +8,7 @@
                     <h2>Page is under construction 🛠️</h2>
                 </div>
             </div>
-            <div class="col d-flex justify-content-center"><img class="constr-icon" src="../../../assets/imgs/3426525-ai.png"></div>
+            <div class="col d-flex justify-content-center"><img class="constr-icon" src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/3426525-ai.png"></div>
         </div>
         </LazyShow>
     </div>

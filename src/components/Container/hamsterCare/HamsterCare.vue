@@ -7,7 +7,7 @@
                 <p class="pt-1" style="max-width:500px">{{ $t("hamsterCare.pageOne.titleTwo") }}</p>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <img src="../../../assets/imgs/hamster-wheel.png" width="300">
+                <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/hamster-wheel.png" width="300">
             </div>
         </div>
         <div class="row d-flex justify-content-center" style="margin-top:100px">

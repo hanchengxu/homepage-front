@@ -3,11 +3,11 @@
     <div class="row row-top align-items-center justify-content-center">
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-5">
         <div style="position: relative;min-height: 700px">
-          <img src="../../../assets/imgs/messageCard/p3.png" id="p3" />
-          <img src="../../../assets/imgs/messageCard/p1.png" id="p1" />
-          <img src="../../../assets/imgs/messageCard/p2.png" id="p2" />
-          <img src="../../../assets/imgs/messageCard/p4.png" id="p4" />
-          <img src="../../../assets/imgs/messageCard/p5.png" id="p5" />
+          <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/messageCard/p3.png" id="p3" />
+          <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/messageCard/p1.png" id="p1" />
+          <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/messageCard/p2.png" id="p2" />
+          <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/messageCard/p4.png" id="p4" />
+          <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/messageCard/p5.png" id="p5" />
           <div class="box3">
             <div class="border3">
               <div>{{ $t("messageCard.pageOne.s1") }}</div>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-2">
                 <a class="nav-link p-2" href="https://github.com/hanchengxu/message-card" target="_blank">
-                    <img src="../../../assets/imgs/messageCard/GitHub-logo.gif" />
+                    <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/messageCard/GitHub-logo.gif" />
                 </a>
             </div>
         </div>

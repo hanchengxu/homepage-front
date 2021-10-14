@@ -5,7 +5,7 @@
             <viewer :images="images" >
                 <div class="row-div d-flex flex-wrap align-content-center justify-content-center align-items-center" style="">
                     <div class="align-self-center" v-for="src in images" :key="src" >
-                        <img :src="require('../../../assets/imgs/ukulele/'+src)" class="ukulele-img mx-3" style="cursor:pointer;" >
+                        <img :src="'https://raw.githubusercontent.com/hanchengxu/picture-host/master/ukulele/'+src" class="ukulele-img mx-3" style="cursor:pointer;" >
                     </div >
                 </div>
             </viewer>
