@@ -1,4 +1,5 @@
 const path = require('path')
+const CompressionPlugin = require("compression-webpack-plugin");//gzip压缩
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -37,6 +38,13 @@ module.exports = {
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
       config.mode = 'production'
+      return{
+        plugins: [new CompressionPlugin({
+          test: /\.js$|\.html$|\.css/,//压缩文件名
+          threshold: 10240,//超过10K 压缩
+          deleteOriginalAssets: true
+        })]
+      }
     } else {
       // 为开发环境修改配置...
       config.mode = 'development'
