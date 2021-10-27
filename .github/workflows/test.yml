@@ -1,8 +1,8 @@
-name:Test
+name: Test
 on:
- push:
-  branches:
-   - master
+  watch:
+    types: started
+    
 jobs:
  job1111:
   runs-on: ubuntu-latest
