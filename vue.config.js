@@ -43,7 +43,7 @@ module.exports = {
         plugins: [new CompressionPlugin({
           test: /\.js$|\.html$|\.css/,//压缩文件名
           threshold: 10240,//超过10K 压缩
-          deleteOriginalAssets: true
+          deleteOriginalAssets: false
         })]
       }
     } else {
