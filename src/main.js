@@ -17,7 +17,7 @@ import '@/css/bootstrap.min.css';//bootstrap UI
 import '@/css/main.css'//项目css
 import 'viewerjs/dist/viewer.css'//v-viewer图片展示插件css
 import { createI18n } from 'vue-i18n'//国际化
-import { createRouter,createWebHistory  } from 'vue-router'
+import { createRouter,createWebHistory,createWebHashHistory } from 'vue-router'
 import {routes} from '@/routes';//←←路由在此配置
 import LazyShow from '@/components/Common/LazyShow.vue'//延迟加载组件，放到全局
 import VueViewer from 'v-viewer'
@@ -36,7 +36,8 @@ const i18n = createI18n({
 
 //路由配置
 const router = createRouter({
-    history: createWebHistory(),
+    // history: createWebHistory(),
+    history: createWebHashHistory(),
     routes, 
   })
 
