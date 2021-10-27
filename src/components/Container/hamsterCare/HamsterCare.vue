@@ -11,29 +11,29 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center" style="margin-top:100px">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4 anima-chart">
-                <div :id="dayChartId" style="width: 100%;" class="shadow rounded dayChart"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-5 mx-4 anima-chart">
+                <div :id="dayChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
             <LazyShow time="100" transName="topslip">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mt-4">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3 mt-4">
                     <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
-                    <p>{{ $t("hamsterCare.pageTwo.p1") }}</p>
+                    <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1") }}</p>
                     <p>{{ $t("hamsterCare.pageTwo.p2") }}</p>
                     <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
                 </div>
             </LazyShow>
         </div>
-        <div class="row d-flex justify-content-center " style="margin-top:100px">
+        <div class="row d-flex justify-content-center" style="margin-top:150px;margin-bottom:50px">
             <LazyShow time="100" transName="topslip">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mt-4">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 ms-xl-5 col-xxl-3 ms-xxl-5 mt-4">
                     <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
-                    <p>{{ $t("hamsterCare.pageThree.p1") }}</p>
+                    <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
                     <p>{{ $t("hamsterCare.pageThree.p2") }}</p>
                     <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
                 </div>
             </LazyShow>
-             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mx-4 anima-chart">
-                <div :id="timeChartId" style="width: 100%;" class="shadow rounded dayChart"></div>
+             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-5 mx-4 anima-chart">
+                <div :id="timeChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
         </div>
     </div>
@@ -44,6 +44,7 @@ import lo from 'lodash';
 import axios from 'axios';
 import {onMounted} from 'vue';
 import LazyShow from '../../Common/LazyShow.vue';
+import createHamsterChart  from './createHamsterChart';
 export default {
   components: { LazyShow },
     name: 'HamsterCare',
@@ -52,135 +53,12 @@ export default {
         dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false},
         timeChartId:{type:String,default(){return "timeChart"+Math.floor(Math.random()*100)},require:false}
     },
+    //setup期间，无法使用data和method
+    //因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的
     setup(props) {
-        onMounted(() => {
-            String.prototype.endWith=function(str){
-                var reg=new RegExp(str+"$");
-                return reg.test(this);
-            }
-            let lapCountByDay = echarts.init(document.getElementById(props.dayChartId));
-            let lapCountByTime = echarts.init(document.getElementById(props.timeChartId));
-            let lapCountByDayOption1 = {
-                color: ["#2ec7c9"],
-                grid:{ left:'15%',right:'5%'},
-                dataZoom: [
-                    {
-                        show: true,
-                        realtime: true,
-                        start: 96,
-                        end: 100,
-                        brushSelect:false,
-                        zoomLock:true
-                    },
-                    {
-                        type: 'inside',
-                        realtime: true,
-                        start: 96,
-                        end: 100
-                    }
-                ],
-                tooltip: {
-                    trigger: 'axis',
-                    formatter:function(params){
-                        var result = '';
-                        params.forEach(function (item) {
-                            result += item.marker + item.axisValue+'<br><b>&nbsp&nbsp&nbsp'+item.value+'圈</b>';
-                        });
-                        return result;
-                    }
-                },
-                xAxis: {
-                    type: 'category',
-                    data: ["2021-03-28","2021-03-29","2021-03-30"],
-                    axisLabel: {
-                        textStyle : {
-                            fontSize:12
-                        },
-                        formatter: function(value){
-                            if (value.endWith("01") || value.endWith("10") || value.endWith("15") || value.endWith("20"))
-                                return value;
-                            else 
-                                return '';
-                        }
-                    }
-                },
-                yAxis: {
-                    type: 'value',
-                    axisLabel: { formatter: '{value}圈'},
-                    splitLine: {show: true,lineStyle:{type :'dashed'}}
-                },
-                series: [{
-                    data: [],
-                    type: 'line',
-                    itemStyle : { normal: {label : {show: true,fontSize:15}}},
-                    lineStyle: {
-                        normal: {width: 4}
-                    },
-                    areaStyle: {
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: '#2ec7c9'
-                        }, {
-                            offset: 1,
-                            color: 'rgb(252, 250, 232)'
-                        }])
-                    }
-                }]
-            };
-            lapCountByDay.setOption(lapCountByDayOption1);
-            lapCountByDay.showLoading();
 
-            let lapCountByTimeOption = lo.cloneDeep(lapCountByDayOption1);
-            delete lapCountByTimeOption.dataZoom;
-            lapCountByTimeOption.series[0].lineStyle.normal.width=2;
-            lapCountByTimeOption.series[0].smooth = true;
-            lapCountByTimeOption.series[0].itemStyle.normal.label.show= false;
-            lapCountByTimeOption.series[0].markPoint = {data:[{type:'max',name :'max'}]};
-            lapCountByTimeOption.series[0].markLine = {data:[{type:'average',name :'average'}]};
-            lapCountByTimeOption.series[0].showSymbol= false;
-            delete lapCountByTimeOption.xAxis.axisLabel.formatter;
-            lapCountByTimeOption.tooltip= {
-                    trigger: 'axis',
-                    formatter:function(params){
-                        var result = '';
-                        params.forEach(function (item) {
-                            result += item.marker + item.axisValue+'時<br><b>&nbsp&nbsp&nbsp'+item.value+'圈</b>';
-                        });
-                        return result;
-                    }
-                }
-            lapCountByTime.setOption(lapCountByTimeOption);
-            lapCountByTime.showLoading();
-            axios.get('https://hanchengxu.com/hamster/getLapCountByDay')
-                .then(function (response) {
-                    lapCountByDayOption1.xAxis.data = response.data.xAxis;
-                    lapCountByDayOption1.series[0].data = response.data.series;
-                    lapCountByDay.setOption(lapCountByDayOption1);
-                    lapCountByDay.hideLoading();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    lapCountByDay.hideLoading();
-                });
-            
-            axios.get('https://hanchengxu.com/hamster/getScatterByHour')
-                .then(function (response) {
-                    lapCountByTimeOption.xAxis.data = response.data.xAxis;
-                    lapCountByTimeOption.series[0].data = response.data.series;
-                    lapCountByTime.setOption(lapCountByTimeOption);
-                    lapCountByTime.hideLoading();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    lapCountByTime.hideLoading();
-                });
-
-            //画面size变更再刷新图表
-            window.onresize = function () {
-                lapCountByDay.resize();
-                lapCountByTime.resize();
-            };
-        });
+        createHamsterChart(props);
+       
     },
 }
 </script>
