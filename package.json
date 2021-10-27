@@ -1,5 +1,6 @@
 {
   "name": "my-page",
+  "homepage": "https://hanchengxu.github.io/homepage-front",
   "version": "0.1.0",
   "private": true,
   "scripts": {
