@@ -1,0 +1,16 @@
+name:Test
+on:
+ push:
+  branches:
+   - master
+jobs:
+ job1111:
+  runs-on: ubuntu-latest
+  steps: 
+  - name: Checkout
+    uses: actions/checkout@v2 # 将代码拷贝到虚机中
+    with:
+     ref: master
+     persist-credentials: false
+  - name: shellTest
+    run: ls -lt
