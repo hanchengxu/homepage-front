@@ -6,8 +6,11 @@ name: Build and Deploy HomePage
 #  pull_request:
 #     branches:
 #       - main
+# on:
+#   repository_dispatch:
 on:
-  repository_dispatch:
+  watch:
+    types: started
 jobs:
  build-and-deploy:
   runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
