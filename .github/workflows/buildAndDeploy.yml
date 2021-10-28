@@ -1,11 +1,13 @@
 name: Build and Deploy HomePage
+# on:
+#  push:
+#   branches:
+#       - main
+#  pull_request:
+#     branches:
+#       - main
 on:
- push:
-  branches:
-      - main
- pull_request:
-    branches:
-      - main
+  repository_dispatch:
 jobs:
  build-and-deploy:
   runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
