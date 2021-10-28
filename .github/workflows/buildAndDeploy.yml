@@ -4,12 +4,12 @@ on:
   branches:
     - master
   paths-ignore:
-    - './github/*'
+    - './github/**'
  pull_request:
   branches:
     - master
   paths-ignore:
-    - './github/*'
+    - './github/**'
 # on:
 #   repository_dispatch:
 # on:
