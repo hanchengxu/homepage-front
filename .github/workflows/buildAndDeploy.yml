@@ -1,19 +1,19 @@
 name: Build and Deploy HomePage
-on:
- push:
-  branches:
-    - master
-  paths-ignore:
-    - '.github/**'
-    - 'README.md'
- pull_request:
-  branches:
-    - master
-  paths-ignore:
-    - '.github/**'
-    - 'README.md'
 # on:
-#   repository_dispatch:
+#  push:
+#   branches:
+#     - master
+#   paths-ignore:
+#     - '.github/**'
+#     - 'README.md'
+#  pull_request:
+#   branches:
+#     - master
+#   paths-ignore:
+#     - '.github/**'
+#     - 'README.md'
+on:
+  repository_dispatch:
 # on:
 #   watch:
 #     types: started
@@ -28,7 +28,7 @@ jobs:
   - name: Install and Build ⚙️
     run: |
      npm install
-     npm run-script build-github
+     npm run-script build
   - name: Deploy github Page 🚀
     uses: JamesIves/github-pages-deploy-action@releases/v3
     with:
