@@ -1,4 +1,4 @@
-name: GitHub Actions Build and Deploy HomePage
+name: Build and Deploy HomePage
 on:
  push:
   branches:
