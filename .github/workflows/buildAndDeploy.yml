@@ -2,7 +2,14 @@ name: GitHub Actions Build and Deploy HomePage
 on:
  push:
   branches:
-   - master
+      - main
+  paths:
+      - '!.github/**'
+ pull_request:
+    branches:
+      - main
+    paths:
+      - '!.github/**'
 jobs:
  build-and-deploy:
   runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
@@ -11,14 +18,13 @@ jobs:
     uses: actions/checkout@master # 将代码拷贝到虚机中
     with:
      persist-credentials: false
-  - name: Install and Build
+  - name: Install and Build ⚙️
     run: |
      npm install
      npm run-script build
-  - name: Deploy
+  - name: Deploy github Page 🚀
     uses: JamesIves/github-pages-deploy-action@releases/v3
     with:
      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
      BRANCH: gh-pages # 存放产物的分支名称
      FOLDER: dist # 存放build后产物的目录
-     BUILD_SCRIPT: npm install && npm run build # 执行的命令
