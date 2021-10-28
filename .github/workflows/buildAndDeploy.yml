@@ -12,11 +12,11 @@ name: Build and Deploy HomePage
 #   paths-ignore:
 #     - '.github/**'
 #     - 'README.md'
-on:
-  repository_dispatch:
 # on:
-#   watch:
-#     types: started
+#   repository_dispatch:
+on:
+  watch:
+    types: started
 jobs:
  build-and-deploy:
   runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
