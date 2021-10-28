@@ -37,6 +37,7 @@ const i18n = createI18n({
 //路由配置
 const router = createRouter({
     // history: createWebHistory(),
+    //为了发布到github page，引起跳转无法找到资源，所以切换成hash路由
     history: createWebHashHistory(),
     routes, 
   })
