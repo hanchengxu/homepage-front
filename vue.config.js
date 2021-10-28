@@ -7,12 +7,17 @@ function resolve(dir) {
 
 module.exports = {
   // publicPath: '/', // 基本路径
-  publicPath: process.env.NODE_ENV === 'production' ? '/homepage-front/' : '/',
+  publicPath: process.env.NODE_ENV === 'github' ? '/homepage-front/' : '/',
   outputDir: 'dist', // 输出文件目录
   lintOnSave: false, // eslint-loader 是否在保存的时候检查
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // webpack配置
   chainWebpack: (config) => {
+    console.log();
+    console.log('-----------------------------------');
+    console.log('⚠️  public path : '+config.output.store.get('publicPath'));
+    console.log('⚠️  build env   : '+process.env.NODE_ENV);
+    console.log('-----------------------------------');
     // set svg-sprite-loader
     // 第一步：让其他svg loader不要对src/assets/imgs/svgs进行操作
     config.module.rule("svg").exclude.add(resolve("src/assets/imgs/svgs")).end();
@@ -30,7 +35,7 @@ module.exports = {
        })
        .end();
     config.plugin('html').tap(args => {
-         args[0].title= '云雀之丘的时光与森'
+         args[0].title= '云雀之丘的时光'
          return args
        })  
     config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js')
