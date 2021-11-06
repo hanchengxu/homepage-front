@@ -23,13 +23,14 @@ export default function createHamsterChart(props){
                     start: 96,
                     end: 100,
                     brushSelect:false,
-                    zoomLock:true
+                    zoomLock:false
                 },
                 {
                     type: 'inside',
                     realtime: true,
                     start: 96,
-                    end: 100
+                    end: 100,
+                    zoomLock:true
                 }
             ],
             tooltip: {
