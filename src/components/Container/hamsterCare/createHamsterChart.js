@@ -94,11 +94,23 @@ export default function createHamsterChart(props){
         lapCountByTimeOption.series[0].markPoint = {data:[{type:'max',name :'max'}]};
         lapCountByTimeOption.series[0].markLine = {data:[{type:'average',name :'average'}]};
         lapCountByTimeOption.series[0].showSymbol= false;
+        lapCountByTimeOption.series[0].markArea = {
+            silent:true,
+            label:{fontSize:14,offset:[0,-23]},
+            data: [[{name: '🌞 Daytime',xAxis: '06',itemStyle: {color: 'rgba(223, 175, 53, 0)'}}, {xAxis: '19'}],
+                    [{name: '🌙 Nighttime',xAxis: '00',itemStyle: {
+                        color: { type: 'linear',x:0.5,colorStops: [{offset: 0, color: 'DarkGray'},{offset: 1, color: 'rgba(255, 255, 255, 0)'}],}
+                    },}, {xAxis: '08'}],
+                    [{name: '🌙 Nighttime',xAxis: '15',itemStyle: {
+                        color: { type: 'linear',x:0.1,colorStops: [{offset: 0, color: 'rgba(255, 255, 255, 0)'},{offset: 1, color: 'DarkGray'}],}
+                    },}, {xAxis: '23'}]]
+        }
         lapCountByTimeOption.grid.left = '12%';
         lapCountByTimeOption.grid.right = '10%';
         delete lapCountByTimeOption.xAxis.axisLabel.formatter;
         lapCountByTimeOption.tooltip= {
                 trigger: 'axis',
+                animation: true,
                 formatter:function(params){
                     var result = '';
                     params.forEach(function (item) {
