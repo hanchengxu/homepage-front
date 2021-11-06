@@ -1,22 +1,22 @@
 name: Build and Deploy HomePage
-# on:
-#  push:
-#   branches:
-#     - master
-#   paths-ignore:
-#     - '.github/**'
-#     - 'README.md'
-#  pull_request:
-#   branches:
-#     - master
-#   paths-ignore:
-#     - '.github/**'
-#     - 'README.md'
+on:
+ push:
+  branches:
+    - master
+  paths-ignore:
+    - '.github/**'
+    - 'README.md'
+ pull_request:
+  branches:
+    - master
+  paths-ignore:
+    - '.github/**'
+    - 'README.md'
 # on:
 #   repository_dispatch:
-on:
-  watch:
-    types: started
+# on:
+#   watch:
+#     types: started
 jobs:
  build-and-deploy:
   runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
