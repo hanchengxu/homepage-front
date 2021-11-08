@@ -21,11 +21,27 @@ import { createRouter,createWebHistory,createWebHashHistory } from 'vue-router'
 import {routes} from '@/routes';//←←路由在此配置
 import LazyShow from '@/components/Common/LazyShow.vue'//延迟加载组件，放到全局
 import VueViewer from 'v-viewer'
+import Cookies from 'js-cookie'
+import lo from 'lodash'
 
+
+//通过nginx传过来的cookie判断区域
+let locale_l ;
+//cookie区域不为空，且localStorage没有用户指定的i18n
+if(!lo.isNull(Cookies.get('locale')) && !lo.isUndefined(Cookies.get('locale'))){
+    //根据cookie初始化语言
+    if(locale === "CN"){
+        locale_l = 'zh';
+    }else if(locale === "JP"){
+        locale_l = 'ja';
+    }else {
+        locale_l = 'en';
+    }
+}
 
 //国际化配置
 const i18n = createI18n({
-    locale: localStorage.getItem('locale') || 'ja',//
+    locale: localStorage.getItem('locale') || locale_l || 'ja',//i18n Priority: user setting > cookie > default
     globalInjection:true,
     messages: {
         'zh': require('./i18n/zh'),
