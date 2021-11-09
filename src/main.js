@@ -30,9 +30,9 @@ let locale_l ;
 //cookie区域不为空，且localStorage没有用户指定的i18n
 if(!lo.isNull(Cookies.get('locale')) && !lo.isUndefined(Cookies.get('locale'))){
     //根据cookie初始化语言
-    if(locale === "CN"){
+    if(Cookies.get('locale') === "CN"){
         locale_l = 'zh';
-    }else if(locale === "JP"){
+    }else if(Cookies.get('locale') === "JP"){
         locale_l = 'ja';
     }else {
         locale_l = 'en';
