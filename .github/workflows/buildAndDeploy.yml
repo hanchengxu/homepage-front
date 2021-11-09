@@ -13,7 +13,7 @@ name: Build and Deploy HomePage
 #     - '.github/**'
 #     - 'README.md'
 on:
-  repository_dispatch:
+  workflow_dispatch:
 # on:
 #   watch:
 #     types: started
