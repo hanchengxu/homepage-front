@@ -6,10 +6,10 @@ import Ukulele from '@/components/Container/ukulele/Ukulele.vue';
 
 
 const routes = [
-    { path: "/hCare", name: "hCare", component: HamsterCare, meta: { transition: 'fade' } },
-    { path: "/resume", name: "resume", component: Resume, meta: { transition: 'fade' } },
-    { path: "/ukulele", name: "ukulele", component: Ukulele, meta: { transition: 'fade' } },
-    { path: "/messageCard", name: "messageCard", component: MessageCard },
+    { path: "/hCare", name: "hCare", component: HamsterCare, meta: { transition: 'fade',title: 'HamsterCare🐹' } },
+    { path: "/resume", name: "resume", component: Resume, meta: { transition: 'fade' ,title: 'Resume'} },
+    { path: "/ukulele", name: "ukulele", component: Ukulele, meta: { transition: 'fade',title: 'ukulele🎶' } },
+    { path: "/messageCard", name: "messageCard", component: MessageCard ,meta: { title: 'MessageCard📜' }},
     { path: '/', component: Container, meta: { transition: 'fade' } },
     { path: '/:pathMatch(.*)*', component: Container, meta: { transition: 'fade' } }
 ]

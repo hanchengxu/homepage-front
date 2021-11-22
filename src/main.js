@@ -71,6 +71,15 @@ router.beforeEach((to,from,next)=>{
     if(to.name === 'messageCard'){
         to.params.githubURL='message-card';
     }
+
+    //每个路由页面设定各自title
+    // console.log(i18n.global);
+    if(to.meta.title){
+        document.title = to.meta.title;
+    }else{
+        document.title = '云雀之丘的时光';
+    }
+
     if(to.matched.length == 0){
         next({path:'/'})
     }else{
