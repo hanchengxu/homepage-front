@@ -1,8 +1,10 @@
 import Container from '@/components/Container/Container.vue';
-import HamsterCare from '@/components/Container/hamsterCare/HamsterCare.vue';
-import MessageCard from '@/components/Container/messageCard/MessageCard.vue';
-import Resume from '@/components/Container/resume/Resume.vue';
-import Ukulele from '@/components/Container/ukulele/Ukulele.vue';
+
+//路由懒加载
+const HamsterCare = () => import('@/components/Container/hamsterCare/HamsterCare.vue');
+const MessageCard = () => import('@/components/Container/messageCard/MessageCard.vue');
+const Ukulele = () => import('@/components/Container/ukulele/Ukulele.vue');
+const Resume = () => import('@/components/Container/resume/Resume.vue');
 
 
 const routes = [
