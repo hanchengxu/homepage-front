@@ -4,7 +4,7 @@
             <div class="card d-flex flex-column justify-content-end"  @click="routerChange(destination)"
                 :style="'background-position:1rem 10px;background-image:url(https://raw.githubusercontent.com/hanchengxu/picture-host/master/'+bgImage+');background-color: '+bgColor+';'">
                 <div class="card-title-board" :style="'background: linear-gradient(0deg,'+cardTitleColorFrom+','+cardTitleColorTo+');'">
-                    <div class="card-title">{{ $t(cardTitle) }} {{cardTitleIcon}}</div>
+                    <div><span class="card-title">{{ $t(cardTitle) }}</span><span class="card-title-emoji">{{cardTitleIcon}}</span></div>
                     <div class="card-title2">{{ $t(cardDetail) }}</div>
                 </div>
             </div>
@@ -21,8 +21,8 @@ export default {
         cardTitleColorFrom: {type: String, required: true}, 
         cardTitleColorTo: {type: String, required: true},
         cardTitle: {type:String, required: true},
-        cardTitleIcon: String,
         cardDetail: {type:String, required: true},
+        cardTitleIcon: {type:String},
         lazy:{type:Number},
         destination:{type:String, required: true}
     },
@@ -33,7 +33,7 @@ export default {
     },
 }
 </script>
-<style>
+<style scoped>
 .card{
     width: 15rem;
     height: 20rem;
@@ -62,6 +62,9 @@ export default {
     font-weight: bold;
     font-size: 1.5rem;
     color: white;
+}
+.card-title-emoji{
+    font-size: 1.5rem;
 }
 .card-title2{
     padding-left: 15px;

@@ -20,16 +20,20 @@ export default {
         const getScollHeight = () => {
             return window.innerHeight;
         };
+        //使用ref得到响应式对象
         const scollHeight = ref(getScollHeight());
         const windowResize = () => {
             scollHeight.value = getScollHeight();
         };
+        //注册事件
         onMounted(() => {
             window.addEventListener("resize", windowResize);
         });
         onUnmounted(() => {
             window.removeEventListener("resize", windowResize);
         });
+
+        //返回响应式对象供页面使用
         return {
             scollHeight
         };

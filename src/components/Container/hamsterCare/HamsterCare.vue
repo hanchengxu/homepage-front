@@ -11,7 +11,8 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center" style="margin-top:100px">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-5 mx-4 anima-chart">
+            <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showDayChart?'anima-chart-left':'anima-chart-hidden']" 
+                >
                 <div :id="dayChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
             <LazyShow time="100" transName="topslip">
@@ -32,19 +33,17 @@
                     <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
                 </div>
             </LazyShow>
-             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 col-xxl-5 mx-4 anima-chart">
+             <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showTimeChart?'anima-chart-right':'anima-chart-hidden']">
                 <div :id="timeChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import * as echarts from 'echarts';
-import lo from 'lodash';
-import axios from 'axios';
-import {onMounted} from 'vue';
 import LazyShow from '../../Common/LazyShow.vue';
 import createHamsterChart  from './createHamsterChart';
+import showElementByScroll  from './showElementByScroll';
+import { onMounted, ref, onUnmounted } from "vue";
 export default {
   components: { LazyShow },
     name: 'HamsterCare',
@@ -57,7 +56,17 @@ export default {
     //因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的
     setup(props) {
 
+        //chart初始化
         createHamsterChart(props);
+      
+        const { showTimeChart,showDayChart } = showElementByScroll(props);
+
+        
+        
+        return{
+            showDayChart,
+            showTimeChart
+        }
        
     },
 }
@@ -74,12 +83,30 @@ export default {
     clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
     color: white
 }
-.anima-chart{
-    animation: disp 1s ease-in-out;
+.anima-chart-hidden{
+    visibility: hidden;
 }
-@keyframes disp {
+.anima-chart-left{
+    visibility:visible;
+    animation: disp-left 1.5s ease-in-out;
+}
+.anima-chart-right{
+    visibility:visible;
+    animation: disp-right 1.5s ease-in-out;
+}
+@keyframes disp-left {
     from{
         transform: translateX(-100px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes disp-right {
+    from{
+        transform: translateX(100px);
         opacity: 0;
     }
     to{
