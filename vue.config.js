@@ -40,6 +40,9 @@ module.exports = {
          return args
        })  
     config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js')
+    
+    config.plugins.delete('prefetch');
+    
     config.optimization.splitChunks({
       chunks: "all",          //async异步代码分割 initial同步代码分割 all同步异步分割都开启
       minSize:  500000,         //字节 引入的文件大于30kb才进行分割
