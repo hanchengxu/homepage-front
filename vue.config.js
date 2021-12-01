@@ -70,13 +70,14 @@ module.exports = {
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
       config.mode = 'production'
-      // return{
-      //   plugins: [new CompressionPlugin({
-      //     test: /\.js$|\.html$|\.css/,//压缩文件名
-      //     threshold: 10240,//超过10K 压缩
-      //     deleteOriginalAssets: false
-      //   })]
-      // }
+      return{
+        plugins: [new CompressionPlugin({
+          test: /\.js$|\.html$|\.css/,//压缩文件名
+          threshold: 10240,//超过10K 压缩
+          deleteOriginalAssets: false,
+          minRatio:0.8 // 压缩比大于0.8的文件将不会被压缩
+        })]
+      }
     } else {
       // 为开发环境修改配置...
       config.mode = 'development'
