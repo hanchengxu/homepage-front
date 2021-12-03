@@ -33,8 +33,8 @@
                     <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
                 </div>
             </LazyShow>
-             <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showTimeChart?'anima-chart-right':'anima-chart-hidden']">
-                <div :id="timeChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
+             <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showHourChart?'anima-chart-right':'anima-chart-hidden']">
+                <div :id="hourChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
         </div>
     </div>
@@ -42,30 +42,30 @@
 <script>
 import LazyShow from '../../Common/LazyShow.vue';
 import createHamsterChart  from './createHamsterChart';
-import showElementByScroll  from './showElementByScroll';
-import { onMounted, ref, onUnmounted } from "vue";
+import showOnScreen  from '@/components/Common/showOnScreen';
 export default {
   components: { LazyShow },
     name: 'HamsterCare',
     props:{
         //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
         dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false},
-        timeChartId:{type:String,default(){return "timeChart"+Math.floor(Math.random()*100)},require:false}
+        hourChartId:{type:String,default(){return "hourChart"+Math.floor(Math.random()*100)},require:false}
     },
+
     //setup期间，无法使用data和method
     //因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的
     setup(props) {
 
         //chart初始化
         createHamsterChart(props);
-      
-        const { showTimeChart,showDayChart } = showElementByScroll(props);
 
+        const showDayChart = showOnScreen(props.dayChartId);
         
-        
+        const showHourChart = showOnScreen(props.hourChartId);
+
         return{
             showDayChart,
-            showTimeChart
+            showHourChart
         }
        
     },

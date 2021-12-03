@@ -4,6 +4,8 @@ import axios from 'axios';
 import {onMounted} from 'vue';
 
 export default function createHamsterChart(props){
+
+    //组件mounted后
     onMounted(() => {
         String.prototype.endWith=function(str){
             var reg=new RegExp(str+"$");
@@ -11,7 +13,7 @@ export default function createHamsterChart(props){
         }
 
         let lapCountByDay = echarts.init(document.getElementById(props.dayChartId));//每日运动折线图
-        let lapCountByTime = echarts.init(document.getElementById(props.timeChartId));//24小时平均运动量图
+        let lapCountByTime = echarts.init(document.getElementById(props.hourChartId));//24小时平均运动量图
         //每日运动折线图 初始化参数
         let lapCountByDayOption1 = {
             color: ["#2ec7c9"],
@@ -121,6 +123,7 @@ export default function createHamsterChart(props){
             }
         lapCountByTime.setOption(lapCountByTimeOption);
         lapCountByTime.showLoading();
+        
         //请求后台数据
         axios.get('https://hanchengxu.com/hamster/getLapCountByDay')
             .then(function (response) {
