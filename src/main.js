@@ -12,8 +12,8 @@ import App from './App.vue'
 
 import "@/assets/imgs/index.js";
 import SvgIcon from '@/components/svgIcon' // svg组件
-import 'bootstrap-icons/font/bootstrap-icons.css'//bootstrap icon式样
-import '@/css/bootstrap.min.css';//bootstrap UI
+// import 'bootstrap-icons/font/bootstrap-icons.css'//bootstrap icon式样
+// import '@/css/bootstrap.min.css';//bootstrap UI
 import '@/css/main.css'//项目css
 import 'viewerjs/dist/viewer.css'//v-viewer图片展示插件css
 import { createI18n } from 'vue-i18n'//国际化

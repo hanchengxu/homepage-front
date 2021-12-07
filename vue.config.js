@@ -67,6 +67,14 @@ module.exports = {
     });
   },
   configureWebpack: (config) => {
+    config.externals = {
+      'bootstrap-icons':'bootstrap-icons',
+      echarts: "echarts",
+      vue: 'Vue',
+      'vue-router': 'VueRouter',
+      'bootstrap':'bootstrap',
+      lodash: '_'
+    }
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
       config.mode = 'production'
@@ -92,6 +100,7 @@ module.exports = {
     //     } // 别名配置
     //   }
     // })
+ 
   },
   productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
   // css相关配置
