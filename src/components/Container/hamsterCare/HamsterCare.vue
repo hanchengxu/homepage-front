@@ -15,7 +15,7 @@
                 >
                 <div :id="dayChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
-            <LazyShow time="100" transName="topslip">
+            <LazyShow transName="topslip" :isOpen="showDayChart">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3 mt-4">
                     <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
                     <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1") }}</p>
@@ -25,7 +25,7 @@
             </LazyShow>
         </div>
         <div class="row d-flex justify-content-center" style="margin-top:150px;margin-bottom:50px">
-            <LazyShow time="100" transName="topslip">
+            <LazyShow transName="topslip" :isOpen="showHourChart">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 ms-xl-5 col-xxl-3 ms-xxl-5 mt-4">
                     <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
                     <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
