@@ -39,6 +39,8 @@ if(!lo.isNull(Cookies.get('locale')) && !lo.isUndefined(Cookies.get('locale'))){
     }
 }
 
+document.getElementById('root-html').lang=localStorage.getItem('locale') || locale_l || 'ja';
+
 //国际化配置
 const i18n = createI18n({
     locale: localStorage.getItem('locale') || locale_l || 'ja',//i18n Priority: user setting > cookie > default
