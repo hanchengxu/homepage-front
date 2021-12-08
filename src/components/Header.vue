@@ -75,6 +75,8 @@ export default {
             this.$i18n.locale = type;
             this.showTranslateDropdown = false;
             this.showMenu = false;
+            //修改html lang属性 来应对浏览器自动翻译弹出
+            document.getElementById('root-html').lang=type;
         },
         getGithubURL(){
             //接受来自路由的 params，动态替换github URL
