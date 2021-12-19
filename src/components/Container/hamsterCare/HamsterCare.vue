@@ -40,9 +40,11 @@
     </div>
 </template>
 <script>
-import LazyShow from '../../Common/LazyShow.vue';
-import createHamsterChart  from './createHamsterChart';
+import LazyShow from '@/components/Common/LazyShow.vue';
 import showOnScreen  from '@/components/Common/showOnScreen';
+import setChartOptions from './setChartOptions';
+import { dayChartOption,hourChartOption } from '@/components/Common/echartOptions';
+import * as echarts from 'echarts';
 export default {
   components: { LazyShow },
     name: 'HamsterCare',
@@ -56,12 +58,28 @@ export default {
     //因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的
     setup(props) {
 
-        //chart初始化
-        createHamsterChart(props);
-
-        const showDayChart = showOnScreen(props.dayChartId);
+        //为了给echart处理数据而预备的方法
+        String.prototype.endWith=function(str){
+            var reg=new RegExp(str+"$");
+            return reg.test(this);
+        }
         
+
+        //判断元素是否出现在可视区域
+        const showDayChart = showOnScreen(props.dayChartId);
         const showHourChart = showOnScreen(props.hourChartId);
+        
+
+        setChartOptions(props.dayChartId,showDayChart,dayChartOption);
+        setChartOptions(props.hourChartId,showHourChart,hourChartOption);
+
+         //画面size变更再刷新图表
+        window.onresize = function () {
+            let chart1 = echarts.getInstanceByDom(document.getElementById(props.dayChartId));
+            chart1.resize();
+            let chart2 = echarts.getInstanceByDom(document.getElementById(props.hourChartId));
+            chart2.resize();
+        };
 
         return{
             showDayChart,
