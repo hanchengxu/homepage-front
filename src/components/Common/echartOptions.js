@@ -1,7 +1,8 @@
 import * as echarts from 'echarts';
+
 export const dayChartOption = {
     color: ["#2ec7c9"],
-    grid:{ left:'12%',right:'10%'},
+    grid:{ left:'8%',right:'5%'},
     dataZoom: [
         {
             show: true,
@@ -24,7 +25,7 @@ export const dayChartOption = {
         formatter:function(params){
             var result = '';
             params.forEach(function (item) {
-                result += item.marker + item.axisValue+'<br><b>&nbsp&nbsp&nbsp'+item.value+'圈</b>';
+                result += item.marker + item.axisValue+'<br><b>&nbsp&nbsp&nbsp'+item.value+' laps</b>';
             });
             return result;
         }
@@ -34,11 +35,11 @@ export const dayChartOption = {
         data: [],
         axisLabel: {
             textStyle : {
-                fontSize:12
+                fontSize:11
             },
             formatter: function(value){
                 if (value.endWith("01") || value.endWith("5")|| value.endWith("10") 
-                    || value.endWith("15") || value.endWith("20")|| value.endWith("25")|| value.endWith("30"))
+                    || value.endWith("15") || value.endWith("18")|| value.endWith("20")|| value.endWith("25")|| value.endWith("30"))
                     return value;
                 else 
                     return '';
@@ -47,7 +48,8 @@ export const dayChartOption = {
     },
     yAxis: {
         type: 'value',
-        splitLine: {show: true,lineStyle:{type :'dashed'}}
+        splitLine: {show: true,lineStyle:{type :'dashed'}},
+        axisLabel: {formatter: (value)=>{ return value/10000 +'万'}}
     },
     series: [{
         data: [],
@@ -70,14 +72,14 @@ export const dayChartOption = {
 
 export const hourChartOption = {
     color: ["#2ec7c9"],
-    grid:{ left:'13%',right:'5%'},
+    grid:{ left:'8%',right:'5%'},
     tooltip: {
         trigger: 'axis',
         animation: true,
         formatter:function(params){
             var result = '';
             params.forEach(function (item) {
-                result += item.marker + item.axisValue+'時<br><b>&nbsp&nbsp&nbsp'+item.value+'laps</b>';
+                result += item.marker + item.axisValue+'時<br><b>&nbsp&nbsp&nbsp'+item.value+' laps</b>';
             });
             return result;
         }
@@ -100,8 +102,8 @@ export const hourChartOption = {
     },
     yAxis: {
         type: 'value',
-        axisLabel: { formatter: '{value}圈'},
-        splitLine: {show: true,lineStyle:{type :'dashed'}}
+        splitLine: {show: true,lineStyle:{type :'dashed'}},
+        axisLabel: {formatter: (value)=>{ return value/1000 +'千'}}
     },
     series: [{
         data: [],
@@ -109,7 +111,7 @@ export const hourChartOption = {
         itemStyle : { normal: {label : {show: false}}},
         lineStyle: { normal: {width: 2}},
         markPoint: {data:[{type:'max',name :'max'}]},
-        markLine: {data:[{type:'average',name :'average'}]},
+        markLine: {data:[{type:'average',name :'average',label:{position:'middle',formatter: '平均値: {c}laps'}}]},
         showSymbol: false,
         markArea: {
             silent:true,

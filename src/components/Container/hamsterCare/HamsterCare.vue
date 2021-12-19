@@ -15,24 +15,20 @@
                 >
                 <div :id="dayChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
-            <LazyShow transName="topslip" :isOpen="showDayChart">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3 mt-4">
-                    <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
-                    <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1") }}</p>
-                    <p>{{ $t("hamsterCare.pageTwo.p2") }}</p>
-                    <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
-                </div>
-            </LazyShow>
+            <div id="dayChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'col-xxl-3', 'mt-4', showDayChartDesc?'anima-chart-right':'anima-chart-hidden']">
+                <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
+                <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1") }}</p>
+                <p>{{ $t("hamsterCare.pageTwo.p2") }}</p>
+                <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
+            </div>
         </div>
         <div class="row d-flex justify-content-center" style="margin-top:150px;margin-bottom:50px">
-            <LazyShow transName="topslip" :isOpen="showHourChart">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 ms-xl-5 col-xxl-3 ms-xxl-5 mt-4">
-                    <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
-                    <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
-                    <p>{{ $t("hamsterCare.pageThree.p2") }}</p>
-                    <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
-                </div>
-            </LazyShow>
+            <div id="hourChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'ms-xl-5', 'col-xxl-3', 'ms-xxl-5', 'mt-4',showHourChartDesc?'anima-chart-left':'anima-chart-hidden']" >
+                <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
+                <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
+                <p>{{ $t("hamsterCare.pageThree.p2") }}</p>
+                <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
+            </div>
              <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showHourChart?'anima-chart-right':'anima-chart-hidden']">
                 <div :id="hourChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
@@ -40,13 +36,12 @@
     </div>
 </template>
 <script>
-import LazyShow from '@/components/Common/LazyShow.vue';
 import showOnScreen  from '@/components/Common/showOnScreen';
 import setChartOptions from './setChartOptions';
 import { dayChartOption,hourChartOption } from '@/components/Common/echartOptions';
 import * as echarts from 'echarts';
 export default {
-  components: { LazyShow },
+  components: { },
     name: 'HamsterCare',
     props:{
         //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
@@ -68,6 +63,8 @@ export default {
         //判断元素是否出现在可视区域
         const showDayChart = showOnScreen(props.dayChartId);
         const showHourChart = showOnScreen(props.hourChartId);
+        const showDayChartDesc = showOnScreen('dayChartDesc');
+        const showHourChartDesc = showOnScreen('hourChartDesc');
         
 
         setChartOptions(props.dayChartId,showDayChart,dayChartOption);
@@ -83,7 +80,9 @@ export default {
 
         return{
             showDayChart,
-            showHourChart
+            showHourChart,
+            showDayChartDesc,
+            showHourChartDesc
         }
        
     },
