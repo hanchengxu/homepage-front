@@ -26,6 +26,8 @@ export default {
           "xiaoshouladashou.jpg",
           "xiaoshouladashou2.jpg",
           "reai105deni.png",
+          "mohewuting1.png",
+          "mohewuting2.png",
         ]
       };
     },
