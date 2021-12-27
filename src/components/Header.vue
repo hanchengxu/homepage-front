@@ -7,9 +7,9 @@
                 <button class="navbar-toggler" @click="toggleMenu" type="button" data-bs-toggle="collapse"  aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div :class="['header-menu','collapse','navbar-collapse',{show: showMenu}]" @mouseleave="toggleMenu()">
-                <ul class="left-header navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item" >
+            <div :class="['header-menu','collapse','navbar-collapse',{show: showMenu}]">
+                <ul class="left-header navbar-nav me-auto mb-2 mb-lg-0" @click="toggleMenu">
+                    <li class="nav-item">
                         <router-link class="nav-link" to="/">{{ $t("header.menu.topPage") }}</router-link>
                     </li>
                     <li class="nav-item">
@@ -89,15 +89,23 @@ export default {
 </script>
 <style scoped>
 
+/*大于900px的情况下 */
 @media screen and (min-width: 900px) {
     .portal-header{
         opacity: 0.75;
     }
+    #translate-dropdown-menu{
+        position: absolute;
+        top: 50px;
+        left: -50px; 
+    }
 }
 #translate-dropdown-menu{
+    position: absolute;
     top: 50px;
-    left: -90px;
+    left: 50px; 
 }
+
 .left-header a[class~="nav-link"]:hover{
     font-weight: 500;
 }

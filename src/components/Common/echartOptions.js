@@ -2,7 +2,7 @@ import * as echarts from 'echarts';
 
 export const dayChartOption = {
     color: ["#2ec7c9"],
-    grid:{ left:'8%',right:'5%'},
+    grid:{ left:'10%',right:'5%'},
     dataZoom: [
         {
             show: true,
@@ -35,7 +35,7 @@ export const dayChartOption = {
         data: [],
         axisLabel: {
             textStyle : {
-                fontSize:11
+                fontSize:'0.5rem'
             },
             formatter: function(value){
                 if (value.endWith("01") || value.endWith("5")|| value.endWith("10") 
@@ -54,7 +54,7 @@ export const dayChartOption = {
     series: [{
         data: [],
         type: 'line',
-        itemStyle : { normal: {label : {show: true,fontSize:15}}},
+        itemStyle : { normal: {label : {show: true,fontSize:'0.8rem'}}},
         lineStyle: {
             normal: {width: 4}
         },
@@ -72,7 +72,7 @@ export const dayChartOption = {
 
 export const hourChartOption = {
     color: ["#2ec7c9"],
-    grid:{ left:'8%',right:'5%'},
+    grid:{ left:'10%',right:'5%',bottom:'10%'},
     tooltip: {
         trigger: 'axis',
         animation: true,
@@ -91,13 +91,13 @@ export const hourChartOption = {
             textStyle : {
                 fontSize:12
             },
-            formatter: function(value){
-                if (value.endWith("01") || value.endWith("5")|| value.endWith("10") 
-                    || value.endWith("15") || value.endWith("20")|| value.endWith("25")|| value.endWith("30"))
-                    return value;
-                else 
-                    return '';
-            }
+            // formatter: function(value){
+            //     if (value.endWith("01") || value.endWith("5")|| value.endWith("10") 
+            //         || value.endWith("15") || value.endWith("20")|| value.endWith("25")|| value.endWith("30"))
+            //         return value;
+            //     else 
+            //         return '';
+            // }
         }
     },
     yAxis: {

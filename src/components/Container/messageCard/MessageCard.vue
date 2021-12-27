@@ -54,7 +54,9 @@
 <script>
 export default {
   name: "MessageCard",
-  setup() {},
+  setup() {
+    document.getElementById("screenLock").removeAttribute("class","screenLock");
+  },
 };
 </script>
 <style scoped>

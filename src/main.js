@@ -82,6 +82,9 @@ router.beforeEach((to,from,next)=>{
         document.title = '云雀之丘的时光';
     }
 
+    //全局增加遮罩
+    document.getElementById("screenLock").setAttribute("class","screenLock");
+
     if(to.matched.length == 0){
         next({path:'/'})
     }else{
