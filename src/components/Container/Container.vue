@@ -17,7 +17,6 @@ export default {
     props: {
     },
     setup() {
-        document.getElementById("screenLock").removeAttribute("class","screenLock");
         const getScollHeight = () => {
             return window.innerHeight;
         };

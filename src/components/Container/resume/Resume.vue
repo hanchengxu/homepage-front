@@ -17,7 +17,6 @@
 export default {
     name: 'Resume',
     setup() {
-        document.getElementById("screenLock").removeAttribute("class","screenLock");
     },
 }
 </script>

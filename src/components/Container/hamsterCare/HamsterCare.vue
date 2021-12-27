@@ -58,7 +58,6 @@ export default {
             var reg=new RegExp(str+"$");
             return reg.test(this);
         }
-        document.getElementById("screenLock").removeAttribute("class","screenLock");
         
 
         //判断元素是否出现在可视区域
