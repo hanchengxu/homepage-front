@@ -35,7 +35,7 @@
                         </div>
                         <div class="col">
                             <div class="row"><div class="col"><b>博客</b></div></div>
-                            <div class="row my-3"><div class="col">博客地址</div></div>
+                            <div class="row my-3"><div class="col">博客</div></div>
                             <div class="row my-3"><div class="col">尤克里里</div></div>
                         </div>
                         <div class="col">
