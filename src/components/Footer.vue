@@ -10,37 +10,53 @@
                     </div>
                     <div class="row my-4">
                         <div class="col-lg-10 offset-lg-2 col-md-11 offset-md-1 col-sm-11 offset-sm-1 fs-1rem ps-lg-0 ps-sm-5 ps-5">
-                            It's My blog, I will share my code, idea <br>and life at here.<br> Welcome to my blog</div>
+                            My blog, I will share my code, idea <br>and life at here.<br> Welcome to my blog</div>
                     </div>
                     <div class="row my-4">
                         <div class="col-lg-10 offset-lg-2 col-md-11 offset-md-1 col-sm-11 offset-sm-1 ps-lg-0 ps-sm-5 ps-5">
-                           <button type="button" class="btn btn-primary"><i class="bi-github" role="img" aria-label="GitHub"></i> GITHUB</button>
+                           <a class="github-btn" :href="'https://github.com/hanchengxu/'" target="_blank">
+                                <i class="bi-github" role="img" aria-label="GitHub"></i> GITHUB
+                            </a>
                         </div>
                     </div>
                     <div class="row my-3">
                         <div class="col-lg-10 offset-lg-2 col-md-11 offset-md-1 col-sm-11 offset-sm-1 ps-lg-0 ps-sm-5 ps-5">
-                            <span id="footer-span">
-                                <a href="https://beian.miit.gov.cn/" target="_blank" style="color:rgb(163, 80, 231);" class="fs-08rem">辽ICP备2021003076</a>
+                            <span class="footer-span">
+                                <a href="https://beian.miit.gov.cn/" target="_blank" class="fs-08rem">辽ICP备2021003076</a>
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 ps-md-5 col-sm-12 pt-4 ps-lg-0 ps-sm-5 ps-5">
+                <div class="col-xl-6 col-lg-6 col-md-12 ps-md-5 col-sm-12 offset-lg-0 offset-md-2 offset-sm-2 pt-lg-0 pt-md-5 pt-sm-5 pt-5 ps-lg-0 ps-5">
                     <div class="row">
-                        <div class="col">
+                        <div class="col list-col">
                             <div class="row"><div class="col"><b>DIY项目</b></div></div>
-                            <div class="row my-3"><div class="col">HamsterCare</div></div>
-                            <div class="row my-3"><div class="col">MessageCard</div></div>
-                            
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <router-link class="router-link" to="/hCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col">
+                                    <router-link class="router-link" :to="{name:'messageCard'}" >MessageCard 📜</router-link>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
+                        <div class="col list-col">
                             <div class="row"><div class="col"><b>博客</b></div></div>
-                            <div class="row my-3"><div class="col">博客</div></div>
-                            <div class="row my-3"><div class="col">尤克里里</div></div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <router-link  class="router-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
+                        <div class="col list-col">
                             <div class="row"><div class="col"><b>简历</b></div></div>
-                            <div class="row my-3"><div class="col">简历</div></div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <router-link class="router-link" :to="{name:'resume'}" >{{ $t("header.menu.resume") }} 📝</router-link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,5 +84,39 @@ export default {
     background-color: #f5f5f5;
     text-decoration-color: rgb(129, 128, 128);
 }
+.footer-span > a{
+    color:rgb(0, 0, 0);
+    text-decoration:none;
+}
+.footer-span > a:hover{
+    cursor: pointer;
+    color: #6356E5;
+}
+.list-col > .row:first-child{
+    font-size: 1.1rem;
+}
+.router-link{
+    color:black;
+    text-decoration:none;
+    font-size: 0.95rem;
+}
+.router-link:hover{
+    color: #6356E5;
+    cursor: pointer;
+}
+.github-btn{
+    color: white;
+    text-decoration:none;
+    padding: 0.6rem 1rem 0.6rem 1rem;
+    border: #6356E5;
+    background: rgb(99, 86, 229);
+    border-radius: 5px;
+}
 
+.github-btn:hover{
+    background: #4a3fc5;
+}
+.github-btn:focus{
+    box-shadow: 0 0 0 0.25rem rgb(99 86 229 / 50%);
+}
 </style>
