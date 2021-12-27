@@ -64,6 +64,7 @@ const router = createRouter({
 router.afterEach(() => {
     //滚动条回归顶部
     window.scrollTo(0,0);
+    document.getElementById("screenLock").removeAttribute("class","screenLock");
 });
 //路由前置处理器
 router.beforeEach((to,from,next)=>{
