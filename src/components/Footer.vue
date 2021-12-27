@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col list-col">
-                            <div class="row"><div class="col"><b>博客</b></div></div>
+                            <div class="row"><div class="col"><b>博客</b> </div></div>
                             <div class="row mt-3">
                                 <div class="col">
                                     <router-link  class="router-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
