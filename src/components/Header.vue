@@ -19,7 +19,7 @@
                         <router-link class="nav-link" to="/hCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'messageCard'}" >MessageCard 📜</router-link>
+                        <router-link class="nav-link" to="/messageCard">MessageCard 📜</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link  class="nav-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
