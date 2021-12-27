@@ -29,12 +29,20 @@ jobs:
     run: |
      npm install
      npm run-script build
-  - name: Deploy github Page 🚀
-    uses: JamesIves/github-pages-deploy-action@releases/v3
+#   - name: Deploy github Page 🚀
+#     uses: JamesIves/github-pages-deploy-action@releases/v3
+#     with:
+#      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
+#      BRANCH: gh-pages # 存放产物的分支名称
+#      FOLDER: dist # 存放build后产物的目录
+  - name: Deploy
+    uses: peaceiris/actions-gh-pages@v3
+    if: ${{ github.ref == 'refs/heads/main' }}
     with:
-     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
-     BRANCH: gh-pages # 存放产物的分支名称
-     FOLDER: dist # 存放build后产物的目录
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      publish_branch: gh-pages
+      publish_dir: ./dist
+      keep_files: true
   - name: show my IP
     run: |
      curl ifconfig.me
