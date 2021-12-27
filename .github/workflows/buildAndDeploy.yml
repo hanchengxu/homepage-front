@@ -1,19 +1,19 @@
 name: Build and Deploy HomePage
-# on:
-#  push:
-#   branches:
-#     - master
-#   paths-ignore:
-#     - '.github/**'
-#     - 'README.md'
-#  pull_request:
-#   branches:
-#     - master
-#   paths-ignore:
-#     - '.github/**'
-#     - 'README.md'
 on:
-  workflow_dispatch:
+ push:
+  branches:
+    - master
+  paths-ignore:
+    - '.github/**'
+    - 'README.md'
+ pull_request:
+  branches:
+    - master
+  paths-ignore:
+    - '.github/**'
+    - 'README.md'
+# on:
+#   workflow_dispatch:
 # on:
 #   watch:
 #     types: started
@@ -32,7 +32,6 @@ jobs:
   - name: Deploy github Page 🚀
     uses: JamesIves/github-pages-deploy-action@4.1.8
     with:
-  #   TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
      BRANCH: gh-pages # 存放产物的分支名称
      FOLDER: dist # 存放build后产物的目录
   - name: show my IP
