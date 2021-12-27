@@ -1,5 +1,5 @@
 <template>
-    <div class="container-lg" style="margin-top:200px; min-height: 1300px;">
+    <div class="container-lg" style="margin-top:200px;">
         <LazyShow time="100" transName="topslip">
         <div class="row d-flex align-items-center">
             <div class="col d-flex justify-content-center text-secondary">
