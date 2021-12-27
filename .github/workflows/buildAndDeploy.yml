@@ -22,7 +22,7 @@ jobs:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout
-    uses: actions/checkout@master # 将代码拷贝到虚机中
+    uses: actions/checkout@v2.4.0
     with:
      persist-credentials: false
   - name: Install and Build ⚙️
@@ -32,7 +32,7 @@ jobs:
   - name: Deploy github Page 🚀
     uses: JamesIves/github-pages-deploy-action@4.1.8
     with:
-     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
+  #   TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
      BRANCH: gh-pages # 存放产物的分支名称
      FOLDER: dist # 存放build后产物的目录
   - name: show my IP
