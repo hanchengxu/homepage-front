@@ -42,6 +42,9 @@ body {
   opacity: 0;
 }
 
+.screenLock-hidden{
+  display: none;
+}
 
 .screenLock{
   position: fixed;

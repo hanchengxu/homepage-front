@@ -65,7 +65,9 @@ router.afterEach(() => {
     //滚动条回归顶部
     window.scrollTo(0,0);
     document.getElementById("screenLock").removeAttribute("class","screenLock");
+    document.getElementById("screenLock").setAttribute("class","screenLock-hidden");
 });
+
 //路由前置处理器
 router.beforeEach((to,from,next)=>{
     //由于vue-router params刷新页面会丢失
@@ -84,8 +86,9 @@ router.beforeEach((to,from,next)=>{
     }
 
     //全局增加遮罩
+    document.getElementById("screenLock").removeAttribute("class","screenLock-hidden");
     document.getElementById("screenLock").setAttribute("class","screenLock");
-
+    
     if(to.matched.length == 0){
         next({path:'/'})
     }else{
