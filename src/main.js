@@ -111,5 +111,6 @@ app.component('LazyShow', LazyShow);
 app.component('svg-icon', SvgIcon).mount("#app");
 
 app.config.devtools = true;
+app.config.productionTip = false;
 
 // console.log(app.config);
