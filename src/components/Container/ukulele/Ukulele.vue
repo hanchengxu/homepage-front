@@ -28,6 +28,8 @@ export default {
           "reai105deni.png",
           "mohewuting1.png",
           "mohewuting2.png",
+          "qingniao1.jpg",
+          "qingniao2.jpg",
         ]
       };
     },
