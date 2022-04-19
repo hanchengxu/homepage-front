@@ -33,7 +33,7 @@ module.exports = {
         },
         pageTwo:{
             title:'As you can see',
-            p1:'The line chart shows the daily movement information of a Robrovsky male hamster I raised for 15 months.',
+            p1:'The line chart shows the daily movement information of a Robrovsky male hamster I raised for {age_of_moon} months.',
             p2:'As a nocturnal animal🌒，Hamsters usually start a day of life at night😴.We often find it difficult to understand their night activities.',
             p3:"By {sys_name}  ,You can easily get the hamster's night movement information, And you can use this information to help determine the health of the hamster."
         },

@@ -17,7 +17,7 @@
             </div>
             <div id="dayChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'col-xxl-3', 'mt-4', showDayChartDesc?'anima-chart-right':'anima-chart-hidden']">
                 <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
-                <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1") }}</p>
+                <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1",{age: getAge,age_of_moon:getAgeOfMoon}) }}</p>
                 <p>{{ $t("hamsterCare.pageTwo.p2") }}</p>
                 <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
             </div>
@@ -40,6 +40,7 @@ import showOnScreen  from '@/components/Common/showOnScreen';
 import setChartOptions from './setChartOptions';
 import { dayChartOption,hourChartOption } from '@/components/Common/echartOptions';
 import * as echarts from 'echarts';
+import moment from 'moment';
 export default {
   components: { },
     name: 'HamsterCare',
@@ -47,6 +48,11 @@ export default {
         //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
         dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false},
         hourChartId:{type:String,default(){return "hourChart"+Math.floor(Math.random()*100)},require:false}
+    },
+    data(){
+        return {
+            birthDay:'2020-07-15'
+        }
     },
 
     //setup期间，无法使用data和method
@@ -86,6 +92,14 @@ export default {
         }
        
     },
+    computed: {
+        getAgeOfMoon(){
+            return moment().diff(moment(this.birthDay,"yyyy-MM-DD"),'months');
+        },
+        getAge(){
+            return moment().diff(moment(this.birthDay,"yyyy-MM-DD"),'years',true).toFixed(1);
+        }
+    }
 }
 </script>
 <style scoped>
