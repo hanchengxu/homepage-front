@@ -1,16 +1,20 @@
 <template>
     <div class="container-fluid hcare-container" style="min-height: 1300px;">
         <div class="row-top row d-flex justify-content-center mb-4" style="padding-top:180px">
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="col-sm-12 col-md-5 col-lg-4 me-lg-5 col-xl-4 me-xl-1">
                 <h1>HamsterCare🐹</h1>
                 <h1 class="title-one">{{ $t("hamsterCare.pageOne.tilteOne") }}</h1>
-                <p class="pt-1" style="max-width:500px">{{ $t("hamsterCare.pageOne.titleTwo") }}</p>
+                <p class="pt-4" style="max-width:500px;line-height: 2rem;">{{ $t("hamsterCare.pageOne.titleTwo") }}</p>
+            </div>          
+            <div class="col-sm-12 col-md-6 col-lg-4 ms-lg-5 col-xl-3 ms-xl-1 d-flex justify-content-sm-center justify-content-center">
+                <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/hamster-wheel.png" style="width:16rem;height:16rem">
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/hamster-wheel.png" width="300">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <div class="mouse-icon"><span class="mouse-wheel"></span></div>
+                <div class="ms-3 mouse-text">Scroll</div>
             </div>
         </div>
-        <div class="row d-flex justify-content-center" style="margin-top:100px">
+        <div class="row d-flex justify-content-center" style="margin-top:150px">
             <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showDayChart?'anima-chart-left':'anima-chart-hidden']" 
                 >
                 <div :id="dayChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
@@ -22,7 +26,7 @@
                 <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
             </div>
         </div>
-        <div class="row d-flex justify-content-center" style="margin-top:150px;margin-bottom:50px">
+        <div class="row d-flex justify-content-center hour-chart-div" style="margin-top:150px">
             <div id="hourChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'ms-xl-5', 'col-xxl-3', 'ms-xxl-5', 'mt-4',showHourChartDesc?'anima-chart-left':'anima-chart-hidden']" >
                 <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
                 <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
@@ -109,7 +113,7 @@ export default {
 .row-top{
     /* background-color: #3bb7c2; */
     background-image: linear-gradient(#3bb7c275, #3bb7c2d5);
-    min-height: 600px;
+    min-height: 800px;
     -webkit-clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
     clip-path: polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
     color: white
@@ -147,15 +151,77 @@ export default {
 }
 .dayChart{
     height: 400px;
+    background-color: white;
+}
+
+.hour-chart-div{
+    padding-top: 200px;
+    padding-bottom: 50px;
+    background-image: linear-gradient(#0d7bc5, #11527e);
+    clip-path: polygon(0 6%, 100% 19%, 100% 100%, 0 100%);
+}
+
+.mouse-icon{
+    border: 2px solid white;
+    border-radius: 15px;
+    height: 45px;
+    position: relative;
+    text-align: center;
+    width: 25px;
+    top:-50px;
+    /* box-shadow: 10px 5px 15px rgb(139, 214, 214); */
+}
+.mouse-wheel{ 
+    animation: 1.6s infinite x;
+    background-color: white;
+    border-radius: 50%;
+    display: block;
+    height: 6px;
+    margin: 4px auto 0;
+    position: relative;
+    width: 4px;
+}
+.mouse-text{
+    position: relative;
+    top:-50px;
+    font-weight: bold;
+}
+@keyframes x {
+    0% {
+        margin-top: 4px;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        margin-top: 14px;
+        opacity: 0;
+    }
 }
 @media screen and (max-width: 900px) {
     .dayChart{
         height: 300px;
     }
 }
+@media screen and (max-width: 767px) {
+ .mouse-icon{
+        top:0px;
+    }
+    .mouse-text{
+        top:0px;
+    }
+}
 @media screen and (max-width: 500px) {
     .dayChart{
         height: 250px;
     }
+    .mouse-icon{
+        top:-10px;
+    }
+    .mouse-text{
+        top:-10px;
+    }
 }
+
 </style>
