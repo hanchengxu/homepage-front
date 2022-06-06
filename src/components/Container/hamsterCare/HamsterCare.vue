@@ -26,7 +26,7 @@
                 <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
             </div>
         </div>
-        <div class="row d-flex justify-content-center hour-chart-div" style="margin-top:150px">
+        <div class="row d-flex justify-content-center hour-chart-div" style="margin-top:150px;">
             <div id="hourChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'ms-xl-5', 'col-xxl-3', 'ms-xxl-5', 'mt-4',showHourChartDesc?'anima-chart-left':'anima-chart-hidden']" >
                 <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
                 <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
@@ -159,6 +159,7 @@ export default {
     padding-bottom: 50px;
     background-image: linear-gradient(#0d7bc5, #11527e);
     clip-path: polygon(0 6%, 100% 19%, 100% 100%, 0 100%);
+    color:rgb(217, 237, 255);
 }
 
 .mouse-icon{
