@@ -18,6 +18,7 @@ module.exports = {
     console.log('-----------------------------------');
     console.log('⚠️  public path : '+config.output.store.get('publicPath'));
     console.log('⚠️  build env   : '+process.env.NODE_ENV);
+    console.log('⚠️  api host    : '+process.env.VUE_APP_API_HOST);
     console.log('-----------------------------------');
     // set svg-sprite-loader
     // 第一步：让其他svg loader不要对src/assets/imgs/svgs进行操作

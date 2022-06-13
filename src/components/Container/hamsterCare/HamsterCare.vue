@@ -14,7 +14,8 @@
                 <div class="ms-3 mouse-text">Scroll</div>
             </div>
         </div>
-        <div class="row d-flex justify-content-center" style="margin-top:150px">
+        <!-- 运动折线图 -->
+        <div class="row d-flex justify-content-center" style="margin-top:150px;line-height: 1.8rem;">
             <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showDayChart?'anima-chart-left':'anima-chart-hidden']" 
                 >
                 <div :id="dayChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
@@ -26,15 +27,30 @@
                 <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
             </div>
         </div>
-        <div class="row d-flex justify-content-center hour-chart-div" style="margin-top:150px;">
+        <!-- 运动增量柱状图 -->
+        <div class="row d-flex justify-content-center " style="margin-top:150px;line-height: 1.8rem;">
             <div id="hourChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'ms-xl-5', 'col-xxl-3', 'ms-xxl-5', 'mt-4',showHourChartDesc?'anima-chart-left':'anima-chart-hidden']" >
+                <h3>{{ $t("hamsterCare.pageFour.title") }}</h3>
+                <p class="pt-2">{{ $t("hamsterCare.pageFour.p1") }}</p>
+                <p class="">{{ $t("hamsterCare.pageFour.p2") }}</p>
+                <span v-for="hourChartDate in hourChartDates" :key="hourChartDate.index">
+                    <button :class="['btn', 'hamster-btn', 'm-1',selectedHourChartDate==hourChartDate?'hamster-btn-focus':'']" @click="selectHourChartDate(hourChartDate)">{{ hourChartDate }}</button>
+                </span>
+            </div>
+                <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'm-4', showHourChart?'anima-chart-right':'anima-chart-hidden']">
+                <div :id="hourChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
+            </div>
+        </div>
+        <!-- 平均运动折线图 -->
+        <div class="row d-flex justify-content-center hour-chart-div" style="margin-top:150px;margin-bottom:50px;line-height: 1.8rem;">
+            <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showHourAvgChart?'anima-chart-right':'anima-chart-hidden']">
+                <div :id="hourAvgChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
+            </div>
+            <div id="hourAvgChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'ms-xl-5', 'col-xxl-3', 'ms-xxl-5', 'mt-4',showHourAvgChartDesc?'anima-chart-left':'anima-chart-hidden']" >
                 <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
                 <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
                 <p>{{ $t("hamsterCare.pageThree.p2") }}</p>
                 <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
-            </div>
-             <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'mx-4', showHourChart?'anima-chart-right':'anima-chart-hidden']">
-                <div :id="hourChartId" style="width: 100%;" class="shadow rounded-3 dayChart"></div>
             </div>
         </div>
     </div>
@@ -42,20 +58,30 @@
 <script>
 import showOnScreen  from '@/components/Common/showOnScreen';
 import setChartOptions from './setChartOptions';
-import { dayChartOption,hourChartOption } from '@/components/Common/echartOptions';
+import { dayChartOption,hourChartOption,hourAvgChartOption } from '@/components/Common/echartOptions';
 import * as echarts from 'echarts';
 import moment from 'moment';
+
 export default {
   components: { },
     name: 'HamsterCare',
     props:{
         //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
         dayChartId:{type:String,default(){return "dayChart"+Math.floor(Math.random()*100)},require:false},
-        hourChartId:{type:String,default(){return "hourChart"+Math.floor(Math.random()*100)},require:false}
+        hourChartId:{type:String,default(){return "hourChart"+Math.floor(Math.random()*100)},require:false},
+        hourAvgChartId:{type:String,default(){return "hourAvgChart"+Math.floor(Math.random()*100)},require:false}
     },
     data(){
         return {
-            birthDay:'2020-07-15'
+            birthDay:'2020-07-15',
+            hourChartDates:[
+               moment(new Date()).subtract(5,'days').format('yyyy-MM-DD'),
+               moment(new Date()).subtract(4,'days').format('yyyy-MM-DD'),
+               moment(new Date()).subtract(3,'days').format('yyyy-MM-DD'),
+               moment(new Date()).subtract(2,'days').format('yyyy-MM-DD'),
+               moment(new Date()).subtract(1,'days').format('yyyy-MM-DD'),
+               moment(new Date()).format('yyyy-MM-DD')
+            ]
         }
     },
 
@@ -72,27 +98,39 @@ export default {
 
         //判断元素是否出现在可视区域
         const showDayChart = showOnScreen(props.dayChartId);
-        const showHourChart = showOnScreen(props.hourChartId);
+        const showHourAvgChart = showOnScreen(props.hourAvgChartId);
+
         const showDayChartDesc = showOnScreen('dayChartDesc');
+        const showHourAvgChartDesc = showOnScreen('hourAvgChartDesc');
+
+        //运动增量柱状图
+        const showHourChart = showOnScreen(props.hourChartId);
         const showHourChartDesc = showOnScreen('hourChartDesc');
         
 
         setChartOptions(props.dayChartId,showDayChart,dayChartOption);
-        setChartOptions(props.hourChartId,showHourChart,hourChartOption);
+        setChartOptions(props.hourAvgChartId,showHourAvgChart,hourAvgChartOption);
+        let {hourChartDatas,selectedHourChartDate}= setChartOptions(props.hourChartId,showHourChart,hourChartOption);
 
          //画面size变更再刷新图表
         window.onresize = function () {
             let chart1 = echarts.getInstanceByDom(document.getElementById(props.dayChartId));
             chart1.resize();
-            let chart2 = echarts.getInstanceByDom(document.getElementById(props.hourChartId));
+            let chart2 = echarts.getInstanceByDom(document.getElementById(props.hourAvgChartId));
             chart2.resize();
+            let chart3 = echarts.getInstanceByDom(document.getElementById(props.hourChartId));
+            chart3.resize();
         };
 
         return{
             showDayChart,
-            showHourChart,
+            showHourAvgChart,
             showDayChartDesc,
-            showHourChartDesc
+            showHourAvgChartDesc,
+            showHourChart,
+            showHourChartDesc,
+            hourChartDatas,
+            selectedHourChartDate
         }
        
     },
@@ -102,6 +140,11 @@ export default {
         },
         getAge(){
             return moment().diff(moment(this.birthDay,"yyyy-MM-DD"),'years',true).toFixed(1);
+        }
+    },
+    methods: {
+        selectHourChartDate(targetDate){
+            this.selectedHourChartDate = targetDate
         }
     }
 }
@@ -223,6 +266,24 @@ export default {
     .mouse-text{
         top:-10px;
     }
+}
+
+.hamster-btn{
+    color: white;
+    text-decoration:none;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border: #3bb7c2d5;
+    background: #34b8c4d5;
+    border-radius: 5px;
+    
+}
+
+.hamster-btn:hover{
+    background: #23919bd5;
+}
+.hamster-btn-focus,
+.hamster-btn:focus{
+    box-shadow: 0 0 0 0.25rem #2eb2be63;
 }
 
 </style>

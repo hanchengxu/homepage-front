@@ -7,16 +7,17 @@ export const dayChartOption = {
         {
             show: true,
             realtime: true,
-            start: 98,
-            end: 100,
+            // start: 98,
+            // end: 100,
+            // startValue:'2022-05-07',
             brushSelect:true,
             zoomLock:false
         },
         {
             type: 'inside',
             realtime: true,
-            start: 98,
-            end: 100,
+            // startValue:'2022-05-07',
+            // end: 100,
             zoomLock:true
         }
     ],
@@ -56,7 +57,7 @@ export const dayChartOption = {
         type: 'line',
         itemStyle : { normal: {label : {show: true,fontSize:'0.8rem'}}},
         lineStyle: {
-            normal: {width: 4}
+            normal: {width: 3}
         },
         areaStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -70,7 +71,7 @@ export const dayChartOption = {
     }]
 };
 
-export const hourChartOption = {
+export const hourAvgChartOption = {
     color: ["#2ec7c9"],
     grid:{ left:'10%',right:'5%',bottom:'10%'},
     tooltip: {
@@ -135,4 +136,44 @@ export const hourChartOption = {
             }])
         }
     }]
+};
+
+//运动增量柱状图
+export const hourChartOption = {
+    color: ["#2ec7c9"],
+    grid:{ left:'10%',right:'5%',bottom:'10%'},
+    tooltip: {
+        trigger: 'axis',
+        animation: true,
+        formatter:function(params){
+            var result = '';
+            params.forEach(function (item) {
+                result += item.marker + item.axisValue+'時<br><b>&nbsp&nbsp&nbsp'+item.value+' laps</b>';
+            });
+            return result;
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: [],
+        axisLabel: {
+            textStyle : {
+                fontSize:12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [],
+        type: 'bar',
+        animationDelay: function (idx) {
+            return idx * 10;
+        }
+    }],
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 10;
+    }
 };
