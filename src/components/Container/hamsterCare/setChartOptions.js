@@ -1,6 +1,6 @@
 import * as echarts from 'echarts';
 import axios from 'axios';
-import { onMounted, watch, ref, reactive} from 'vue';
+import { onMounted, watch, ref} from 'vue';
 import { isNull } from '@/utils.js';
 import moment from 'moment';
 /**
@@ -15,8 +15,9 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
     let chart = null;
     let chartData = {};
     //近日 运动增量柱状图,由于保存了近几日数据，需要返回给组件存储以供选择。
-    let hourChartDatas = reactive({});
-    let selectedHourChartDate = ref(moment(new Date()).format('yyyy-MM-DD'));
+    let hourChartDatas = {};
+    let hourChartTargetDates = ref([]);//可选择日期列
+    let selectedHourChartDate = ref({});//页面显示默认选择日期
 
     //dayChart 显示一周范围的数据
     let dayChartStartDate = moment().subtract(1, "weeks").format("yyyy-MM-DD");
@@ -49,7 +50,14 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
                     if(!isNull(response.data)){
                         chartData.series = JSON.parse(response.data["2022-06-13"]).series;
                         chartData.xAxis = JSON.parse(response.data["2022-06-13"]).xAxis;
-                        hourChartDatas.value = response.data;
+                        hourChartDatas = response.data;
+                        for (let obj in response.data){
+                            hourChartTargetDates.value.push(obj);
+                        }
+                        //对日期列进行排序
+                        hourChartTargetDates.value.sort((d1,d2)=> d2<d1? 1:-1);
+                        //将排序过后最大日期作为默认选择项
+                        selectedHourChartDate.value = hourChartTargetDates.value[hourChartTargetDates.value.length-1]
                     }
                     if (showChart) {
                         let optionTemp = {
@@ -113,8 +121,8 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
         if (showChart && !isNull(chartData)) {
             
             //从datas取出目标日期的数据
-            chartData.series = JSON.parse(hourChartDatas.value[selectedHourChartDate.value]).series;
-            chartData.xAxis = JSON.parse(hourChartDatas.value[selectedHourChartDate.value]).xAxis;
+            chartData.series = JSON.parse(hourChartDatas[selectedHourChartDate.value]).series;
+            chartData.xAxis = JSON.parse(hourChartDatas[selectedHourChartDate.value]).xAxis;
 
             //判断是否已经存在图表对象，如果有 则clear再次渲染
             chart = echarts.getInstanceByDom(document.getElementById(chartDomId));
@@ -137,5 +145,5 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
         }
     })
     
-    return {hourChartDatas,selectedHourChartDate};
+    return {hourChartTargetDates,selectedHourChartDate};
 }

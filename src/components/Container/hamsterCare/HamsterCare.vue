@@ -33,8 +33,8 @@
                 <h3>{{ $t("hamsterCare.pageFour.title") }}</h3>
                 <p class="pt-2">{{ $t("hamsterCare.pageFour.p1") }}</p>
                 <p class="">{{ $t("hamsterCare.pageFour.p2") }}</p>
-                <span v-for="hourChartDate in hourChartDates" :key="hourChartDate.index">
-                    <button :class="['btn', 'hamster-btn', 'm-1',selectedHourChartDate==hourChartDate?'hamster-btn-focus':'']" @click="selectHourChartDate(hourChartDate)">{{ hourChartDate }}</button>
+                <span v-for="(value) in hourChartTargetDates" :key="value.index">
+                     <button :class="['btn', 'hamster-btn', 'm-1',selectedHourChartDate==value?'hamster-btn-focus':'']" @click="selectHourChartDate(value)">{{ value }}</button>
                 </span>
             </div>
                 <div :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-6', 'col-xxl-5', 'm-4', showHourChart?'anima-chart-right':'anima-chart-hidden']">
@@ -73,15 +73,7 @@ export default {
     },
     data(){
         return {
-            birthDay:'2020-07-15',
-            hourChartDates:[
-               moment(new Date()).subtract(5,'days').format('yyyy-MM-DD'),
-               moment(new Date()).subtract(4,'days').format('yyyy-MM-DD'),
-               moment(new Date()).subtract(3,'days').format('yyyy-MM-DD'),
-               moment(new Date()).subtract(2,'days').format('yyyy-MM-DD'),
-               moment(new Date()).subtract(1,'days').format('yyyy-MM-DD'),
-               moment(new Date()).format('yyyy-MM-DD')
-            ]
+            birthDay:'2020-07-15'
         }
     },
 
@@ -110,7 +102,8 @@ export default {
 
         setChartOptions(props.dayChartId,showDayChart,dayChartOption);
         setChartOptions(props.hourAvgChartId,showHourAvgChart,hourAvgChartOption);
-        let {hourChartDatas,selectedHourChartDate}= setChartOptions(props.hourChartId,showHourChart,hourChartOption);
+        let {hourChartTargetDates,selectedHourChartDate}= setChartOptions(props.hourChartId,showHourChart,hourChartOption);
+
 
          //画面size变更再刷新图表
         window.onresize = function () {
@@ -129,7 +122,7 @@ export default {
             showHourAvgChartDesc,
             showHourChart,
             showHourChartDesc,
-            hourChartDatas,
+            hourChartTargetDates,
             selectedHourChartDate
         }
        
