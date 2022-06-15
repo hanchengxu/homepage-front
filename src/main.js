@@ -24,26 +24,30 @@ import VueViewer from 'v-viewer'
 import Cookies from 'js-cookie'
 import lo from 'lodash'
 
+//浏览器设定的地区
+let browser_locale = navigator.language.substring(0,2);
+console.log(browser_locale);
 
 //通过nginx传过来的cookie判断区域
-let locale_l ;
+let nginx_locale ;
 //cookie区域不为空，且localStorage没有用户指定的i18n
 if(!lo.isNull(Cookies.get('locale')) && !lo.isUndefined(Cookies.get('locale'))){
     //根据cookie初始化语言
     if(Cookies.get('locale') === "CN"){
-        locale_l = 'zh';
+        nginx_locale = 'zh';
     }else if(Cookies.get('locale') === "JP"){
-        locale_l = 'ja';
+        nginx_locale = 'ja';
     }else {
-        locale_l = 'en';
+        nginx_locale = 'en';
     }
 }
 
-document.getElementById('root-html').lang=localStorage.getItem('locale') || locale_l || 'ja';
+//设置html页面的地区，防止浏览器弹出自动翻译
+document.getElementById('root-html').lang=localStorage.getItem('locale') || browser_locale || nginx_locale || 'zh';
 
 //国际化配置
 const i18n = createI18n({
-    locale: localStorage.getItem('locale') || locale_l || 'ja',//i18n Priority: user setting > cookie > default
+    locale: localStorage.getItem('locale') || browser_locale || nginx_locale || 'zh',//i18n Priority: user setting > browser setting >cookie > default
     globalInjection:true,
     messages: {
         'zh': require('./i18n/zh'),
@@ -51,6 +55,7 @@ const i18n = createI18n({
         'en': require('./i18n/en')
     }
 })
+
 
 //路由配置
 const router = createRouter({

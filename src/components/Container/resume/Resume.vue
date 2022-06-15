@@ -47,13 +47,16 @@
                         <i class="bi-github fs-5" role="img" aria-label="GitHub"></i> <span class="fs-5 fw-bold">Github</span><br>
                         <div class="row github-msg pe-4 ps-2">
                             <div class="col-12 border rounded">
-                                <img class="github-msg-child" src="https://raw.githubusercontent.com/hanchengxu/hanchengxu/main/profile-3d-contrib/profile-season-animate.svg"/>
+                                <img class="github-msg-child" 
+                                src="https://raw.githubusercontent.com/hanchengxu/hanchengxu/main/profile-3d-contrib/profile-season-animate.svg"/>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-2 ps-0">
-                                <img class="github-msg-child" :src="`https://github-readme-stats.vercel.app/api?username=hanchengxu&show_icons=true&locale=${getLocale}&layout=compact`"/>
+                                <img class="github-msg-child" 
+                                :src="`https://github-readme-stats.vercel.app/api?username=hanchengxu&show_icons=true&locale=${getLocale}&layout=compact`"/>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-2 ps-0">
-                                <img class="github-msg-child" src="https://github-readme-stats.vercel.app/api/top-langs?username=hanchengxu&show_icons=true&locale=cn&layout=compact"/>
+                                <img class="github-msg-child" 
+                                :src="`https://github-readme-stats.vercel.app/api/top-langs?username=hanchengxu&show_icons=true&locale=${getLocale}&layout=compact`"/>
                             </div>
                         </div>
                         <br>
@@ -87,15 +90,13 @@ export default {
             window.removeEventListener("resize", windowResize);
         });
 
-        let locale = localStorage.getItem('locale');
         return {
-            scollHeight,
-            locale
+            scollHeight
         };
     },
     computed:{
         getLocale(){
-            return this.locale === 'zh' ? 'cn':this.locale;
+            return this.$i18n.locale=== 'zh' ? 'cn':this.$i18n.locale;
         }
     },
 }
