@@ -2,7 +2,7 @@ module.exports = {
     header:{
         menu:{
             topPage: 'Home',
-            resume: 'Resume',
+            resume: 'About me',
             hamsterCare: 'HamsterCare',
             ukulele: 'Ukulele'
         },
@@ -10,7 +10,7 @@ module.exports = {
     },
     homepage:{
         resume:{
-            title:'Resume',
+            title:'About me',
             detail:'Click it, find the colorful me'
         },
         hamsterCare:{
@@ -63,6 +63,22 @@ module.exports = {
         },
         pageTwo:{
             title:'Learn more'
+        }
+    },
+    resume:{
+        title:'About me',
+        introduce:{
+            in1:" Hey!I'm Hanchengxu.A web software development engineer with 7 years of experience",
+            in2:'Code enthusiast, programming is not just a job, but also my hobby.',
+            in3:'Handicapped craftsman, like to make handmade, recently obsessed with Arduino platform, DIY some interesting gadgets.',
+            in4: 'Hamster keeper, welcome to watch the daily exercise status of my hamster.'
+        },
+        language:'Language',
+        techStack:'Technology Stack ',
+        learnling:'Learnling',
+        contact:{
+            title:'Contact me',
+            mail: 'E-mail Address'
         }
     }
 }

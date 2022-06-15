@@ -2,7 +2,7 @@ module.exports = {
     header:{
         menu:{
             topPage: 'ホームページ',
-            resume: '履歴書',
+            resume: '私について',
             hamsterCare: 'HamsterCare',
             ukulele: 'ウクレレ'
         },
@@ -10,7 +10,7 @@ module.exports = {
     },
     homepage:{
         resume:{
-            title:'履歴書',
+            title:'私について',
             detail:'クリック、カラフルな私を見て'
         },
         hamsterCare:{
@@ -69,5 +69,21 @@ module.exports = {
         pageTwo:{
             title:'もっと詳しく'
         }
+    },
+    resume:{
+        title:'私について',
+        introduce:{
+            in1:'こんにちは！私はHanchengxu。7年ぐらい経験のWebソフトウェア開発者です。',
+            in2:'コーディング大好き，開発は仕事だけではなくて，趣味です。',
+            in3:'下手アクリル匠，手作り，最近Arduinoは興味を持って，いろんな面白いことDIYします。',
+            in4: 'ハムスター飼っている。私のハムスター毎日運動情報です。ぜひいらっしゃってください。'
+        },
+        language:'言語',
+        techStack:'技術スタッフ',
+        learnling:'勉強中',
+        contact:{
+            title:'コンタクト',
+            mail:'メールアドレス'
+        },
     }
 }
