@@ -28,6 +28,7 @@
                             <img loading="lazy" src="https://img.shields.io/badge/-Redux-352e9b?'style'=flat&logo=Redux"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-Bootstrap-352e9b?'style'=flat&logo=Bootstrap"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-Spring Boot-352e9b?'style'=flat&logo=Spring Boot"/>
+                            <img loading="lazy" src="https://img.shields.io/badge/-Selenium-352e9b?'style'=flat&logo=Selenium"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-Github-352e9b?'style'=flat&logo=Github"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-GitHub Actions-352e9b?'style'=flat&logo=GitHub Actions"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-Git-352e9b?'style'=flat&logo=Git"/>
