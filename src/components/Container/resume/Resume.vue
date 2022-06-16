@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col text-center"><h2 class="fw-bold pt-4 pb-4">About me</h2></div>
                     <div class="col-12 mb-3 px-5 pb-4">
-                        <p>👨‍💻 {{ $t("resume.introduce.in1") }}</p>
+                        <p>👨‍💻 {{ $t("resume.introduce.in1",{work_year:getWorkYear,mos:getWorkYearMonth}) }}</p>
                         <p>💡 {{ $t("resume.introduce.in2") }}</p>
                         <p>🔨 {{ $t("resume.introduce.in3") }}</p>
                         <p>🐹 {{ $t("resume.introduce.in4") }}👉<a href="http://localhost:8033/#/hCare" target="_blank">HamsterCare</a></p>
@@ -73,6 +73,7 @@
 </template>
 <script>
 import { onMounted, ref, onUnmounted } from "vue";
+import moment from 'moment';
 export default {
     name: 'Resume',
     setup() {
@@ -83,7 +84,7 @@ export default {
         const windowResize = () => {
             scollHeight.value = getScollHeight();
         };
-        onMounted(() => {            
+        onMounted(() => {
             window.addEventListener("resize", windowResize);
         });
         onUnmounted(() => {
@@ -97,26 +98,36 @@ export default {
     computed:{
         getLocale(){
             return this.$i18n.locale=== 'zh' ? 'cn':this.$i18n.locale;
+        },
+        getWorkYear(){
+            return moment().diff(moment("2015-07-15","yyyy-MM-DD"),'years',true).toString().substring(0,1);
+        },
+        getWorkYearMonth(){
+            let temp1 = moment().diff(moment("2015-07-15","yyyy-MM-DD"),'years',true).toFixed(1);
+            let temp2 = moment().diff(moment("2015-07-15","yyyy-MM-DD"),'years',true).toString().substring(0,1);
+            let temp3 = (temp1-temp2).toFixed(1);
+            let mos = (temp3*12).toFixed(0);
+            return mos;
         }
     },
 }
 </script>
 <style scoped>
-@media screen and (max-width: 1200px) {
-    .constr-icon{
-        height: 450px;
-    }
-}
-@media screen and (max-width: 900px) {
-    .constr-icon{
-        height: 300px;
-    }
-}
 .tech-shields img{
     margin-right: 0.5rem;
     height: 27px;
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
+}
+
+@media screen and (max-width: 700px) {
+   .tech-shields img{
+    margin-right: 0.5rem;
+    height: 24px;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
 }
 
 .github-msg {

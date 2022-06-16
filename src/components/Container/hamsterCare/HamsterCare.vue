@@ -58,8 +58,8 @@
 <script>
 import showOnScreen  from '@/components/Common/showOnScreen';
 import setChartOptions from './setChartOptions';
+import resizeChart from './resizeChart';
 import { dayChartOption,hourChartOption,hourAvgChartOption } from '@/components/Common/echartOptions';
-import * as echarts from 'echarts';
 import moment from 'moment';
 
 export default {
@@ -87,7 +87,6 @@ export default {
             return reg.test(this);
         }
         
-
         //判断元素是否出现在可视区域
         const showDayChart = showOnScreen(props.dayChartId);
         const showHourAvgChart = showOnScreen(props.hourAvgChartId);
@@ -104,16 +103,8 @@ export default {
         setChartOptions(props.hourAvgChartId,showHourAvgChart,hourAvgChartOption);
         let {hourChartTargetDates,selectedHourChartDate}= setChartOptions(props.hourChartId,showHourChart,hourChartOption);
 
-
          //画面size变更再刷新图表
-        window.onresize = function () {
-            let chart1 = echarts.getInstanceByDom(document.getElementById(props.dayChartId));
-            chart1.resize();
-            let chart2 = echarts.getInstanceByDom(document.getElementById(props.hourAvgChartId));
-            chart2.resize();
-            let chart3 = echarts.getInstanceByDom(document.getElementById(props.hourChartId));
-            chart3.resize();
-        };
+        resizeChart([props.dayChartId,props.hourAvgChartId,props.hourChartId])
 
         return{
             showDayChart,

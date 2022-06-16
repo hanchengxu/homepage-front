@@ -26,7 +26,10 @@ import lo from 'lodash'
 
 //浏览器设定的地区
 let browser_locale = navigator.language.substring(0,2);
-console.log(browser_locale);
+
+if(browser_locale !=="zh" && browser_locale !=="ja"){
+    browser_locale == "en";
+}
 
 //通过nginx传过来的cookie判断区域
 let nginx_locale ;

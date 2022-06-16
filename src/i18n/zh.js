@@ -73,7 +73,7 @@ module.exports = {
     resume:{
         title:'关于我',
         introduce:{
-            in1:' 你好！我是Hanchengxu。一名从业7年的Web软件开发工程师。',
+            in1:' 你好！我是Hanchengxu。一名从业{work_year}年零{mos}个月的Web软件开发工程师。',
             in2:'代码爱好者，编程不仅仅是一份工作，更是我的业余爱好。',
             in3:'手残工匠，喜欢制作手工，最近痴迷于Arduino平台，DIY一些有趣的小玩意儿。',
             in4: '养鼠人，欢迎围观我家鼠子每日运动状态。'

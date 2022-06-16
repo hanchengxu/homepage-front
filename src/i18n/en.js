@@ -68,7 +68,7 @@ module.exports = {
     resume:{
         title:'About me',
         introduce:{
-            in1:" Hey!I'm Hanchengxu.A web software development engineer with 7 years of experience",
+            in1:" Hey!I'm Hanchengxu.A web software development engineer with {work_year} years {mos} months of experience",
             in2:'Code enthusiast, programming is not just a job, but also my hobby.',
             in3:'Handicapped craftsman, like to make handmade, recently obsessed with Arduino platform, DIY some interesting gadgets.',
             in4: 'Hamster keeper, welcome to watch the daily exercise status of my hamster.'
