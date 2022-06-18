@@ -1,6 +1,5 @@
 <template>
     <div class="container" :style="{minHeight:(scollHeight-42)+'px',marginTop:'100px'}">
-        <LazyShow time="500" transName="topslip">
         <div class="row d-flex justify-content-center my-5 text-secondary">
             <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 mt-3 shadow rounded">
                 <div class="row">
@@ -9,7 +8,7 @@
                         <p>👨‍💻 {{ $t("resume.introduce.in1",{work_year:getWorkYear,mos:getWorkYearMonth}) }}</p>
                         <p>💡 {{ $t("resume.introduce.in2") }}</p>
                         <p>🔨 {{ $t("resume.introduce.in3") }}</p>
-                        <p>🐹 {{ $t("resume.introduce.in4") }}👉<a href="http://localhost:8033/#/hCare" target="_blank">HamsterCare</a></p>
+                        <p>🐹 {{ $t("resume.introduce.in4") }}👉<a href="./#/hCare" target="_blank">HamsterCare</a></p>
                         <br>
                         💬 <span class="fs-5 fw-bold">{{ $t("resume.language")}}</span><br>
                         <div class="tech-shields">
@@ -69,7 +68,6 @@
             </div>
            
         </div>
-        </LazyShow>
     </div>
 </template>
 <script>
