@@ -48,8 +48,7 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
                 if (chartDomId.startsWith('hourChart')) {
                     //针对柱状图的特殊处理
                     if(!isNull(response.data)){
-                        chartData.series = JSON.parse(response.data["2022-06-13"]).series;
-                        chartData.xAxis = JSON.parse(response.data["2022-06-13"]).xAxis;
+                       
                         hourChartDatas = response.data;
                         for (let obj in response.data){
                             hourChartTargetDates.value.push(obj);
@@ -58,6 +57,9 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
                         hourChartTargetDates.value.sort((d1,d2)=> d2<d1? 1:-1);
                         //将排序过后最大日期作为默认选择项
                         selectedHourChartDate.value = hourChartTargetDates.value[hourChartTargetDates.value.length-1]
+
+                        chartData.series = JSON.parse(response.data[selectedHourChartDate.value]).series;
+                        chartData.xAxis = JSON.parse(response.data[selectedHourChartDate.value]).xAxis;
                     }
                     if (showChart) {
                         let optionTemp = {
