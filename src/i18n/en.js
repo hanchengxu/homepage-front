@@ -8,6 +8,10 @@ module.exports = {
         },
         languageName:'English'
     },
+    footer:{
+        menuDIY: 'DIY',
+        menuBlog: 'Blog',
+    },
     homepage:{
         resume:{
             title:'About me',

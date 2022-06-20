@@ -8,6 +8,10 @@ module.exports = {
         },
         languageName:'日本語'
     },
+    footer:{
+        menuDIY: 'DIY項目',
+        menuBlog: 'ブログ',
+    },
     homepage:{
         resume:{
             title:'私について',

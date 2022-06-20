@@ -30,7 +30,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 ps-md-5 col-sm-12 offset-lg-0 offset-md-2 offset-sm-2 pt-lg-0 pt-md-5 pt-sm-5 pt-5 ps-lg-0 ps-5">
                     <div class="row">
                         <div class="col list-col">
-                            <div class="row"><div class="col"><b>DIY项目</b></div></div>
+                            <div class="row"><div class="col"><b>{{$t("footer.menuDIY")}}</b></div></div>
                             <div class="row mt-3">
                                 <div class="col">
                                     <router-link class="router-link" to="/hCare">{{ $t("header.menu.hamsterCare") }} 🐹</router-link>
@@ -41,9 +41,14 @@
                                     <router-link class="router-link" :to="{name:'messageCard'}" >MessageCard 📜</router-link>
                                 </div>
                             </div>
+                            <div class="row my-2">
+                                <div class="col">
+                                    <a class="router-link" href="https://github.com/hanchengxu/PC-dashboard" target="_blank">PC-dashboard ⏱️</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col list-col">
-                            <div class="row"><div class="col"><b>博客</b> </div></div>
+                            <div class="row"><div class="col"><b>{{$t("footer.menuBlog")}}</b> </div></div>
                             <div class="row mt-3">
                                 <div class="col">
                                     <router-link  class="router-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
@@ -51,10 +56,12 @@
                             </div>
                         </div>
                         <div class="col list-col">
-                            <div class="row"><div class="col"><b>简历</b></div></div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <router-link class="router-link" :to="{name:'resume'}" >{{ $t("header.menu.resume") }} 📝</router-link>
+                            <div class="row"><div class="col">
+                                    <b>
+                                        <div class="col">
+                                            <router-link class="router-link-lg" :to="{name:'resume'}" >{{ $t("header.menu.resume") }} 📝</router-link>
+                                        </div>
+                                    </b>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +107,12 @@ export default {
     text-decoration:none;
     font-size: 0.95rem;
 }
+.router-link-lg{
+    color:black;
+    text-decoration:none;
+}
+
+.router-link-lg:hover,
 .router-link:hover{
     color: #6356E5;
     cursor: pointer;

@@ -8,6 +8,10 @@ module.exports = {
         },
         languageName:'简体中文'
     },
+    footer:{
+        menuDIY: 'DIY项目',
+        menuBlog: '博客',
+    },
     homepage:{
         resume:{
             title:'关于我',
