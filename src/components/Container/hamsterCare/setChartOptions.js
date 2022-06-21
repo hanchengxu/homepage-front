@@ -19,9 +19,6 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
     let hourChartTargetDates = ref([]);//可选择日期列
     let selectedHourChartDate = ref({});//页面显示默认选择日期
 
-    //dayChart 显示一周范围的数据
-    let dayChartStartDate = moment().subtract(1, "weeks").format("yyyy-MM-DD");
-
     //mounted call API 第一次加载请求后台数据
     onMounted(() => {
 
@@ -32,8 +29,6 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
 
         if (chartDomId.startsWith('dayChart')) {
             api = process.env.VUE_APP_API_HOST + '/hamster/getLapCountByDay/1';
-            //不同chart 的个别option设定:
-            chartOption.dataZoom[0].startValue = dayChartStartDate;
         }
         if (chartDomId.startsWith('hourAvgChart')) {
             api = process.env.VUE_APP_API_HOST + '/hamster/getHourAvgChart/1';
@@ -62,6 +57,23 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
                         chartData.xAxis = JSON.parse(response.data[selectedHourChartDate.value]).xAxis;
                     }
                     if (showChart) {
+                        let optionTemp = {
+                            series: [{ data: chartData.series }],
+                            xAxis: { data: chartData.xAxis },
+                        }
+                        chart.setOption(chartOption);
+                        chart.setOption(optionTemp);
+                        chart.hideLoading();
+                    }
+                }else if(chartDomId.startsWith('dayChart')){
+                     //不同chart 的个别option设定:
+                     if(!isNull(response.data)){
+                        //显示一周范围的运动数据
+                        let xAxisLength = response.data.xAxis.length;
+                        chartOption.dataZoom[0].startValue = response.data.xAxis[xAxisLength-7];
+                        chartData = response.data;
+                     }
+                     if (showChart) {
                         let optionTemp = {
                             series: [{ data: chartData.series }],
                             xAxis: { data: chartData.xAxis },
