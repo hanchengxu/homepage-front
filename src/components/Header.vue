@@ -21,8 +21,11 @@
                     <li class="nav-item">
                         <router-link class="nav-link" to="/messageCard">MessageCard 📜</router-link>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <router-link  class="nav-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/hanchengxu/PC-dashboard" target="_blank">PC-dashboard ⏱️</a>
                     </li>
                 </ul>
                 <hr class="d-md-none text-dark">
