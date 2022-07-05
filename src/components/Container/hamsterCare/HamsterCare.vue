@@ -156,6 +156,7 @@ export default {
     visibility:visible;
     animation: disp-right 1.5s ease-in-out;
 }
+
 @keyframes disp-left {
     from{
         transform: translateX(-100px);
@@ -173,6 +174,14 @@ export default {
     }
     to{
         transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes disp-fade-in {
+    from{
+        opacity: 0;
+    }
+    to{
         opacity: 1;
     }
 }
@@ -227,13 +236,26 @@ export default {
         opacity: 0;
     }
 }
+@media screen and (max-width: 1200px) {
+    /* 在屏幕分辨率小于1200px之后，
+     随着组件布局的变化，将显示动画改为fadeIn */
+    .anima-chart-left{
+        visibility:visible;
+        animation: disp-fade-in 1.5s ease-in-out;
+    }
+    .anima-chart-right{
+        visibility:visible;
+        animation: disp-fade-in 1.5s ease-in-out;
+    }
+     
+}
 @media screen and (max-width: 900px) {
     .dayChart{
         height: 300px;
     }
 }
 @media screen and (max-width: 767px) {
- .mouse-icon{
+    .mouse-icon{
         top:0px;
     }
     .mouse-text{
