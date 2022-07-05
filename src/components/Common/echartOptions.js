@@ -2,7 +2,7 @@ import * as echarts from 'echarts';
 
 export const dayChartOption = {
     color: ["#2ec7c9"],
-    grid:{ left:'10%',right:'5%'},
+    grid:{ left:'10%',right:'10%'},
     dataZoom: [
         {
             show: true,
@@ -21,16 +21,24 @@ export const dayChartOption = {
             zoomLock:true
         }
     ],
+    // tooltip: {
+    //     trigger: 'axis',
+    //     formatter:function(params){
+    //         var result = '';
+    //         params.forEach(function (item) {
+    //             console.log(item);
+    //             result += item.marker + item.seriesName+'<b>&nbsp&nbsp&nbsp'+item.value+' laps</b><br>';
+    //         });
+    //         return result;
+    //     }
+    // },
     tooltip: {
         trigger: 'axis',
-        formatter:function(params){
-            var result = '';
-            params.forEach(function (item) {
-                result += item.marker + item.axisValue+'<br><b>&nbsp&nbsp&nbsp'+item.value+' laps</b>';
-            });
-            return result;
+        axisPointer: {
+          type: 'line',snap:true,animation:true,
+          label:{show:true}
         }
-    },
+      },
     xAxis: {
         type: 'category',
         data: [],
@@ -47,18 +55,39 @@ export const dayChartOption = {
             }
         }
     },
-    yAxis: {
-        type: 'value',
-        splitLine: {show: true,lineStyle:{type :'dashed'}},
-        axisLabel: {formatter: (value)=>{ return value/10000 +'万'}}
-    },
-    series: [{
+    yAxis: [
+        {
+            type: 'value',
+            name: 'count',
+            position: 'left',
+            axisLine: {show: true,lineStyle:{width:2}},
+            alignTicks: true,
+            splitLine: {show: true,lineStyle:{type :'dashed'}},
+            axisLabel: {formatter: (value)=>{ return value/10000 +'万'}},
+        },
+        {
+            type: 'value',
+            name: '°C',
+            position: 'right',
+            alignTicks: true,
+            axisLine: {
+              show: true,
+              lineStyle: { color: '#ea3f89', width: 2 }
+            },
+            axisLabel: {
+              formatter: '{value} °C'
+            },
+            max:40,
+            min:10
+          }
+    ],
+    series: [
+    {
         data: [],
+        name: 'lap count',
         type: 'line',
         itemStyle : { normal: {label : {show: true,fontSize:'0.8rem'}}},
-        lineStyle: {
-            normal: {width: 3}
-        },
+        lineStyle: {normal: {width: 3}},
         areaStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                 offset: 0,
@@ -68,7 +97,16 @@ export const dayChartOption = {
                 color: 'rgb(252, 250, 232)'
             }])
         }
-    }]
+    },
+    {
+        name: 'case temperature',
+        type: 'line',
+        yAxisIndex: 1,
+        lineStyle: {color: '#ea3f89'},
+        itemStyle:{normal: {color: '#ea3f89'}},
+        data: []
+    }
+    ]
 };
 
 export const hourAvgChartOption = {

@@ -2,7 +2,6 @@ import * as echarts from 'echarts';
 import axios from 'axios';
 import { onMounted, watch, ref} from 'vue';
 import { isNull } from '@/utils.js';
-import moment from 'moment';
 /**
  * 
  * @param {String} chartDomId 图表真实dom ID
@@ -75,7 +74,9 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
                      }
                      if (showChart) {
                         let optionTemp = {
-                            series: [{ data: chartData.series }],
+                            series: [
+                                { data: chartData.series },
+                                { data: chartData.caseAvgTemperature}],
                             xAxis: { data: chartData.xAxis },
                         }
                         chart.setOption(chartOption);
@@ -119,7 +120,10 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
             //存在API数据的话，更新图表
             if (!isNull(chartData)) {
                 let optionTemp = {
-                    series: [{ data: chartData.series }],
+                    series: [
+                        { data: chartData.series },
+                        { data: chartData.caseAvgTemperature?chartData.caseAvgTemperature:[]}
+                    ],
                     xAxis: { data: chartData.xAxis }
                 }
                 chart.setOption(chartOption);
@@ -150,7 +154,9 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
             //存在API数据的话，更新图表
             if (!isNull(chartData)) {
                 let optionTemp = {
-                    series: [{ data: chartData.series }],
+                    series: [
+                        { data: chartData.series }
+                    ],
                     xAxis: { data: chartData.xAxis }
                 }
                 chart.setOption(chartOption);
