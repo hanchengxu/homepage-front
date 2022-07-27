@@ -1,7 +1,6 @@
 import * as echarts from 'echarts';
-import axios from 'axios';
 import { onMounted, watch, ref} from 'vue';
-import { isNull } from '@/utils.js';
+import { isNull,getAPI } from '@/utils.js';
 /**
  * 
  * @param {String} chartDomId 图表真实dom ID
@@ -27,16 +26,16 @@ export default function setChartOptions(chartDomId, showChart, chartOption) {
         let api = '';
 
         if (chartDomId.startsWith('dayChart')) {
-            api = process.env.VUE_APP_API_HOST + '/hamster/getLapCountByDay/1';
+            api =  '/hamster/api/noauth/getLapCountByDay/1';
         }
         if (chartDomId.startsWith('hourAvgChart')) {
-            api = process.env.VUE_APP_API_HOST + '/hamster/getHourAvgChart/1';
+            api =  '/hamster/api/noauth/getHourAvgChart/1';
         }
         if (chartDomId.startsWith('hourChart')) {
-            api = process.env.VUE_APP_API_HOST + '/hamster/getHourChart/1';
+            api =  '/hamster/api/noauth/getHourChart/1';
         }
 
-        axios.get(api)
+        getAPI(api)
             .then(function (response) {
                 //如果加载后就在可视区域，立即显示chart
                 if (chartDomId.startsWith('hourChart')) {
