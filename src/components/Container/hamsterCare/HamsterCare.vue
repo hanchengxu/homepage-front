@@ -48,7 +48,7 @@
             </div>
             <div id="hourAvgChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'ms-xl-5', 'col-xxl-3', 'ms-xxl-5', 'mt-4',showHourAvgChartDesc?'anima-chart-left':'anima-chart-hidden']" >
                 <h3>{{ $t("hamsterCare.pageThree.title") }}</h3>
-                <p class="pt-2">{{ $t("hamsterCare.pageThree.p1") }}</p>
+                <p class="pt-2" v-html="$t('hamsterCare.pageThree.p1',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
                 <p>{{ $t("hamsterCare.pageThree.p2") }}</p>
                 <p>{{ $t("hamsterCare.pageThree.p3") }}</p>
             </div>
