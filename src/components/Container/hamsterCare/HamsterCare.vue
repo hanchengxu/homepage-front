@@ -22,7 +22,9 @@
             </div>
             <div id="dayChartDesc" :class="['col-sm-12', 'col-md-12', 'col-lg-12', 'col-xl-4', 'col-xxl-3', 'mt-4', showDayChartDesc?'anima-chart-right':'anima-chart-hidden']">
                 <h3>{{ $t("hamsterCare.pageTwo.title") }}</h3>
-                <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1",{age: getAge,age_of_moon:getAgeOfMoon}) }}</p>
+                <p class="pt-2">{{ $t("hamsterCare.pageTwo.p1",{age: getAge,age_of_moon:getAgeOfMoon}) }}
+                    <span class="notice ">※鼠子已于2022年12月26日离开了我。</span>
+                </p>
                 <p>{{ $t("hamsterCare.pageTwo.p2") }}</p>
                 <p v-html="$tc('hamsterCare.pageTwo.p3',{sys_name:'<strong> HamsterCare</strong>🐹'})"></p>
             </div>
@@ -120,10 +122,10 @@ export default {
     },
     computed: {
         getAgeOfMoon(){
-            return moment().diff(moment(this.birthDay,"yyyy-MM-DD"),'months');
+            return moment("2022-12-26","yyyy-MM-DD").diff(moment(this.birthDay,"yyyy-MM-DD"),'months');
         },
         getAge(){
-            return moment().diff(moment(this.birthDay,"yyyy-MM-DD"),'years',true).toFixed(1);
+            return moment("2022-12-26","yyyy-MM-DD").diff(moment(this.birthDay,"yyyy-MM-DD"),'years',true).toFixed(1);
         }
     },
     methods: {
@@ -272,6 +274,11 @@ export default {
     .mouse-text{
         top:-10px;
     }
+}
+
+.notice{
+    font-size: 7px !important;
+    font-weight: bold;
 }
 
 .hamster-btn{
