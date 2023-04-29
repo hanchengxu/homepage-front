@@ -115,9 +115,9 @@ export default {
     },
     watch : {
         waterTime:function(newValue, oldValue) {
-            if(newValue < 4 ){
-                alert('不能少于4秒')
-                this.waterTime = 4
+            if(newValue < 0 ){
+                alert('不能小于0秒')
+                this.waterTime = 1
             } 
         }
     }
