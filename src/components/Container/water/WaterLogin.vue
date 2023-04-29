@@ -1,24 +1,16 @@
 <template>
     <div class="container-fluid ukulele-div" style="min-height: 1000px">
         <LazyShow :time="500" transName="topslip">
-            <div  v-if="!isLoginSuccess" style="padding-top:300px">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">UserName</span>
-                            <input type="text" v-model="userName" class="form-control" placeholder="Username"
-                                aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
+            <div  v-if="!isLoginSuccess" style="padding-top:300px" class="d-flex flex-column px-4 mx-4">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">UserName</span>
+                    <input type="text" v-model="userName" class="form-control" placeholder="Username"
+                        aria-label="Username" aria-describedby="basic-addon1">
                 </div>
-                <div class="row">
-                    <div class="col-5">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Password</span>
-                            <input type="password" v-model="password" class="form-control" placeholder="Password"
-                                aria-label="Password" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Password</span>
+                    <input type="password" v-model="password" class="form-control" placeholder="Password"
+                        aria-label="Password" aria-describedby="basic-addon1">
                 </div>
                 <div class="row">
                     <div class="col-1">
@@ -32,7 +24,6 @@
                         <button  type="button" @click="publishWater" 
                         :class="[{disabled: isPublishing}, 'btn','col', 'rounded', 'btn-outline-primary', 'waterButton','btn-lg']" >{{ waterBtnMessage }}</button>
                         <input type="number" class="form-control col waterTimeInput" v-model="waterTime">
-                        <label class="col-sm-2 col-form-label pt-2 mt-1">秒</label>
                     </div>
                     <div v-else>
                         <button class="btn btn-primary btn-lg" type="button" disabled>
