@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-top border-bottom portal-header">
+    <nav v-if="showHeader()" class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-top border-bottom portal-header">
         <div class="container-fluid">
             <a class="navbar-brand" href="./">
                 <img src="@/assets/imgs/mylogo.png" alt="" width="100" height="48" class="d-inline-block align-text-top">
@@ -84,6 +84,9 @@ export default {
         getGithubURL(){
             //接受来自路由的 params，动态替换github URL
             return lo.isUndefined(this.$route.params.githubURL)?'':this.$route.params.githubURL;
+        },
+        showHeader(){
+            return undefined === this.$route.meta.showHeaderAndFooer ? true : this.$route.meta.showHeaderAndFooer;
         }
 
     }

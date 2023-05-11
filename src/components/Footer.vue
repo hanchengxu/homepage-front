@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div v-if="showFooter()" class="footer">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -73,7 +73,12 @@
 </template>
 <script>
 export default {
-    name: 'Fotter'
+    name: 'Fotter',
+    methods:{
+        showFooter(){
+             return undefined === this.$route.meta.showHeaderAndFooer ? true : this.$route.meta.showHeaderAndFooer;
+        }
+    }
 }
 </script>
 <style scoped>
