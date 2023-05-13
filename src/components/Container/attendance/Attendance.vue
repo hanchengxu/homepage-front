@@ -1,13 +1,15 @@
 <template>
+
     <div>
-        <div class="pt-3 px-5 d-flex justify-content-between align-items-center">
-            <div class="">时间显示</div>
+        <div class="pt-3 px-5 d-flex justify-content-between align-items-center border border-primary">
+            <div class=""><TitleWork msg="出勤打卡系统" /></div>
             <i class="menu bi bi-justify" style="font-size: 2rem;" @click="toMaster"></i>
         </div>
         <div class="d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column 
-            justify-content-evenly align-items-center" :style="{ minHeight: scollHeight - 110 + 'px' }">
-            <div @click="startWork">上班</div>
-            <div @click="endWork">下班</div>
+            justify-content-evenly align-items-center" :style="{ minHeight: scollHeight - 300 + 'px' }">
+            <div @click="startWork"><ButtonGoToWork /></div>
+            <div @click="endWork"><ButtonOffWork /></div>
+            <div><FeiCalendar :selectedDate="selectedDate" @update:selectedDate="onSelectedDateUpdated" /></div>
         </div>
     </div>
 </template>
@@ -15,13 +17,29 @@
 import { postAPI } from '@/utils.js';
 import moment from 'moment';
 import { onMounted, ref, onUnmounted } from "vue";
+import TitleWork  from './TitleWork.vue';
+import ButtonGoToWork  from './ButtonGoToWork';
+import ButtonOffWork  from './ButtonOffWork';
+import FeiCalendar  from './FeiCalendar';
 export default {
+    components: {
+        TitleWork,
+        ButtonGoToWork,
+        ButtonOffWork,
+        FeiCalendar,
+    },
     name: "Attendance",
     data() {
         return {
             startWorkcommitting: false,
             endWorkCommitting: false,
+            selectedDate: new Date(),
         };
+    },
+    watch: {
+      selectedDate(nv) {
+        console.log("nv", nv);
+      },
     },
     setup() {
         const getScollHeight = () => {
@@ -59,7 +77,10 @@ export default {
             .then(function (response) {
                 console.log(response)
             })
-        }
+        },
+        onSelectedDateUpdated(selectedDate) {
+            this.selectedDate = selectedDate;
+        },
     }
 };
 </script>
