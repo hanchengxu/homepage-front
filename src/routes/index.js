@@ -25,13 +25,13 @@ const routes = [
     { path: "/ukulele", name: "ukulele", component: Ukulele, meta: { transition: 'fade', title: 'ukulele🎶' } },
     { path: "/messageCard", name: "messageCard", component: MessageCard, meta: { title: 'MessageCard📜' } },
     // { path: "/water", name: "water", component: WaterLogin ,meta: { title: 'water XX'}},
-    { path: "/attendance", name: "attendance", component: Attendance, meta: { title: '签到系统',showHeaderAndFooer: false, transition: 'fade' } },
+    { path: "/attendance", name: "attendance", component: Attendance, meta: { title: '出勤小助手',showHeaderAndFooer: false, transition: 'fade' } },
     { path: '/attendanceMaster', name: "attendanceMaster", component: AttendanceMaster, 
-        meta: { title: '签到系统_设置', showHeaderAndFooer: false, transition: 'fade'},
+        meta: { title: '出勤小助手_设置', showHeaderAndFooer: false, transition: 'fade'},
         beforeEnter:[beforeEnterAttendenceOther]
     },
     { path: '/attendanceReport', name: "attendanceReport", component: AttendanceReport, 
-        meta: { title: '签到系统_月报', showHeaderAndFooer: false, transition: 'fade'},
+        meta: { title: '出勤小助手_月报', showHeaderAndFooer: false, transition: 'fade'},
         beforeEnter:[beforeEnterAttendenceOther] 
     },
     { path: '/', component: Container, meta: { transition: 'fade' } },
