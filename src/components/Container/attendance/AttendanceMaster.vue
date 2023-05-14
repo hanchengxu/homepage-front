@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <div class="pt-3 px-5 d-flex justify-content-between align-items-center">
-            <div class="">Master设置 {{ scollHeight}}- {{ width }}</div>
+    <div :class="['attendance-main pt-5']">
+        <div class="py-3 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center title rounded-pill">
+            <div class="me-auto">Master设置</div>
             <i class="menu bi bi-arrow-return-left" style="font-size: 2rem;" @click="backAttendance"></i>
         </div>
-        <div class="px-xxl-5 px-xl-5 px-lg-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" >
+        <div class="mt-4 px-xxl-5 px-xl-5 px-lg-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" >
             <table class="table">
                 <thead>
                     <tr>
@@ -25,10 +25,10 @@
                         <td v-if="addingNew && master.id === null"><button @click="saveNewMaster" class="btn btn-primary btn-sm" type="button">保存</button></td>
                         <td v-else>{{ moment(master.updateDatetime) }}</td>
                     </tr>
+                    <tr><td><i class="bi bi-plus-square add-icon" @click="addingMaster"></i></td></tr>
                 </tbody>
             </table>
         </div>
-        <div class="px-5 ms-1" @click="addingMaster"><i class="bi bi-plus-square add-icon"></i></div>
     </div>
 </template>
 <script>
@@ -127,6 +127,15 @@ export default {
 };
 </script>
 <style scoped>
+.title {
+    background-color: rgba(241, 239, 239, 0.986);
+    opacity: 0.95;
+}
+.table {
+    border-radius: 8px;
+    background-color: white;
+    opacity: 0.95;
+}
 .menu {
     cursor:pointer;
     transform:scale(1);
@@ -147,11 +156,9 @@ export default {
     transition: 0.3s;
 }
 .add-icon:hover{
-    font-size: 1.6rem;
     color:#0d6efd;
 }
 .add-icon:active{
-    font-size: 1.4rem;
     color:#0d6efd;
 }
 </style>

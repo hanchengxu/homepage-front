@@ -102,4 +102,10 @@ body {
     transform: rotate(-360deg); 
   }
 }
+
+.attendance-main{
+    background: url(../assets/imgs/24697.jpg);
+    background-size: contain;
+    height:100vh;
+}
 /* Utility class for centering end */

@@ -2,7 +2,7 @@
   <div class="greetings">
     <div class="green">{{ msg }}</div>
     <div>
-        <p><span class="pe-1">{{ newTime }}</span>{{ nowWeek }}</p>
+        <span class="pe-1">{{ newTime }}</span>{{ nowWeek }}
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class="button1 col-md-6">
-        <button type="button" :class="['btn', 'btn-primary', 'btn-circle', 'mt-1',{disabled:committing}]" @click="startWork">
+        <button type="button" :class="['btn', 'btn-primary', 'btn-circle', 'my-5 ',{disabled:committing}]" @click="startWork">
             <div class="work"><p>上班</p></div>
             <div class="time"><p>{{ cqTime }}</p></div>
         </button>
@@ -32,6 +32,14 @@ methods: {
 }
 </script>
 <style scoped>
+
+.button1 .btn:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+.button1 .btn{
+    border: 5px solid rgba(0, 157, 255, 0.377);
+}
 .btn-circle {
   width: 350px;
   height: 350px;
