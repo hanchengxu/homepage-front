@@ -1,8 +1,8 @@
 <template>
-
     <div>
-        <div class="py-3 px-5 d-flex justify-content-between align-items-center title m-5 rounded-pill">
-            <div class=""><TitleWork msg="出勤管理" /></div>
+        <div class="py-3 my-2 my-lg-5 my-xl-5 my-xxl-5 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center title rounded-pill">
+            <div class="me-auto"><TitleWork msg="出勤小助手" /></div>
+            <i class="menu bi bi-file-earmark-ruled pe-4" style="font-size: 2rem;" @click="toReport"></i>
             <i class="menu bi bi-justify" style="font-size: 2rem;" @click="toMaster"></i>
         </div>
         <div class="d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column 
@@ -58,8 +58,26 @@ export default {
         };
     },
     methods: {
+        toReport() {
+            this.$router.push({ path: 'attendanceReport' });
+        },
         toMaster() {
             this.$router.push({ path: 'attendanceMaster' });
+        },
+        startWork() {
+            let requestBody = {workDay: moment().format('YYYY-MM-DD'), workUserName: "Yang"}
+            
+            postAPI('/hamster/api/noauth/saveStartWorkTime', requestBody).then(function (response) {
+                console.log(response)
+            })
+        },
+        endWork() {
+            let requestBody = {workDay: moment().format('YYYY-MM-DD'), workUserName: "Yang"}
+
+            postAPI('/hamster/api/noauth/saveEndWorkTime',requestBody)
+            .then(function (response) {
+                console.log(response)
+            })
         },
         onSelectedDateUpdated(selectedDate) {
             this.selectedDate = selectedDate;

@@ -1,10 +1,9 @@
 <template>
     <div class="button1 col-md-6">
-        <button type="button" class="btn btn-primary btn-circle"  @click="startWork">
+        <button type="button" class="btn btn-primary btn-circle mt-1"  @click="startWork">
             <div class="work"><p>上班</p></div>
             <div class="time"><p>{{ cqTime }}</p></div>
         </button>
-        <!--  -->
     </div>
 </template>
 <script>
@@ -33,7 +32,7 @@ methods: {
 .btn-circle {
   width: 240px;
   height: 240px;
-  margin-left: 100px;
+  text-align: center;
   padding: 6px 0;
   font-size: 60px;
   line-height: 1.428571429;

@@ -142,6 +142,7 @@
     .calendar {
       max-width: 500px;
       margin: 0 auto;
+      margin-top: 10px;
       font-family: Arial, sans-serif;
     }
    

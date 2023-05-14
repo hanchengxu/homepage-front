@@ -1,6 +1,6 @@
 <template>
     <div class="button2 col-md-6">
-        <button  type="button" class="btn btn-success btn-circle" @click="endWork">
+        <button  type="button" class="btn btn-success btn-circle mt-1" @click="endWork">
             <div class="work"><p>下班</p></div>
             <div class="time"><p>{{ overTime }}</p></div>
         </button>

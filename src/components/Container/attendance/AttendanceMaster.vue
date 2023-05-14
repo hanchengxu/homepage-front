@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="pt-3 px-5 d-flex justify-content-between align-items-center">
-            <div class="">Master设置</div>
+            <div class="">Master设置 {{ scollHeight}}- {{ width }}</div>
             <i class="menu bi bi-arrow-return-left" style="font-size: 2rem;" @click="backAttendance"></i>
         </div>
-        <div class="px-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" >
+        <div class="px-xxl-5 px-xl-5 px-lg-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" >
             <table class="table">
                 <thead>
                     <tr>
@@ -22,7 +22,7 @@
                         <td v-else>{{ master.itemName }}</td>
                         <WriteableTD :newFlag="addingNew && master.id === null" :value="master.itemValue" @changeItemValue="changeValue(master.id,'itemValue',$event)"/>
                         <WriteableTD :newFlag="addingNew && master.id === null" :value="master.itemDesc" @changeItemValue="changeValue(master.id,'itemDesc',$event)"/>
-                        <td v-if="addingNew && master.id === null"><button class="btn btn-primary btn-sm" type="button">保存</button></td>
+                        <td v-if="addingNew && master.id === null"><button @click="saveNewMaster" class="btn btn-primary btn-sm" type="button">保存</button></td>
                         <td v-else>{{ moment(master.updateDatetime) }}</td>
                     </tr>
                 </tbody>
@@ -53,9 +53,14 @@ export default {
         const getScollHeight = () => {
             return window.innerHeight;
         };
+        const getScollWidth = () => {
+            return window.innerWidth;
+        };
         const scollHeight = ref(getScollHeight());
+        const width = ref(getScollWidth());
         const windowResize = () => {
             scollHeight.value = getScollHeight();
+            width.value = getScollWidth();
         };
         onMounted( () => {
             window.addEventListener("resize", windowResize);
@@ -68,6 +73,7 @@ export default {
         });
         return {
             scollHeight,
+            width,
             masterList
         };
     },
@@ -79,18 +85,34 @@ export default {
             return isNull(date)? '': moment(date).format('yyyy-MM-DD HH:mm:ss');
         },
         addingMaster(){
+            // 点击新增master按钮
             if (!this.addingNew){
+                // 限定同时只能新增一条，newMaster为新增空对象
                 let newMaster= {"id":null,"itemValue":null,"itemDesc":null,"insertDatetime":null,"updateDatetime":null,"itemName":null}
+                // 把空对象放置在masterList 最后尾
                 this.masterList.push(newMaster)
+                // 将新增flag置位true
                 this.addingNew = true;
             }
         },
+        saveNewMaster(){
+            if (this.addingNew){
+                // 将masterList最后一条提交
+                postAPI('/hamster/api/noauth/insertMaster',this.masterList[this.masterList.length-1]).then((response)=>{
+                        // 后台返回的master覆盖最后一条
+                        this.masterList[this.masterList.length-1] = response.data.data;
+                }).finally(()=>{
+                    // 关闭新增flag
+                    this.addingNew
+                })
+            }
+        },
         changeValue(masterId,itemName,value){
-
-            if (isNull(masterId)){
-                //新增master
+            if (null === masterId){
+                //新增master,根据输入内容仅更新对象属性，不提交到后台
+                this.masterList[this.masterList.length-1][itemName] = value;
             } else {
-                //更新master
+                //更新master，根据输入内容使用API提交到后台
                 let index = findIndex(this.masterList,["id",masterId]);
                 let master = this.masterList[index]
                 if (master[itemName] !== value) {

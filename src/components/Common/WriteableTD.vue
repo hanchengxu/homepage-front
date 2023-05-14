@@ -27,13 +27,18 @@ export default {
     methods: {
         keyUpEnter(e) {
             if(!this.newFlag){
+                // 不是新增模式的话，enter之后 让输入框失效
                 this.writing = false;
             }
             this.$emit('changeItemValue',e.target.value);
         },
-        leaveInput(){
+        leaveInput(e){
             if(!this.newFlag){
+                // 更新模式下，输入框失去焦点不传递输入值
                 this.writing = false;
+            }else {
+                //新增模式下，输入框失去焦点也传递输入值
+                this.$emit('changeItemValue',e.target.value);
             }
         },
         changeWriteState() {
