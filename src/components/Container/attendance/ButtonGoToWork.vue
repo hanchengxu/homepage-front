@@ -1,8 +1,8 @@
 <template>
     <div class="button1 col-md-6">
         <button type="button" class="btn btn-primary btn-circle"  @click="startWork">
-            <div><p>上班</p></div>
-            <div><p>{{ cqTime }}</p></div>
+            <div class="work"><p>上班</p></div>
+            <div class="time"><p>{{ cqTime }}</p></div>
         </button>
         <!--  -->
     </div>
@@ -22,8 +22,7 @@ methods: {
             let requestBody = {workDay: moment().format('YYYY-MM-DD'), workUserName: "Yang"}
             
             postAPI('/hamster/api/noauth/saveStartWorkTime', requestBody).then((response)=> {
-                console.log(response.data.data.startTime);
-                this.cqTime = response.data.data.startTime;
+                this.cqTime = moment(response.data.data.startTime).format('HH:mm:ss');
             })
         },
   }
@@ -32,12 +31,18 @@ methods: {
 </script>
 <style scoped>
 .btn-circle {
-  width: 400px;
-  height: 400px;
+  width: 240px;
+  height: 240px;
   margin-left: 100px;
   padding: 6px 0;
   font-size: 60px;
   line-height: 1.428571429;
-  border-radius: 100px;
+  border-radius: 120px;
+}
+.work {
+    margin-top: 30px; 
+}
+.time {
+    font-size: 20px; 
 }
 </style>
