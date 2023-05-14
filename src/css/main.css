@@ -35,7 +35,7 @@ body {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 .fade-enter-from,
 .fade-leave-to {
@@ -101,5 +101,11 @@ body {
   } 100% {
     transform: rotate(-360deg); 
   }
+}
+
+.attendance-main{
+    background: url(../assets/imgs/24697.jpg);
+    background-size: contain;
+    height:100vh;
 }
 /* Utility class for centering end */
