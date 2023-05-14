@@ -1,6 +1,6 @@
 <template>
     <div class="greetings">
-      <h1 class="green">{{ msg }}</h1>
+      <h2 class="green">{{ msg }}</h2>
       <h3>
           当前时间: {{newTime}}
       </h3>
@@ -42,26 +42,18 @@
   }
   </script>
   <style scoped>
-  h1 {
-    font-weight: 500;
-    font-size: 2.0rem;
-    top: -10px;
-  }
-  
   h3 {
-    font-size: 1.2rem;
-  }
-  
-  .greetings h1,
-  .greetings h3 {
-    margin-top: 10px; 
+    font-size: 1.0rem;
   }
   
   @media (min-width: 1024px) {
-    .greetings h1,
+    .greetings h2,
     .greetings h3 {
       text-align: left;
     }
+  }
+  h2 ,h3{ 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   </style>
   
