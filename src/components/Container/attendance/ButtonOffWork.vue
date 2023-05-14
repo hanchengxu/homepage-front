@@ -3,6 +3,7 @@
         <button  type="button" :class="['btn', 'btn-success', 'btn-circle', 'mt-1',{disabled:committing}]" @click="endWork">
             <div class="work"><p>下班</p></div>
             <div class="time"><p>{{ overTime }}</p></div>
+            <div class="time"><p>{{ workTime }}</p></div>
         </button>
     </div>
 </template>
@@ -15,6 +16,7 @@ data() {
     return {
         overTime: null,
         committing: false,
+        workTime: null,
     }
   },  
 methods: {
@@ -24,6 +26,7 @@ methods: {
             postAPI('/hamster/api/noauth/saveEndWorkTime',requestBody)
             .then((response)=> {
                 this.overTime = moment(response.data.data.endTime).format('HH:mm:ss');
+                this.workTime = '工作时长：' + response.data.data.workHours + '小时' ;
             }).finally(()=>{
                 this.committing = false;
             })

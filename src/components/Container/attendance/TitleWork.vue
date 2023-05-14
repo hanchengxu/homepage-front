@@ -2,7 +2,7 @@
   <div class="greetings">
     <div class="green">{{ msg }}</div>
     <div>
-      当前时间: {{ newTime }}
+        <p><span class="pe-1">{{ newTime }}</span>{{ nowWeek }}</p>
     </div>
   </div>
 </template>
@@ -16,7 +16,8 @@ export default {
 
   data() {
     return {
-      newTime: ""
+      newTime: '',
+      nowWeek: ''
     }
   },
   mounted() {
@@ -28,9 +29,13 @@ export default {
   },
   methods: {
     getNowTime() {
-      var date = new Date();
-      var time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-      this.newTime = time;
+        let date = new Date();
+        let wk = date.getDay();
+        let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        let weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        let week = weeks[wk];
+        this.newTime = time;
+        this.nowWeek = week;
     },
     //根据自己的需求，看要不要在时间不大于10的时候在前面补0，如果需要直接this.addZero(date.getMinutes()),其它与之相同，如果不需要删掉addZero（）方法即可。
     //小于10的拼接上0字符串
