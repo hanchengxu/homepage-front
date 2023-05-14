@@ -38,13 +38,24 @@ methods: {
     float:left;
 }
 .btn-circle {
-  width: 240px;
-  height: 240px;
+  width: 350px;
+  height: 350px;
   text-align: center;
   padding: 6px 0;
   font-size: 60px;
   line-height: 1.428571429;
-  border-radius: 120px;
+  border-radius: 50%;
+}
+@media screen and (max-width: 500px) {
+    .btn-circle {
+        width: 240px;
+        height: 240px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 60px;
+        line-height: 1.428571429;
+        border-radius: 120px;
+    }
 }
 .work {
     margin-top: 30px; 
