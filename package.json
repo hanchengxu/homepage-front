@@ -18,7 +18,8 @@
     "js-cookie": "^3.0.1",
     "mqtt": "^4.3.6",
     "v-viewer": "^3.0.10",
-    "vue-i18n": "^9.1.7"
+    "vue-i18n": "^9.1.7",
+    "vue3-autocounter": "^1.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.15",

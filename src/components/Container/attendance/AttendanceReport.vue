@@ -4,8 +4,10 @@
             <div class="">月报({{ now }})</div>
             <i class="menu bi bi-arrow-return-left" style="font-size: 2rem;" @click="backAttendance"></i>
         </div>
-        <div class="px-xxl-5 px-xl-5 px-lg-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" >
-           
+        <div class="px-xxl-5 px-xl-5 px-lg-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column">
+            <vue3-autocounter ref='counter' :startAmount='0' :endAmount='5000000' 
+            :duration='1' prefix='￥' suffix='円' separator=','
+            :decimals='0' :autoinit='true'/>
         </div>
         <div class="px-5 ms-1" @click="addingMaster"><i class="bi bi-plus-square add-icon"></i></div>
     </div>
@@ -17,21 +19,22 @@ import moment from 'moment';
 import { find, findIndex } from 'lodash'
 export default {
     name: "AttendanceReport",
-    components:{
+    components: {
     },
     data() {
-        return { 
+        return {
+            value: 1000,
             now: moment().format('YYYY-MM-DD')
         }
     },
     setup() {
-        const masterList= ref([])
+        const masterList = ref([])
 
         const getScollHeight = () => {
             return window.innerHeight;
         };
         const getScollWidth = () => {
-            return window.innerWidth;
+            return window.innerWidth;y
         };
         const scollHeight = ref(getScollHeight());
         const width = ref(getScollWidth());
@@ -39,9 +42,9 @@ export default {
             scollHeight.value = getScollHeight();
             width.value = getScollWidth();
         };
-        onMounted( () => {
+        onMounted(() => {
             window.addEventListener("resize", windowResize);
-            getAPI('/hamster/api/noauth/getMasterList').then((resp)=>{
+            getAPI('/hamster/api/noauth/getMasterList').then((resp) => {
                 masterList.value = resp.data.data
             })
         });
@@ -55,6 +58,12 @@ export default {
         };
     },
     methods: {
+        formatToPrice(value) {
+            return `R$ ${value.toFixed(2)}`;
+        },
+        startAnimate: function () {
+            this.$refs.myNum.start()
+        },
         backAttendance(){
             this.$router.push({ path: 'attendance'});
         }
@@ -63,30 +72,35 @@ export default {
 </script>
 <style scoped>
 .menu {
-    cursor:pointer;
-    transform:scale(1);
+    cursor: pointer;
+    transform: scale(1);
     transition: 0.3s;
 }
-.menu:hover{
-    transform:scale(1.2);
+
+.menu:hover {
+    transform: scale(1.2);
     transition: 0.3s;
-    color:#0d6efd;
+    color: #0d6efd;
 }
-.menu:active{
-    transform:scale(1.1);
+
+.menu:active {
+    transform: scale(1.1);
     transition: 0.1s;
-    color:#0d6efd;
+    color: #0d6efd;
 }
-.add-icon{
-    cursor:pointer;
+
+.add-icon {
+    cursor: pointer;
     transition: 0.3s;
 }
-.add-icon:hover{
+
+.add-icon:hover {
     font-size: 1.6rem;
-    color:#0d6efd;
+    color: #0d6efd;
 }
-.add-icon:active{
+
+.add-icon:active {
     font-size: 1.4rem;
-    color:#0d6efd;
+    color: #0d6efd;
 }
 </style>

@@ -108,4 +108,8 @@ body {
     background-size: contain;
     height:100vh;
 }
+.attendance-title{
+  background-color: rgba(241, 239, 239, 0.986);
+  opacity: 0.95;
+}
 /* Utility class for centering end */

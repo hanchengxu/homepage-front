@@ -9,7 +9,7 @@ import App from './App.vue'
 // import 'dayjs/locale/zh-cn'
 // import locale from 'element-plus/lib/locale/lang/zh-cn';
 
-
+import Vue3Autocounter from 'vue3-autocounter';
 import "@/assets/imgs/index.js";
 import SvgIcon from '@/components/svgIcon' // svg组件
 // import 'bootstrap-icons/font/bootstrap-icons.css'//bootstrap icon式样
@@ -114,6 +114,7 @@ app.use(router);
 
 app.use(VueViewer)
 
+app.component('vue3-autocounter', Vue3Autocounter)
 app.component('LazyShow', LazyShow);
 
 app.component('svg-icon', SvgIcon).mount("#app");
