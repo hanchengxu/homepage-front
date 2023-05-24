@@ -1,6 +1,6 @@
 <template>
     <div class="attendance-main pt-2 pt-lg-5 pt-xl-5 pt-xxl-5">
-        <div class="py-3 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center title rounded-pill">
+        <div class="py-3 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center attendance-title rounded-pill">
             <div class="me-auto"><TitleWork msg="出勤小助手" /></div>
             <i class="menu bi bi-file-earmark-ruled pe-4" style="font-size: 2rem;" @click="toReport"></i>
             <i class="menu bi bi-justify" style="font-size: 2rem;" @click="toMaster"></i>
@@ -86,10 +86,6 @@ export default {
 };
 </script>
 <style scoped>
-.title {
-    background-color: rgba(241, 239, 239, 0.986);
-    opacity: 0.95;
-}
 .menu {
     cursor: pointer;
     transform: scale(1);

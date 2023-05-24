@@ -1,7 +1,7 @@
 <template>
     <div :class="['attendance-main pt-5']">
-        <div class="py-3 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center title rounded-pill">
-            <div class="me-auto">Master设置</div>
+        <div class="py-3 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center attendance-title rounded-pill">
+            <div class="me-auto fw-bold">Master设置</div>
             <i class="menu bi bi-arrow-return-left" style="font-size: 2rem;" @click="backAttendance"></i>
         </div>
         <div class="mt-4 px-xxl-5 px-xl-5 px-lg-5 d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" >
@@ -127,10 +127,6 @@ export default {
 };
 </script>
 <style scoped>
-.title {
-    background-color: rgba(241, 239, 239, 0.986);
-    opacity: 0.95;
-}
 .table {
     border-radius: 8px;
     background-color: white;
