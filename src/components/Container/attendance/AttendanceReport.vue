@@ -1,17 +1,25 @@
 <template>
     <div class="attendance-main pt-5">
         <div class="py-3 mx-1 mx-xxl-5 px-4 d-flex justify-content-end align-items-center attendance-title rounded-pill">
-            <div class="me-auto fw-bold fs-2">月报</div>
+            <div class="me-auto fw-bold fs-2 input-group" >
+                <label class="">月报</label>
+                <LazyShow :time="500" transName="fade">
+                    <select v-model="selectedReportMonth" class="form-select form-select-sm ms-4 mt-2"  aria-label=".form-select-sm" style="max-width: 200px; max-height: 40px;">
+                        <option v-for="rDate in allReportDate">{{rDate}}</option>
+                    </select>
+                    
+                </LazyShow>
+            </div>
             <i class="menu bi bi-arrow-return-left" style="font-size: 2rem;" @click="backAttendance"></i>
         </div>
         <div class="report">
             <div class="mt-5 py-4 px-xxl-5 px-xl-5 px-lg-5 d-flex flex-column justify-content-center">
-                <AttendanceItem :itemList=itemList />
-                <div class="mt-2 border-top border-2 border-primary"></div>
-                <div class="d-flex flex-row justify-content-between">
+                <AttendanceItem :itemList=itemList :detailList=detailList />
+                <div class="mt-2 border-top border-2 border-primary" v-if="totalBill != null"></div>
+                <div class="d-flex flex-row justify-content-between" v-if="totalBill != null">
                     <span class="col-6 ps-4 sum">合计</span>
                     <span class="col-6">
-                        <vue3-autocounter ref='counter' :startAmount='0' :endAmount='4000' 
+                        <vue3-autocounter ref='counter' :startAmount='0' :endAmount='totalBill' 
                             :duration='1' prefix='￥' suffix='円'
                             separator=',' :decimals='0' :autoinit='true' />
                     </span>  
@@ -33,18 +41,21 @@ export default {
     },
     data() {
         return {
-            value: 1000,
             now: moment().format('YYYY-MM-DD'),
-            itemList: [
-                {itemName:'项目1',itemValue:5000},
-                {itemName:'项目2',itemValue:15000},
-                {itemName:'项目3',itemValue:2000},
-                {itemName:'项目4',itemValue:4000},
-            ]
+            selectedReportMonth: moment().format('YYYY-MM'),
         }
+    },
+    watch: {
+        selectedReportMonth(nv) {
+            //TODO
+        },
     },
     setup() {
         const masterList = ref([])
+        const itemList = ref([])
+        const detailList = ref([])
+        const allReportDate = ref([])
+        const totalBill = ref(null);
 
         const getScollHeight = () => {
             return window.innerHeight;
@@ -58,11 +69,30 @@ export default {
             scollHeight.value = getScollHeight();
             width.value = getScollWidth();
         };
-        onMounted(() => {
+        onMounted(async () => {
             window.addEventListener("resize", windowResize);
-            getAPI('/hamster/api/noauth/getMasterList').then((resp) => {
-                masterList.value = resp.data.data
+            let masterResp = await getAPI('/hamster/api/noauth/getMasterList');
+
+            let reportRest = await getAPI('/hamster/api/noauth/getReport/'+moment().format('YYYY-MM'));
+            let report = reportRest.data.data
+            itemList.value.push({itemName:'平日费用',itemValue:report.workOrdinaryBillMonthly,
+                    itemDesc:report.workOrdinaryHoursMonthly,itemDesc2: find(masterResp.data.data,{itemName:'hour_unit_price'}).itemValue})
+            itemList.value.push({itemName:'节假日费用',itemValue:report.workWeekendBillMonthly,
+                    itemDesc:report.workWeekendHoursMonthly,itemDesc2: find(masterResp.data.data,{itemName:'holiday_hour_unit_price'}).itemValue})
+            itemList.value.push({itemName:'车费',itemValue:report.traveBillMonthly})
+            itemList.value.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
+            totalBill.value = report.billMonthly
+            
+            masterList.value = masterResp.data.data
+
+            getAPI('/hamster/api/noauth/getAdditionalDataMonthly/'+moment().format('YYYY-MM')).then((resp) => {
+                detailList.value = resp.data.data
             })
+
+            getAPI('/hamster/api/noauth/getAllReportDate').then((resp) => {
+                allReportDate.value.push(resp.data.data[0])
+            })
+            
         });
         onUnmounted(() => {
             window.removeEventListener("resize", windowResize);
@@ -70,7 +100,11 @@ export default {
         return {
             scollHeight,
             width,
-            masterList
+            masterList,
+            itemList,
+            totalBill,
+            detailList,
+            allReportDate
         };
     },
     methods: {
@@ -82,6 +116,9 @@ export default {
         },
         backAttendance() {
             this.$router.push({ path: 'attendance' });
+        },
+        getHourunitPrice(){
+        return find(this.masterList,{itemName:'hour_unit_price'}).itemValue
         }
     }
 };
