@@ -136,6 +136,16 @@ export default {
     border-radius: 10px;
 }
 
+@media screen and (max-width: 500px) {
+    .report {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 0.95rem;
+        color: black;
+        -webkit-text-stroke: 0px;
+    }
+}
+
 .sum {
     color: black;
     -webkit-text-stroke: 0px black;
