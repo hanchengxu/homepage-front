@@ -14,7 +14,7 @@
         </div>
         <div class="report">
             <div class="mt-5 py-4 px-xxl-5 px-xl-5 px-lg-5 d-flex flex-column justify-content-center">
-                <AttendanceItem :itemList=itemList :detailList=detailList />
+                <AttendanceItem :itemList=getItemList() :detailList=detailList />
                 <div class="mt-2 border-top border-2 border-primary" v-if="totalBill != null"></div>
                 <div class="d-flex flex-row justify-content-between" v-if="totalBill != null">
                     <span class="col-6 ps-4 sum">合计</span>
@@ -47,7 +47,20 @@ export default {
     },
     watch: {
         selectedReportMonth(nv) {
-            //TODO
+            this.selectedReportMonth = nv;
+            getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
+                let report  = resp.data.data;
+                this.itemList.value = [];
+                this.itemList.push({itemName:'平日费用',itemValue:report.workOrdinaryBillMonthly,
+                    itemDesc:report.workOrdinaryHoursMonthly,itemDesc2: find(this.masterList,{itemName:'hour_unit_price'}).itemValue})
+                this.itemList.push({itemName:'节假日费用',itemValue:report.workWeekendBillMonthly,
+                    itemDesc:report.workWeekendHoursMonthly,itemDesc2: find(this.masterList,{itemName:'holiday_hour_unit_price'}).itemValue})
+                this.itemList.push({itemName:'车费',itemValue:report.traveBillMonthly})
+                this.itemList.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
+                this.totalBill.value = report.billMonthly
+                this.itemListMap.set(nv.format('YYYY-MM'),this.itemList);
+                console.log('itemListMap:'+this.itemListMap.get(nv.format('YYYY-MM')));
+            })
         },
     },
     setup() {
@@ -55,13 +68,14 @@ export default {
         const itemList = ref([])
         const detailList = ref([])
         const allReportDate = ref([])
-        const totalBill = ref(null);
+        const totalBill = ref(null)
+        const itemListMap = ref(new Map());
 
         const getScollHeight = () => {
             return window.innerHeight;
         };
         const getScollWidth = () => {
-            return window.innerWidth; y
+            return window.innerWidth; 
         };
         const scollHeight = ref(getScollHeight());
         const width = ref(getScollWidth());
@@ -72,9 +86,9 @@ export default {
         onMounted(async () => {
             window.addEventListener("resize", windowResize);
             let masterResp = await getAPI('/hamster/api/noauth/getMasterList');
-
             let reportRest = await getAPI('/hamster/api/noauth/getReport/'+moment().format('YYYY-MM'));
-            let report = reportRest.data.data
+            let report = reportRest.data.data;
+
             itemList.value.push({itemName:'平日费用',itemValue:report.workOrdinaryBillMonthly,
                     itemDesc:report.workOrdinaryHoursMonthly,itemDesc2: find(masterResp.data.data,{itemName:'hour_unit_price'}).itemValue})
             itemList.value.push({itemName:'节假日费用',itemValue:report.workWeekendBillMonthly,
@@ -82,15 +96,15 @@ export default {
             itemList.value.push({itemName:'车费',itemValue:report.traveBillMonthly})
             itemList.value.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
             totalBill.value = report.billMonthly
-            
+            itemListMap.value.set(moment().format('YYYY-MM'),itemList);
             masterList.value = masterResp.data.data
-
             getAPI('/hamster/api/noauth/getAdditionalDataMonthly/'+moment().format('YYYY-MM')).then((resp) => {
-                detailList.value = resp.data.data
+                detailList.value = resp.data.data;
+                console.log('detailList:'+ detailList.value);
             })
 
             getAPI('/hamster/api/noauth/getAllReportDate').then((resp) => {
-                allReportDate.value.push(resp.data.data[0])
+                allReportDate.value = resp.data.data;
             })
             
         });
@@ -104,7 +118,8 @@ export default {
             itemList,
             totalBill,
             detailList,
-            allReportDate
+            allReportDate,
+            itemListMap
         };
     },
     methods: {
@@ -119,6 +134,10 @@ export default {
         },
         getHourunitPrice(){
         return find(this.masterList,{itemName:'hour_unit_price'}).itemValue
+        },
+        getItemList(){
+            //selectedReportMonth
+            return this.itemListMap.get(this.selectedReportMonth) 
         }
     }
 };
