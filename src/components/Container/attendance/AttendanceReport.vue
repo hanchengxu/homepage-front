@@ -59,6 +59,9 @@ export default {
                     this.itemList.push({itemName:'车费',itemValue:report.traveBillMonthly})
                     this.itemList.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
                     this.totalBill = report.billMonthly
+                }),
+                getAPI('/hamster/api/noauth/getAdditionalDataMonthly/'+nv).then((resp) => {
+                this.detailList = resp.data.data;
                 })
              },
              immediate:true
@@ -88,10 +91,6 @@ export default {
             window.addEventListener("resize", windowResize);
             let masterResp = await getAPI('/hamster/api/noauth/getMasterList');
             masterList.value = masterResp.data.data
-            getAPI('/hamster/api/noauth/getAdditionalDataMonthly/'+moment().format('YYYY-MM')).then((resp) => {
-                detailList.value = resp.data.data;
-                console.log('detailList:'+ detailList.value);
-            })
 
             getAPI('/hamster/api/noauth/getAllReportDate').then((resp) => {
                 allReportDate.value = resp.data.data;
