@@ -46,22 +46,24 @@ export default {
         }
     },
     watch: {
-        selectedReportMonth(nv) {
-            this.selectedReportMonth = nv;
-            getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
-                let report  = resp.data.data;
-                this.itemList.value = [];
-                this.itemList.push({itemName:'平日费用',itemValue:report.workOrdinaryBillMonthly,
-                    itemDesc:report.workOrdinaryHoursMonthly,itemDesc2: find(this.masterList,{itemName:'hour_unit_price'}).itemValue})
-                this.itemList.push({itemName:'节假日费用',itemValue:report.workWeekendBillMonthly,
-                    itemDesc:report.workWeekendHoursMonthly,itemDesc2: find(this.masterList,{itemName:'holiday_hour_unit_price'}).itemValue})
-                this.itemList.push({itemName:'车费',itemValue:report.traveBillMonthly})
-                this.itemList.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
-                this.totalBill.value = report.billMonthly
-                this.itemListMap.set(nv.format('YYYY-MM'),this.itemList);
-                console.log('itemListMap:'+this.itemListMap.get(nv.format('YYYY-MM')));
-            })
-        },
+        selectedReportMonth:{
+            handler(nv) {
+                this.selectedReportMonth = nv;
+                getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
+                    let report  = resp.data.data;
+                    this.itemList = [];
+                    this.itemList.push({itemName:'平日费用',itemValue:report.workOrdinaryBillMonthly,
+                        itemDesc:report.workOrdinaryHoursMonthly,itemDesc2: find(this.masterList,{itemName:'hour_unit_price'}).itemValue})
+                    this.itemList.push({itemName:'节假日费用',itemValue:report.workWeekendBillMonthly,
+                        itemDesc:report.workWeekendHoursMonthly,itemDesc2: find(this.masterList,{itemName:'holiday_hour_unit_price'}).itemValue})
+                    this.itemList.push({itemName:'车费',itemValue:report.traveBillMonthly})
+                    this.itemList.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
+                    this.totalBill = report.billMonthly
+                })
+             },
+             immediate:true
+        }
+
     },
     setup() {
         const masterList = ref([])
@@ -69,7 +71,6 @@ export default {
         const detailList = ref([])
         const allReportDate = ref([])
         const totalBill = ref(null)
-        const itemListMap = ref(new Map());
 
         const getScollHeight = () => {
             return window.innerHeight;
@@ -86,17 +87,6 @@ export default {
         onMounted(async () => {
             window.addEventListener("resize", windowResize);
             let masterResp = await getAPI('/hamster/api/noauth/getMasterList');
-            let reportRest = await getAPI('/hamster/api/noauth/getReport/'+moment().format('YYYY-MM'));
-            let report = reportRest.data.data;
-
-            itemList.value.push({itemName:'平日费用',itemValue:report.workOrdinaryBillMonthly,
-                    itemDesc:report.workOrdinaryHoursMonthly,itemDesc2: find(masterResp.data.data,{itemName:'hour_unit_price'}).itemValue})
-            itemList.value.push({itemName:'节假日费用',itemValue:report.workWeekendBillMonthly,
-                    itemDesc:report.workWeekendHoursMonthly,itemDesc2: find(masterResp.data.data,{itemName:'holiday_hour_unit_price'}).itemValue})
-            itemList.value.push({itemName:'车费',itemValue:report.traveBillMonthly})
-            itemList.value.push({itemName:'其他费用',itemValue:report.additionalTotal, hasDetail: true})
-            totalBill.value = report.billMonthly
-            itemListMap.value.set(moment().format('YYYY-MM'),itemList);
             masterList.value = masterResp.data.data
             getAPI('/hamster/api/noauth/getAdditionalDataMonthly/'+moment().format('YYYY-MM')).then((resp) => {
                 detailList.value = resp.data.data;
@@ -118,8 +108,7 @@ export default {
             itemList,
             totalBill,
             detailList,
-            allReportDate,
-            itemListMap
+            allReportDate
         };
     },
     methods: {
@@ -137,7 +126,7 @@ export default {
         },
         getItemList(){
             //selectedReportMonth
-            return this.itemListMap.get(this.selectedReportMonth) 
+            return this.itemList 
         }
     }
 };
