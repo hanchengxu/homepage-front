@@ -49,6 +49,10 @@ export default {
         selectedReportMonth:{
             handler(nv) {
                 this.selectedReportMonth = nv;
+                getAPI('/hamster/api/noauth/getMasterList').then((resp) => {
+                this.masterList = resp.data.data;
+                });
+
                 getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
                     let report  = resp.data.data;
                     this.itemList = [];
@@ -89,9 +93,6 @@ export default {
         };
         onMounted(async () => {
             window.addEventListener("resize", windowResize);
-            let masterResp = await getAPI('/hamster/api/noauth/getMasterList');
-            masterList.value = masterResp.data.data
-
             getAPI('/hamster/api/noauth/getAllReportDate').then((resp) => {
                 allReportDate.value = resp.data.data;
             })
