@@ -69,7 +69,7 @@ export default {
                 // path: 'attendanceReport',
                 name:'attendanceReport',
                 params:{
-                        masterData: this.masterList
+                        masterData: JSON.stringify(this.masterList)
                     }
          });
         },

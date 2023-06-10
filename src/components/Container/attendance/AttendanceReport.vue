@@ -50,7 +50,7 @@ export default {
         selectedReportMonth:{
             handler(nv) {
                 this.selectedReportMonth = nv;
-                this.masterList = toRefs(this.$route.params.masterData);
+                this.masterList = JSON.parse(this.$route.params.masterData);
                 console.log(this.masterList);
                 getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
                     let report  = resp.data.data;
