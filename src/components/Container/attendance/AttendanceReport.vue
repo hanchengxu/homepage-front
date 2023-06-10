@@ -29,7 +29,7 @@
     </div>
 </template>
 <script>
-import { onMounted, ref, onUnmounted } from "vue";
+import { onMounted, ref, onUnmounted,toRefs } from "vue";
 import { getAPI, postAPI, isNull } from '@/utils.js';
 import moment from 'moment';
 import { find, findIndex } from 'lodash'
@@ -46,13 +46,12 @@ export default {
         }
     },
     watch: {
+
         selectedReportMonth:{
             handler(nv) {
                 this.selectedReportMonth = nv;
-                getAPI('/hamster/api/noauth/getMasterList').then((resp) => {
-                this.masterList = resp.data.data;
-                });
-
+                this.masterList = toRefs(this.$route.params.masterData);
+                console.log(this.masterList);
                 getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
                     let report  = resp.data.data;
                     this.itemList = [];
