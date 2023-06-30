@@ -10,7 +10,7 @@
     "build-github": "vue-cli-service build --mode github"
   },
   "dependencies": {
-    "ant-design-vue": "^2.1.2",
+    "@vuepic/vue-datepicker": "^5.2.1",
     "axios": "^0.21.3",
     "compression-webpack-plugin": "^5.0.1",
     "core-js": "^3.6.5",
