@@ -23,6 +23,8 @@ import LazyShow from '@/components/Common/LazyShow.vue'//延迟加载组件，�
 import VueViewer from 'v-viewer'
 import Cookies from 'js-cookie'
 import lo from 'lodash'
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 //浏览器设定的地区
 let browser_locale = navigator.language.substring(0,2);
@@ -116,7 +118,7 @@ app.use(VueViewer)
 
 app.component('vue3-autocounter', Vue3Autocounter)
 app.component('LazyShow', LazyShow);
-
+app.component('VueDatePicker', VueDatePicker);
 app.component('svg-icon', SvgIcon).mount("#app");
 
 app.config.devtools = true;

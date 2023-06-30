@@ -14,11 +14,12 @@
     </div>
 </template>
 <script>
-import { onMounted, ref, onUnmounted,onActivated,onDeactivated } from "vue";
+import { onMounted, ref, onUnmounted,toRaw ,onActivated,onDeactivated } from "vue";
 import TitleWork  from './TitleWork.vue';
 import ButtonGoToWork  from './ButtonGoToWork';
 import ButtonOffWork  from './ButtonOffWork';
 import FeiCalendar  from './FeiCalendar';
+import { getAPI, postAPI } from '@/utils.js';
 export default {
     components: {
         TitleWork,
@@ -47,19 +48,30 @@ export default {
         const windowResize = () => {
             scollHeight.value = getScollHeight();
         };
+        const masterList = ref([]);
         onMounted(() => {
             window.addEventListener("resize", windowResize);
+            getAPI('/hamster/api/noauth/getMasterList').then((resp) => {
+                masterList.value = resp.data.data;
+            });
         });
         onUnmounted(() => {
             window.removeEventListener("resize", windowResize);
         });
         return {
-            scollHeight
+            scollHeight,
+            masterList
         };
     },
     methods: {
         toReport() {
-            this.$router.push({ path: 'attendanceReport' });
+            this.$router.push({ 
+                // path: 'attendanceReport',
+                name:'attendanceReport',
+                params:{
+                        masterData: JSON.stringify(this.masterList)
+                    }
+         });
         },
         toMaster() {
             this.$router.push({ path: 'attendanceMaster' });

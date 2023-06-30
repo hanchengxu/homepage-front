@@ -26,14 +26,35 @@
                 </div>
             </div>
         </div>
+        <div class="py-3 mx-1 mt-3 mx-xxl-5 px-4 d-flex justify-content-end align-items-center attendance-title rounded-pill">
+            <div class="me-auto fw-bold fs-2 input-group">
+                <label class="">预支费用追加</label>
+            </div>
+        </div>
+        <div class="cost mt-3 row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2"><VueDatePicker v-model="date" :format="dateFormat"/></div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  my-2">
+                <select v-model="costType">
+                    <option v-for="(costTypes, index) in costTypes" :key="index">{{costTypes}}</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2 ">
+                <input :class="{ fail }" v-model.number.trim="cost" oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入金额"/>円
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2">
+                <button class="btn btn-primary" @click="addCost">添加</button>
+            </div>
+        </div> 
     </div>
 </template>
 <script>
-import { onMounted, ref, onUnmounted } from "vue";
+import { onMounted, ref, onUnmounted} from "vue";
 import { getAPI, postAPI, isNull } from '@/utils.js';
 import moment from 'moment';
 import { find, findIndex } from 'lodash'
 import AttendanceItem from "./AttendanceItem.vue";
+import { ConstantTypes } from "@vue/compiler-core";
+
 export default {
     name: "AttendanceReport",
     components: {
@@ -43,16 +64,18 @@ export default {
         return {
             now: moment().format('YYYY-MM-DD'),
             selectedReportMonth: moment().format('YYYY-MM'),
+            costType: '预支费用',
+            costTypes: ['预支费用', '追加费用'],
+            dateFormat: 'yyyy-MM-dd',
+            fail: false
         }
     },
     watch: {
+
         selectedReportMonth:{
             handler(nv) {
                 this.selectedReportMonth = nv;
-                getAPI('/hamster/api/noauth/getMasterList').then((resp) => {
-                this.masterList = resp.data.data;
-                });
-
+                this.masterList = JSON.parse(this.$route.params.masterData);
                 getAPI('/hamster/api/noauth/getReport/'+nv).then((resp) => {
                     let report  = resp.data.data;
                     this.itemList = [];
@@ -78,6 +101,9 @@ export default {
         const detailList = ref([])
         const allReportDate = ref([])
         const totalBill = ref(null)
+        const date = ref(new Date())
+        const cost = ref(null)
+        const costList = ref([])
 
         const getScollHeight = () => {
             return window.innerHeight;
@@ -91,6 +117,7 @@ export default {
             scollHeight.value = getScollHeight();
             width.value = getScollWidth();
         };
+
         onMounted(async () => {
             window.addEventListener("resize", windowResize);
             getAPI('/hamster/api/noauth/getAllReportDate').then((resp) => {
@@ -108,7 +135,10 @@ export default {
             itemList,
             totalBill,
             detailList,
-            allReportDate
+            allReportDate,
+            date,
+            cost,
+            costList
         };
     },
     methods: {
@@ -127,6 +157,21 @@ export default {
         getItemList(){
             //selectedReportMonth
             return this.itemList 
+        },
+        addCost(){
+
+            if(typeof this.cost === 'undefined' || this.cost == null || this.cost === ''){
+                this.fail=true;
+                return;
+            }
+            let cost = this.cost;
+            if (this.costType === '预支费用') {
+                cost = -cost;
+            }
+            let costData= {workDay: this.date, price: cost, additionalDesc: this.costType};
+            postAPI('/hamster/api/noauth/saveAdditionalData',costData).then((response)=>{
+                this.$router.go(0);
+             }) 
         }
     }
 };
@@ -191,4 +236,24 @@ export default {
     font-size: 1.4rem;
     color: #0d6efd;
 }
+.cost {
+    color: black;
+    -webkit-text-stroke: 0px black;
+    font-weight: bold;
+    font-size: 1.4rem;
+    background: white;
+    margin-left: 50px;
+    margin-right: 50px;
+    opacity: 0.95;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.fail {
+      background-color:pink;
+      border:red;
+      color:red;
+    }
 </style>
