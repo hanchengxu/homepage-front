@@ -32,7 +32,7 @@ jobs:
   - run: npm ci
   - name: Install and Build ⚙️
     run: |
-     npm install
+     npm install --force
      npm run-script build
   - name: Deploy github Page 🚀
     uses: JamesIves/github-pages-deploy-action@4.1.8
