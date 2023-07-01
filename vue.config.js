@@ -1,5 +1,5 @@
 const path = require('path')
-const CompressionPlugin = require("compression-webpack-plugin");//gzip压缩
+const CompressionPlugin = require("compression-webpack-plugin");//gzip压缩1
 
 function resolve(dir) {
   return path.join(__dirname, dir);
