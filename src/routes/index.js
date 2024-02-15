@@ -10,6 +10,7 @@ const Resume = () => import('@/components/Container/resume/Resume.vue');
 import Attendance from '@/components/Container/attendance/Attendance.vue';
 import AttendanceMaster from '@/components/Container/attendance/AttendanceMaster.vue';
 import AttendanceReport from '@/components/Container/attendance/AttendanceReport.vue';
+import MainMenu from '@/components/Container/babyFoodsMenu/MainMenu.vue';
 
 function beforeEnterAttendenceOther(to, from, next) {
     if (from.path === '/attendance') {
@@ -34,6 +35,7 @@ const routes = [
         meta: { title: '出勤小助手_月报', showHeaderAndFooer: false, transition: 'fade'},
         beforeEnter:[beforeEnterAttendenceOther] 
     },
+    { path: '/babyFoodsMenu', name: "babyFoodsMenu", component: MainMenu, meta: { showHeaderAndFooer: false, transition: 'fade' } },
     { path: '/', component: Container, meta: { transition: 'fade' } },
     { path: '/:pathMatch(.*)*', component: Container, meta: { transition: 'fade' } }
 ]

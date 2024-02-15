@@ -32,3 +32,7 @@ export function getAPI(url){
 export function postAPI(url,data){
     return callAPI('post',url,data);
 }
+
+export function formatTime(time){
+    return time.toString().padStart(2, 0);
+}
