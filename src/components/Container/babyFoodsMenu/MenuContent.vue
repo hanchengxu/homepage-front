@@ -89,12 +89,7 @@ export default {
        // const meals = ref(['早餐', '午餐', '晚餐']);
         const inputfoods = ref({});
         const inputtable = ref(false); // 默认不显示弹出窗口
-        const meals = reactive([
-            // { type: '早餐', foods:"馒头,牛奶",isInput: false},
-            // { type: '午餐', foods:"西红柿鸡蛋,米饭",isInput: false},
-            // { type: '下午茶', foods:"苹果,饼干",isInput: false},
-            // { type: '晚餐', foods:"包子,粥",isInput: false}
-        ]);
+        const meals = ref([]);
         const imageSrc = [
             require("../../../assets/imgs/breadfast.png"),
             require("../../../assets/imgs/lunch.png"),
@@ -114,19 +109,19 @@ export default {
         };
     },
     watch: {
-    date:{ //深度监听，可监听到对象、数组的变化
-        handler (newV, oldV) {
-          // do something, 可使用this
-        //   console.log("oldV" +newV + oldV);
-          this.getBabyFoodsList();
+        date:{ //深度监听，可监听到对象、数组的变化
+            handler (newV, oldV) {
+            // do something, 可使用this
+                //console.log("oldV" +newV + oldV);
+            this.getBabyFoodsList();
+            },
+            deep:true,
+            immediate:true
         },
-        deep:true
-       }
   },
 
     mounted() {
-        console.log("mounted:this.date:"+this.date);
-        this.getBabyFoodsList();
+
     },
 
     methods: {
@@ -260,7 +255,7 @@ display: flex;
   left: 50%;
   transform: translate(-50%, -50%); /* 水平、垂直居中 */
   width: 400px;
-  height: 65vh;
+  height: 90vh;
 //   background-image: url("../../../assets/imgs/meal.jpeg"); /* 指定背景图像路径 */
 //   background-repeat: no-repeat; /* 不重复平铺背景图像 */
 //   background-position: center; /* 居中显示背景图像 */
