@@ -197,7 +197,7 @@ export default {
   overflow: hidden;
   /* border:1px solid rgb(204, 22, 22); */
 
-  font-size: 2px !important;
+  font-size: 8px !important;
   color: rgb(255, 255, 255);
   animation: box-a 3s ease-in-out;
   transform: skew(60deg, -30deg);
