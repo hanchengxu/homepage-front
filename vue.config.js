@@ -6,7 +6,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-  assetsDir: 'static', // 将静态资源集中存放
   pages:{
     main:{
       entry: 'src/main.js',
