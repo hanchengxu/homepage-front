@@ -48,10 +48,10 @@ module.exports = {
          symbolId: "icon-[name]"
        })
        .end();
-    config.plugin('html').tap(args => {
-         args[0].title= '云雀之丘的时光'
-         return args
-       })  
+    // config.plugin('html').tap(args => {
+    //      args[0].title= '云雀之丘的时光'
+    //      return args
+    //    })  
     config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js')
     
     config.plugins.delete('prefetch');
