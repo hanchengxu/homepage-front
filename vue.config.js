@@ -6,18 +6,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-  pages:{
-    main:{
-      entry: 'src/main.js',
-      template: 'public/index.html',
-      filename: 'index.html'
-    },
-    main_cn: {
-      entry: 'src/main.js',  // 另一个入口文件
-      template: 'public/index_cn.html', // 另一个 HTML 模板
-      filename: 'index_cn.html'  // 生成的 HTML 文件名
-    }
-  },
   // publicPath: '/', // 基本路径
   //github会改变根路径，配合github page 默认域名。但自定义路由后不必使用
   publicPath: process.env.NODE_ENV === 'github' ? '/homepage-front/' : '/',
