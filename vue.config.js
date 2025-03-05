@@ -6,6 +6,7 @@ function resolve(dir) {
 }
 
 module.exports = {
+  assetsDir: 'static', // 将静态资源集中存放
   pages:{
     main:{
       entry: 'src/main.js',
@@ -20,7 +21,7 @@ module.exports = {
   },
   // publicPath: '/', // 基本路径
   //github会改变根路径，配合github page 默认域名。但自定义路由后不必使用
-  publicPath: process.env.NODE_ENV === 'github' ? '/homepage-front/' : '/',
+  publicPath: process.env.NODE_ENV === 'github' ? '/homepage-front/' : './',
   outputDir: 'dist', // 输出文件目录
   lintOnSave: false, // eslint-loader 是否在保存的时候检查
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
