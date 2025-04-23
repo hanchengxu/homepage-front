@@ -1,6 +1,5 @@
 name: Build and Deploy HomePage
 on:
- workflow_dispatch:
  push:
   branches:
     - master
