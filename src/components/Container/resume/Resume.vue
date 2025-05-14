@@ -42,6 +42,8 @@
                             <img loading="lazy" src="https://img.shields.io/badge/-Vue-352e9b?'style'=flat&logo=Vue.js"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-Three.js-352e9b?'style'=flat&logo=Three.js"/>
                             <img loading="lazy" src="https://img.shields.io/badge/-Espressif-352e9b?'style'=flat&logo=Espressif"/>
+                            <img loading="lazy" src="https://img.shields.io/badge/-electron-352e9b?'style'=flat&logo=electron&logoColor=FFF"/>
+                            <img loading="lazy" src="https://img.shields.io/badge/-mqtt-ededed?'style'=flat&logo=mqtt&logoColor=000"/>
                         </div><br>
 
                         <i class="bi-github fs-5" role="img" aria-label="GitHub"></i> <span class="fs-5 fw-bold">Github</span><br>
