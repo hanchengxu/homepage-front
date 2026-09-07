@@ -15,45 +15,54 @@ module.exports = {
     homepage:{
         resume:{
             title:'About me',
-            detail:'Click it, find the colorful me'
+            detail:'Click it and get to know the more colorful me'
         },
         hamsterCare:{
             title:'HamsterCare',
-            detail:"IoT hamster box based on esp32(arduino) platform.Easily get the hamster's movement environmental temperature and humidity information,also can fed hamster automatically via Siri"
+            detail:"An IoT smart hamster box built on the esp32 (Arduino) platform. It records the hamster's daily activity and monitors ambient temperature & humidity, and can even feed the hamster automatically via Siri."
         },
         messageCard:{
             title:'MessageCard',
-            detail:'Simple message Card by Esp8266'
+            detail:'An ultra-simple text display card'
         },
         ukulele:{
-            title:'ウクレレ',
-            detail:"Sheet music being practiced,It's difficult for me I think(⊙o⊙)………"
+            title:'Ukulele',
+            detail:"Some ukulele sheet music I'm still practicing — it's really tough (⊙o⊙)………"
+        },
+        timescar:{
+            title:'Times CAR',
+            detail:'My car-share data panel: model ranking, mileage & cost stats 🚗'
         }
     },
     hamsterCare:{
         pageOne:{
-            tilteOne:'IoT hamster box based on esp32 platform',
-            titleTwo:"Easily get the hamster's movement environmental temperature and humidity information,also can fed hamster automatically via Siri"
+            tilteOne:'IoT smart hamster box based on esp32',
+            titleTwo:"Sensors record the hamster's movement and the environmental temperature/humidity, then send the data to the backend over the MQTT protocol. After analysis and processing, the data is finally shown on the web terminal. With a shortcut configured, you can even feed the hamster automatically using Siri voice commands."
         },
         pageTwo:{
             title:'As you can see',
-            p1:'The line chart shows the daily movement information of a Robrovsky male hamster I raised for {age_of_moon} months.',
-            p2:'As a nocturnal animal🌒，Hamsters usually start a day of life at night😴.We often find it difficult to understand their night activities.',
-            p3:"By {sys_name}  ,You can easily get the hamster's night movement information, And you can use this information to help determine the health of the hamster."
+            p1:"The line chart shows the daily activity of a male Roborovski hamster I keep, aged {age} years ({age_of_moon} months).",
+            p2:"As a nocturnal animal 🌒, the hamster usually starts its day at night 😴, so it's hard for us to observe its night-time behaviour.",
+            p3:"With {sys_name}, you can easily get the hamster's night-time activity data and use it to help assess the hamster's health."
         },
         pageThree:{
-            title:'小时单位平均运动量',
-            p1:'右图是根据半年左右的运动数据统计得来的，以小时为单位的平均运动量。',
-            p2:'的确作为夜行动物的他，主要得活动时间是从晚上20点到早上6点。',
-            p3:'其中凌晨3点左右的跑圈数最大，达到了3000多圈。中午时间段有时也会有运动，可能是因为白天喂食的原因他也会运动一下。',
+            title:'Average activity per hour',
+            p1:"The chart on the right shows the average per-hour activity, calculated from the daily data collected by {sys_name}.",
+            p2:'Indeed, as a nocturnal animal, his main active period is from 8 p.m. to 6 a.m.',
+            p3:"He runs the most around 3 a.m., reaching more than 3,000 laps. He sometimes exercises at noon too, probably because he is fed during the day."
+        },
+        pageFour:{
+            title:'Nightly activity',
+            p1:"Use the buttons below to view your hamster's activity over recent days.",
+            p2:"The chart samples the data every 2 minutes and shows much more detail, so you can learn about your hamster's night-time routine."
         }
     },
     messageCard:{
         pageOne:{
-            title2:'simple message card by Esp8266',
-            p1:'两块面包板，一块0.96OLED屏幕(I2C),一片Esp8266,即可组装出这精美小巧的MessageCard。',
-            p2:'将需要显示的文本同程序一起烧写进去，即可滚动循环显示文本内容。',
-            p3:'本体不包含电源模块，使用 {usb} 即可供电。',
+            title2:'Ultra-simple message display card based on Esp8266',
+            p1:'Two breadboards, one 0.96" OLED screen (I2C) and one Esp8266 are all you need to assemble this compact and lovely MessageCard.',
+            p2:'Just flash the text you want to display together with the program, and it will scroll through the message in a loop.',
+            p3:'The board has no built-in power module — simply power it with {usb}.',
             s1:'Baa, baa,',
             s2:'black sheep,',
             s3:'Have you any ',
@@ -72,17 +81,17 @@ module.exports = {
     resume:{
         title:'About me',
         introduce:{
-            in1:" Hey!I'm Hanchengxu.A web software development engineer with {work_year} years {mos} months of experience",
-            in2:'Code enthusiast, programming is not just a job, but also my hobby.',
-            in3:'Handicapped craftsman, like to make handmade, recently obsessed with Arduino platform, DIY some interesting gadgets.',
-            in4: 'Hamster keeper, welcome to watch the daily exercise status of my hamster.'
+            in1:"Hi! I'm Hanchengxu, a web software development engineer with {work_year} years and {mos} months of experience.",
+            in2:"A coding enthusiast — programming is not just a job to me, but a hobby as well.",
+            in3:"A clumsy craftsman who loves making things by hand. Lately I've been into the Arduino platform, DIY-ing all kinds of fun little gadgets.",
+            in4:"Hamster keeper — welcome to check out my little one's daily activity."
         },
         language:'Language',
-        techStack:'Technology Stack ',
-        learnling:'Learnling',
+        techStack:'Tech Stack',
+        learnling:'Learning',
         contact:{
             title:'Contact me',
-            mail: 'E-mail Address'
+            mail:'E-mail Address'
         }
     }
 }

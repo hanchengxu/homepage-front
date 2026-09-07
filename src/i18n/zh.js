@@ -28,6 +28,10 @@ module.exports = {
         ukulele:{
             title:'尤克里里',
             detail:'收集的一些尤克里里谱子、艰难练习中(⊙o⊙)………'
+        },
+        timescar:{
+            title:'Times CAR',
+            detail:'我的租车数据面板：车型排行、行驶距离与费用统计 🚗'
         }
     },
     hamsterCare:{

@@ -2,7 +2,7 @@
     <LazyShow :time="lazy" transName="sideslip">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center card-col">
             <div class="card d-flex flex-column justify-content-end"  @click="routerChange(destination)"
-                :style="'background-position:1rem 10px;background-image:url(https://raw.githubusercontent.com/hanchengxu/picture-host/master/'+bgImage+');background-color: '+bgColor+';'">
+                :style="cardStyle()">
                 <div class="card-title-board" :style="'background: linear-gradient(0deg,'+cardTitleColorFrom+','+cardTitleColorTo+');'">
                     <div><span class="card-title">{{ $t(cardTitle) }}</span><span class="card-title-emoji">{{cardTitleIcon}}</span></div>
                     <div class="card-title2">{{ $t(cardDetail) }}</div>
@@ -16,7 +16,8 @@
 export default {
     name: 'ProtalCard',
     props:{
-        bgImage: {type: String, required: true},
+        bgImage: {type: String, default: ''},
+        bgImageSize: {type: String, default: ''},
         bgColor: {type: String, required: true},
         cardTitleColorFrom: {type: String, required: true}, 
         cardTitleColorTo: {type: String, required: true},
@@ -27,7 +28,24 @@ export default {
         destination:{type:String, required: true}
     },
     methods: {
+        cardStyle(){
+            // 外部/图床卡片：bgImage 存在才加背景图；纯色渐变卡(bgImage为空)不受影响
+            let style = `background-position:1rem 10px;background-color: ${this.bgColor};`;
+            if(this.bgImage){
+                style += `background-image:url(https://raw.githubusercontent.com/hanchengxu/picture-host/master/${this.bgImage});`;
+                // 可选：限制背景图尺寸（如 contain / cover / 80% auto 等 CSS background-size 值）
+                if(this.bgImageSize){
+                    style += `background-size:${this.bgImageSize};`;
+                }
+            }
+            return style;
+        },
         routerChange(destination){
+            // http(s) 开头的 destination 视为 nginx 托管的外部页面，新标签打开；其余走站内路由
+            if(/^https?:\/\//.test(destination)){
+                window.open(destination, '_blank');
+                return;
+            }
             this.$router.push({ path: destination});
         }
     },

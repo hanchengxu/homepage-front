@@ -47,7 +47,10 @@ export default {
                 cardTitle:"homepage.hamsterCare.title", cardTitleIcon:"🐹", cardDetail:"homepage.hamsterCare.detail",destination:"/hCare"},
                 {key:3,bgImage:"messageCard.png", bgColor:"#b1ea7359", cardTitleColorFrom:"#3cb969", cardTitleColorTo:"#b1ea7300", 
                 cardTitle:"homepage.messageCard.title", cardTitleIcon:"📜", cardDetail:"homepage.messageCard.detail",destination:"/messageCard"},
-                {key:4,bgImage:"guitar.png", bgColor:"#c59387", cardTitleColorFrom:"#8a665d", cardTitleColorTo:"#c4928605", 
+                // 租车数据面板：独立静态页，nginx 托管（部署目录: https://hanchengxu.com/timescar/），新标签打开
+                {key:4,bgImage:"times.jpg",bgImageSize:"70% auto",bgColor:"#fccf00", cardTitleColorFrom:"#d4a017", cardTitleColorTo:"#ffd54a00", 
+                cardTitle:"homepage.timescar.title", cardTitleIcon:"🚗", cardDetail:"homepage.timescar.detail",destination:"https://hanchengxu.com/timescar/index.html"},
+                {key:5,bgImage:"guitar.png", bgColor:"#c59387", cardTitleColorFrom:"#8a665d", cardTitleColorTo:"#c4928605", 
                 cardTitle:"homepage.ukulele.title", cardTitleIcon:"🎶", cardDetail:"homepage.ukulele.detail",destination:"/ukulele"}
             ]
         }
