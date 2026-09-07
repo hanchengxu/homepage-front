@@ -4,7 +4,8 @@ module.exports = {
             topPage: 'Home',
             resume: 'About me',
             hamsterCare: 'HamsterCare',
-            ukulele: 'Ukulele'
+            ukulele: 'Ukulele',
+            blog: 'Blog'
         },
         languageName:'English'
     },
@@ -32,6 +33,10 @@ module.exports = {
         timescar:{
             title:'Times CAR',
             detail:'My car-share data panel: model ranking, mileage & cost stats 🚗'
+        },
+        blog:{
+            title:'Blog',
+            detail:'Tech notes & life logs, updated at my own pace ✍️'
         }
     },
     hamsterCare:{
@@ -93,5 +98,13 @@ module.exports = {
             title:'Contact me',
             mail:'E-mail Address'
         }
+    },
+    blog:{
+        loading:'Loading…',
+        loadFailed:'Failed to load the blog list.',
+        empty:'No posts yet: drop a markdown file into public/blog/posts and rebuild.',
+        back:'Back to blog list',
+        articleMiss:'Post not found or removed.',
+        backToTop:'Back to top'
     }
 }

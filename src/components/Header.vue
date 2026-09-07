@@ -25,6 +25,9 @@
                         <router-link  class="nav-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
                     </li> -->
                     <li class="nav-item">
+                        <router-link class="nav-link" :to="{name:'blog'}">{{ $t("header.menu.blog") }} ✍️</router-link>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://github.com/hanchengxu/PC-dashboard" target="_blank">PC-dashboard ⏱️</a>
                     </li>
                 </ul>

@@ -4,7 +4,8 @@ module.exports = {
             topPage: 'ホームページ',
             resume: '私について',
             hamsterCare: 'HamsterCare',
-            ukulele: 'ウクレレ'
+            ukulele: 'ウクレレ',
+            blog: 'ブログ'
         },
         languageName:'日本語'
     },
@@ -32,6 +33,10 @@ module.exports = {
         timescar:{
             title:'Times CAR',
             detail:'私のカーシェアデータパネル：車種ランキング・走行距離・料金統計 🚗'
+        },
+        blog:{
+            title:'ブログ',
+            detail:'技術メモと日常の記録、気ままに更新中 ✍️'
         }
     },
     hamsterCare:{
@@ -93,5 +98,13 @@ module.exports = {
             title:'コンタクト',
             mail:'メールアドレス'
         }
+    },
+    blog:{
+        loading:'読み込み中…',
+        loadFailed:'ブログ一覧の読み込みに失敗しました。',
+        empty:'まだ記事がありません。public/blog/posts に Markdown ファイルを追加してください。',
+        back:'ブログ一覧へ戻る',
+        articleMiss:'記事が見つからないか、削除されています。',
+        backToTop:'トップへ戻る'
     }
 }

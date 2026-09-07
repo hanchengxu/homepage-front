@@ -4,7 +4,8 @@ module.exports = {
             topPage: '首页',
             resume: '关于我',
             hamsterCare: 'HamsterCare',
-            ukulele: '尤克里里'
+            ukulele: '尤克里里',
+            blog: '博客'
         },
         languageName:'简体中文'
     },
@@ -32,6 +33,10 @@ module.exports = {
         timescar:{
             title:'Times CAR',
             detail:'我的租车数据面板：车型排行、行驶距离与费用统计 🚗'
+        },
+        blog:{
+            title:'博客',
+            detail:'技术笔记与生活随笔，随缘更新 ✍️'
         }
     },
     hamsterCare:{
@@ -93,6 +98,14 @@ module.exports = {
             title:'联系我',
             mail: '邮箱'
         }
+    },
+    blog:{
+        loading:'加载中…',
+        loadFailed:'博客列表加载失败，请稍后重试',
+        empty:'还没有文章：本地写一篇 markdown 放进 public/blog/posts 目录即可',
+        back:'返回博客列表',
+        articleMiss:'文章不存在或已被移除',
+        backToTop:'返回顶部'
     }
 
 }

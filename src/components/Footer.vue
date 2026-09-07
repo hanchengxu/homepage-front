@@ -54,6 +54,11 @@
                                     <router-link  class="router-link" to="/ukulele">{{ $t("header.menu.ukulele") }} 🎶</router-link >
                                 </div>
                             </div>
+                            <div class="row my-2">
+                                <div class="col">
+                                    <router-link class="router-link" :to="{name:'blog'}">{{ $t("header.menu.blog") }} ✍️</router-link>
+                                </div>
+                            </div>
                         </div>
                         <div class="col list-col">
                             <div class="row"><div class="col">
