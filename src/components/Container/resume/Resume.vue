@@ -100,15 +100,15 @@ export default {
         getLocale(){
             return this.$i18n.locale=== 'zh' ? 'cn':this.$i18n.locale;
         },
+        getWorkTotalMonths(){
+            // 从入职日(2015-07-15)到现在的总月数(向下取整)
+            return Math.floor(moment().diff(moment("2015-07-15","YYYY-MM-DD"),'months'));
+        },
         getWorkYear(){
-            return moment().diff(moment("2015-07-15","yyyy-MM-DD"),'years',true).toString().substring(0,1);
+            return Math.floor(this.getWorkTotalMonths/12);
         },
         getWorkYearMonth(){
-            let temp1 = moment().diff(moment("2015-07-15","yyyy-MM-DD"),'years',true).toFixed(1);
-            let temp2 = moment().diff(moment("2015-07-15","yyyy-MM-DD"),'years',true).toString().substring(0,1);
-            let temp3 = (temp1-temp2).toFixed(1);
-            let mos = (temp3*12).toFixed(0);
-            return mos;
+            return this.getWorkTotalMonths%12;
         }
     },
 }
