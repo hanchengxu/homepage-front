@@ -105,6 +105,9 @@ module.exports = {
         empty:'No posts yet: drop a markdown file into public/blog/posts and rebuild.',
         back:'Back to blog list',
         articleMiss:'Post not found or removed.',
-        backToTop:'Back to top'
+        backToTop:'Back to top',
+        timeline:'Timeline',
+        filterByTag:'Filter by tag',
+        all:'All'
     }
 }

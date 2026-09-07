@@ -105,7 +105,10 @@ module.exports = {
         empty:'还没有文章：本地写一篇 markdown 放进 public/blog/posts 目录即可',
         back:'返回博客列表',
         articleMiss:'文章不存在或已被移除',
-        backToTop:'返回顶部'
+        backToTop:'返回顶部',
+        timeline:'时间线',
+        filterByTag:'按标签筛选',
+        all:'全部'
     }
 
 }

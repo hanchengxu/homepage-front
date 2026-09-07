@@ -105,6 +105,9 @@ module.exports = {
         empty:'まだ記事がありません。public/blog/posts に Markdown ファイルを追加してください。',
         back:'ブログ一覧へ戻る',
         articleMiss:'記事が見つからないか、削除されています。',
-        backToTop:'トップへ戻る'
+        backToTop:'トップへ戻る',
+        timeline:'タイムライン',
+        filterByTag:'タグで絞り込み',
+        all:'すべて'
     }
 }
