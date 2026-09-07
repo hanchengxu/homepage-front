@@ -52,7 +52,7 @@ module.exports = {
       maxAsyncRequests: 5,    //同时加载的模块数量最多是5个，只分割出同时引入的前5个文件
       maxInitialRequests: 3,  //首页加载的时候引入的文件最多3个
       automaticNameDelimiter: '~', //缓存组和生成文件名称之间的连接符
-      name: true,                  //缓存组里面的filename生效，覆盖默认命名
+      name: false,                  //缓存组里面的filename生效，覆盖默认命名
       cacheGroups: { //缓存组，将所有加载模块放在缓存里面一起分割打包
         vendors: {  //自定义打包模块
           test: /[\\/]node_modules[\\/]/,
@@ -113,7 +113,7 @@ module.exports = {
     //   css: {}, // 这里的选项会传递给 css-loader
     //   postcss: {} // 这里的选项会传递给 postcss-loader
     // }, // css预设器配置项 详见https://cli.vuejs.org/zh/config/#css-loaderoptions
-    requireModuleExtension: true // 启用 CSS modules for all css / pre-processor files.
+    // requireModuleExtension: true // 启用 CSS modules for all css / pre-processor files.
   },
   parallel: require('os').cpus().length > 1, // 是否为 Babel 或 TypeScript 使用 thread-loader。该选项在系统的 CPU 有多于一个内核时自动启用，仅作用于生产构建。
   pwa: {}, // PWA 插件相关配置 see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
@@ -123,10 +123,10 @@ module.exports = {
     host: '0.0.0.0', // 允许外部ip访问
     port: 8033, // 端口
     https: false, // 启用https
-    overlay: {
-      warnings: true,
-      errors: true
-    }, // 错误、警告在页面弹出
+    // overlay: {
+    //   warnings: true,
+    //   errors: true
+    // }, // 错误、警告在页面弹出
     // proxy: {
     //   '/api': {
     //     target: 'http://www.baidu.com/api',
