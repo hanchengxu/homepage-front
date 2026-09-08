@@ -6,8 +6,8 @@
                 <h1 class="title-one">{{ $t("hamsterCare.pageOne.tilteOne") }}</h1>
                 <p class="pt-4" style="max-width:500px;line-height: 2rem;">{{ $t("hamsterCare.pageOne.titleTwo") }}</p>
             </div>          
-            <div class="col-sm-12 col-md-6 col-lg-4 ms-lg-5 col-xl-3 ms-xl-1 d-flex justify-content-sm-center justify-content-center">
-                <img src="https://raw.githubusercontent.com/hanchengxu/picture-host/master/hamster-wheel.png" style="width:16rem;height:16rem">
+            <div class="col-sm-12 col-md-6 col-lg-5 ms-lg-4 col-xl-4 ms-xl-1 d-flex justify-content-sm-center justify-content-center">
+                <HamsterWheel3D class="hamster-wheel-3d" />
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <div class="mouse-icon"><span class="mouse-wheel"></span></div>
@@ -63,9 +63,10 @@ import setChartOptions from './setChartOptions';
 import resizeChart from './resizeChart';
 import { dayChartOption,hourChartOption,hourAvgChartOption } from '@/components/Common/echartOptions';
 import moment from 'moment';
+import HamsterWheel3D from './HamsterWheel3D.vue';
 
 export default {
-  components: { },
+  components: { HamsterWheel3D },
     name: 'HamsterCare',
     props:{
         //echart首次加载显示，但在router路由回来后显示空白，经过查询，需要将chart的 id 换成动态id。
@@ -297,6 +298,13 @@ export default {
 .hamster-btn-focus,
 .hamster-btn:focus{
     box-shadow: 0 0 0 0.25rem #2eb2be63;
+}
+
+/* 3D 跑轮（three.js） */
+.hamster-wheel-3d{
+    width: 100%;
+    max-width: 22rem;
+    height: 22rem;
 }
 
 </style>
